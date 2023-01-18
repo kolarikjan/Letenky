@@ -1,0 +1,14 @@
+V názvu tříd jednotné číslo a velké písmeno na začátku.
+V názvu kolekcí množné číslo a velké písmeno na začátku.
+V hlavičkách metod a názvech instančních proměnných malé písmeno na začátku.
+Nekřížit vazby. Snažte se obrázek diagramu ručně přerovnat.
+U dědění ručně uspořádat symboly tříd tak, aby v obrázku diagramu byla nadřazená třída nad svými potomky.
+Při dědění by měl mít potomek nějaké instanční proměnné navíc nebo by měl mít metody navíc nebo by měl mít vazby z něj či do něj navíc (aby se nějak lišil od svého předka). Pokud takové rozlišení chybí, nechte jednu třídu a její instance sázejte do více kolekcí.
+Pozor na směr vazeb, musí souhlasit s dokumentací.
+Použijte raději více tříd, je-li limit 4 třídy a vy použijete přesně 4 třídy, z toho jedna (nebo i víc) je jen předek v dědění, nemusí to cvičícímu stačit.
+Zamyslet se, zda např. zaměstnanec může být i zákazníkem apod. Tak či tak to napište do dokumentace. Jsou případy, kdy stačí jedna třída na více rolí a ty role jdou udělat vazbami na jiné objekty nebo kolekcemi. Jindy ne. Záleží na použití objektů.
+Dokumentace:
+Neplést si pojmy instance a instanční proměnná!!!
+Dokumentace projektu (první záložka "Project") bude mít alespoň 10 vět, nechceme sice román, ale aby bylo jasné, proč systém tvoříte, k čemu slouží, jak funguje. Nestačí vyjmenovat použité třídy a jejich instanční proměnné. To Daskalos generuje sám z obsahu dalších záložek a proto je to v popisu projektu zbytečné.
+U dokumentace tříd nevyjmenovávat jen instanční proměnné (to si můžeme přečíst), spíše vysvětlit, proč tu proměnnou používáte, co znamená, jaké může mít hodnoty apod. Tohle napište v Daskalu do okénka "responsibilities" v záložce tříd.
+U dokumentace třídy Pes nestačí napsat: "Informace o třídě Pes." Musíte napsat, co a proč má objekt Pes umět. Tohle také napište v Daskalu do okénka "responsibilities" v záložce tříd.
