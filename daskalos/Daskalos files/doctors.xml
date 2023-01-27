@@ -1,0 +1,810 @@
+<sixx sixx.version="1.0">
+	<sixx.object sixx.id="0" sixx.type="DaskalosProject" >
+		<sixx.object sixx.id="1" sixx.name="name" sixx.type="String" >Doctor&#39;s Office</sixx.object>
+		<sixx.object sixx.id="2" sixx.name="author" sixx.type="String" >Vojtech Merunka</sixx.object>
+		<sixx.object sixx.id="3" sixx.name="description" sixx.type="String" >OODB Example with Doctors&#44; Patients&#44; Visitations
+
+&#40;C&#41; 2006-2007 V.M.</sixx.object>
+		<sixx.object sixx.id="4" sixx.name="workspaceVariables" sixx.type="Dictionary" >
+			<sixx.object sixx.id="5" sixx.type="Association" >
+				<sixx.object sixx.id="6" sixx.name="key" sixx.type="Symbol" >Patients</sixx.object>
+				<sixx.object sixx.id="7" sixx.name="value" sixx.type="Set" >
+					<sixx.object sixx.id="8" sixx.type="Person" >
+						<sixx.object sixx.id="9" sixx.name="firstname" sixx.type="String" >Petr</sixx.object>
+						<sixx.object sixx.id="10" sixx.name="surname" sixx.type="String" >Novak</sixx.object>
+						<sixx.object sixx.id="11" sixx.name="address" sixx.type="String" >Praha&#44; Jeronymova 13</sixx.object>
+						<sixx.object sixx.id="12" sixx.name="birthdate" sixx.type="Date" >4 October 1967</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="13" sixx.type="Person" >
+						<sixx.object sixx.id="14" sixx.name="firstname" sixx.type="String" >Ivan</sixx.object>
+						<sixx.object sixx.id="15" sixx.name="surname" sixx.type="String" >Noha</sixx.object>
+						<sixx.object sixx.id="16" sixx.name="address" sixx.type="String" >Praha&#44; Zizkova 56</sixx.object>
+						<sixx.object sixx.id="17" sixx.name="birthdate" sixx.type="Date" >3 January 1954</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="18" sixx.type="Doctor" >
+						<sixx.object sixx.id="19" sixx.name="firstname" sixx.type="String" >Michailos</sixx.object>
+						<sixx.object sixx.id="20" sixx.name="surname" sixx.type="String" >Asklepios</sixx.object>
+						<sixx.object sixx.id="21" sixx.name="address" sixx.type="String" >Rodos&#44; Kalithea 3</sixx.object>
+						<sixx.object sixx.id="22" sixx.name="birthdate" sixx.type="Date" >28 May 1975</sixx.object>
+						<sixx.object sixx.id="23" sixx.name="specialization" sixx.type="String" >practicioner</sixx.object>
+						<sixx.object sixx.id="24" sixx.name="visitations" sixx.type="Set" >
+							<sixx.object sixx.id="25" sixx.type="Visitation" >
+								<sixx.object sixx.idref="18" sixx.name="doctor" ></sixx.object>
+								<sixx.object sixx.id="26" sixx.name="patient" sixx.type="Person" >
+									<sixx.object sixx.id="27" sixx.name="firstname" sixx.type="String" >Joe</sixx.object>
+									<sixx.object sixx.id="28" sixx.name="surname" sixx.type="String" >Smith</sixx.object>
+									<sixx.object sixx.id="29" sixx.name="address" sixx.type="String" >Praha&#44; Nerudova 34</sixx.object>
+									<sixx.object sixx.id="30" sixx.name="birthdate" sixx.type="Date" >3 May 1965</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.id="31" sixx.name="visitDate" sixx.type="Date" >19 July 2000</sixx.object>
+								<sixx.object sixx.id="32" sixx.name="diagnosis" sixx.type="String" >diarrhoea</sixx.object>
+								<sixx.object sixx.id="33" sixx.name="nextVisitDate" sixx.type="Date" >20 July 2000</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="34" sixx.type="Visitation" >
+								<sixx.object sixx.idref="18" sixx.name="doctor" ></sixx.object>
+								<sixx.object sixx.idref="13" sixx.name="patient" ></sixx.object>
+								<sixx.object sixx.id="35" sixx.name="visitDate" sixx.type="Date" >11 November 2000</sixx.object>
+								<sixx.object sixx.id="36" sixx.name="diagnosis" sixx.type="String" >alergy</sixx.object>
+								<sixx.object sixx.id="37" sixx.name="nextVisitDate" sixx.type="Date" >15 November 2000</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="38" sixx.type="Visitation" >
+								<sixx.object sixx.idref="18" sixx.name="doctor" ></sixx.object>
+								<sixx.object sixx.id="39" sixx.name="patient" sixx.type="Person" >
+									<sixx.object sixx.id="40" sixx.name="firstname" sixx.type="String" >Michal</sixx.object>
+									<sixx.object sixx.id="41" sixx.name="surname" sixx.type="String" >Skrbek</sixx.object>
+									<sixx.object sixx.id="42" sixx.name="address" sixx.type="String" >Praha&#44; Parlerova 234</sixx.object>
+									<sixx.object sixx.id="43" sixx.name="birthdate" sixx.type="Date" >6 December 1945</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.id="44" sixx.name="visitDate" sixx.type="Date" >11 November 2000</sixx.object>
+								<sixx.object sixx.id="45" sixx.name="diagnosis" sixx.type="String" >tonsillitis</sixx.object>
+								<sixx.object sixx.id="46" sixx.name="nextVisitDate" sixx.type="Date" >23 November 2000</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="47" sixx.type="Visitation" >
+								<sixx.object sixx.idref="18" sixx.name="doctor" ></sixx.object>
+								<sixx.object sixx.id="48" sixx.name="patient" sixx.type="Person" >
+									<sixx.object sixx.id="49" sixx.name="firstname" sixx.type="String" >Milan</sixx.object>
+									<sixx.object sixx.id="50" sixx.name="surname" sixx.type="String" >Zeleny</sixx.object>
+									<sixx.object sixx.id="51" sixx.name="address" sixx.type="String" >Praha&#44; Muklova 7</sixx.object>
+									<sixx.object sixx.id="52" sixx.name="birthdate" sixx.type="Date" >5 May 1988</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.id="53" sixx.name="visitDate" sixx.type="Date" >27 July 2000</sixx.object>
+								<sixx.object sixx.id="54" sixx.name="diagnosis" sixx.type="String" >flu</sixx.object>
+								<sixx.object sixx.id="55" sixx.name="nextVisitDate" sixx.type="Date" >27 August 2000</sixx.object>
+							</sixx.object>
+						</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="56" sixx.type="Person" >
+						<sixx.object sixx.id="57" sixx.name="firstname" sixx.type="String" >Pavel</sixx.object>
+						<sixx.object sixx.id="58" sixx.name="surname" sixx.type="String" >Novak</sixx.object>
+						<sixx.object sixx.id="59" sixx.name="address" sixx.type="String" >Praha&#44; Zizkova 10</sixx.object>
+						<sixx.object sixx.id="60" sixx.name="birthdate" sixx.type="Date" >6 August 1976</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="61" sixx.type="Person" >
+						<sixx.object sixx.id="62" sixx.name="firstname" sixx.type="String" >Ivan</sixx.object>
+						<sixx.object sixx.id="63" sixx.name="surname" sixx.type="String" >Vlcek</sixx.object>
+						<sixx.object sixx.id="64" sixx.name="address" sixx.type="String" >Praha&#44; Muklova 3</sixx.object>
+						<sixx.object sixx.id="65" sixx.name="birthdate" sixx.type="Date" >10 December 1981</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="66" sixx.type="Person" >
+						<sixx.object sixx.id="67" sixx.name="firstname" sixx.type="String" >Josef</sixx.object>
+						<sixx.object sixx.id="68" sixx.name="surname" sixx.type="String" >Polak</sixx.object>
+						<sixx.object sixx.id="69" sixx.name="address" sixx.type="String" >Praha&#44; Sotonova 89</sixx.object>
+						<sixx.object sixx.id="70" sixx.name="birthdate" sixx.type="Date" >1 February 1933</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.idref="39" ></sixx.object>
+					<sixx.object sixx.idref="26" ></sixx.object>
+					<sixx.object sixx.idref="48" ></sixx.object>
+					<sixx.object sixx.id="71" sixx.type="Person" >
+						<sixx.object sixx.id="72" sixx.name="firstname" sixx.type="String" >Michal</sixx.object>
+						<sixx.object sixx.id="73" sixx.name="surname" sixx.type="String" >Capek</sixx.object>
+						<sixx.object sixx.id="74" sixx.name="address" sixx.type="String" >Praha&#44; Nerudova 123</sixx.object>
+						<sixx.object sixx.id="75" sixx.name="birthdate" sixx.type="Date" >4 December 1999</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="76" sixx.type="Person" >
+						<sixx.object sixx.id="77" sixx.name="firstname" sixx.type="String" >Ivan</sixx.object>
+						<sixx.object sixx.id="78" sixx.name="surname" sixx.type="String" >Novak</sixx.object>
+						<sixx.object sixx.id="79" sixx.name="address" sixx.type="String" >Praha&#44; Sotonova 341</sixx.object>
+						<sixx.object sixx.id="80" sixx.name="birthdate" sixx.type="Date" >19 January 1980</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="81" sixx.type="Person" >
+						<sixx.object sixx.id="82" sixx.name="firstname" sixx.type="String" >Jan</sixx.object>
+						<sixx.object sixx.id="83" sixx.name="surname" sixx.type="String" >Zeleny</sixx.object>
+						<sixx.object sixx.id="84" sixx.name="address" sixx.type="String" >Praha&#44; Novotneho 20</sixx.object>
+						<sixx.object sixx.id="85" sixx.name="birthdate" sixx.type="Date" >8 March 1978</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="86" sixx.type="Person" >
+						<sixx.object sixx.id="87" sixx.name="firstname" sixx.type="String" >Jan</sixx.object>
+						<sixx.object sixx.id="88" sixx.name="surname" sixx.type="String" >Novak</sixx.object>
+						<sixx.object sixx.id="89" sixx.name="address" sixx.type="String" >Praha&#44; Nerudova 87</sixx.object>
+						<sixx.object sixx.id="90" sixx.name="birthdate" sixx.type="Date" >12 February 1964</sixx.object>
+					</sixx.object>
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="91" sixx.type="Association" >
+				<sixx.object sixx.id="92" sixx.name="key" sixx.type="Symbol" >Visitations</sixx.object>
+				<sixx.object sixx.id="93" sixx.name="value" sixx.type="Set" >
+					<sixx.object sixx.id="94" sixx.type="Visitation" >
+						<sixx.object sixx.id="95" sixx.name="doctor" sixx.type="Doctor" >
+							<sixx.object sixx.id="96" sixx.name="firstname" sixx.type="String" >Jan</sixx.object>
+							<sixx.object sixx.id="97" sixx.name="surname" sixx.type="String" >Novak</sixx.object>
+							<sixx.object sixx.id="98" sixx.name="address" sixx.type="String" >Praha&#44; Novakova 12</sixx.object>
+							<sixx.object sixx.id="99" sixx.name="birthdate" sixx.type="Date" >4 January 1950</sixx.object>
+							<sixx.object sixx.id="100" sixx.name="specialization" sixx.type="String" >practicioner</sixx.object>
+							<sixx.object sixx.id="101" sixx.name="visitations" sixx.type="Set" >
+								<sixx.object sixx.id="102" sixx.type="Visitation" >
+									<sixx.object sixx.idref="95" sixx.name="doctor" ></sixx.object>
+									<sixx.object sixx.idref="48" sixx.name="patient" ></sixx.object>
+									<sixx.object sixx.id="103" sixx.name="visitDate" sixx.type="Date" >3 November 2000</sixx.object>
+									<sixx.object sixx.id="104" sixx.name="diagnosis" sixx.type="String" >alergy</sixx.object>
+									<sixx.object sixx.id="105" sixx.name="nextVisitDate" sixx.type="Date" >3 December 2000</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.id="106" sixx.type="Visitation" >
+									<sixx.object sixx.idref="95" sixx.name="doctor" ></sixx.object>
+									<sixx.object sixx.idref="8" sixx.name="patient" ></sixx.object>
+									<sixx.object sixx.id="107" sixx.name="visitDate" sixx.type="Date" >12 December 2000</sixx.object>
+									<sixx.object sixx.id="108" sixx.name="diagnosis" sixx.type="String" >tonsillitis</sixx.object>
+									<sixx.object sixx.id="109" sixx.name="nextVisitDate" sixx.type="Date" >31 December 2000</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.id="110" sixx.type="Visitation" >
+									<sixx.object sixx.idref="95" sixx.name="doctor" ></sixx.object>
+									<sixx.object sixx.idref="71" sixx.name="patient" ></sixx.object>
+									<sixx.object sixx.id="111" sixx.name="visitDate" sixx.type="Date" >2 February 2000</sixx.object>
+									<sixx.object sixx.id="112" sixx.name="diagnosis" sixx.type="String" >flu</sixx.object>
+									<sixx.object sixx.id="113" sixx.name="nextVisitDate" sixx.type="Date" >20 February 2000</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.idref="94" ></sixx.object>
+								<sixx.object sixx.id="114" sixx.type="Visitation" >
+									<sixx.object sixx.idref="95" sixx.name="doctor" ></sixx.object>
+									<sixx.object sixx.idref="18" sixx.name="patient" ></sixx.object>
+									<sixx.object sixx.id="115" sixx.name="visitDate" sixx.type="Date" >23 July 2000</sixx.object>
+									<sixx.object sixx.id="116" sixx.name="diagnosis" sixx.type="String" >diarrhoea</sixx.object>
+									<sixx.object sixx.id="117" sixx.name="nextVisitDate" sixx.type="Date" >24 July 2000</sixx.object>
+								</sixx.object>
+							</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.idref="86" sixx.name="patient" ></sixx.object>
+						<sixx.object sixx.id="118" sixx.name="visitDate" sixx.type="Date" >23 March 2000</sixx.object>
+						<sixx.object sixx.id="119" sixx.name="diagnosis" sixx.type="String" >diarrhoea</sixx.object>
+						<sixx.object sixx.id="120" sixx.name="nextVisitDate" sixx.type="Date" >26 March 2000</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.idref="47" ></sixx.object>
+					<sixx.object sixx.id="121" sixx.type="Visitation" >
+						<sixx.object sixx.id="122" sixx.name="doctor" sixx.type="Doctor" >
+							<sixx.object sixx.id="123" sixx.name="firstname" sixx.type="String" >Milan</sixx.object>
+							<sixx.object sixx.id="124" sixx.name="surname" sixx.type="String" >Novak</sixx.object>
+							<sixx.object sixx.id="125" sixx.name="address" sixx.type="String" >Brno&#44; V Lese 21</sixx.object>
+							<sixx.object sixx.id="126" sixx.name="birthdate" sixx.type="Date" >20 February 1971</sixx.object>
+							<sixx.object sixx.id="127" sixx.name="specialization" sixx.type="String" >psychologist</sixx.object>
+							<sixx.object sixx.id="128" sixx.name="visitations" sixx.type="Set" >
+								<sixx.object sixx.id="129" sixx.type="Visitation" >
+									<sixx.object sixx.idref="122" sixx.name="doctor" ></sixx.object>
+									<sixx.object sixx.idref="48" sixx.name="patient" ></sixx.object>
+									<sixx.object sixx.id="130" sixx.name="visitDate" sixx.type="Date" >11 November 2000</sixx.object>
+									<sixx.object sixx.id="131" sixx.name="diagnosis" sixx.type="String" >depression</sixx.object>
+									<sixx.object sixx.id="132" sixx.name="nextVisitDate" sixx.type="Date" >11 December 2000</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.idref="121" ></sixx.object>
+							</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.idref="13" sixx.name="patient" ></sixx.object>
+						<sixx.object sixx.id="133" sixx.name="visitDate" sixx.type="Date" >13 March 2000</sixx.object>
+						<sixx.object sixx.id="134" sixx.name="diagnosis" sixx.type="String" >sleeplessness</sixx.object>
+						<sixx.object sixx.id="135" sixx.name="nextVisitDate" sixx.type="Date" >13 April 2000</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="136" sixx.type="Visitation" >
+						<sixx.object sixx.id="137" sixx.name="doctor" sixx.type="Doctor" >
+							<sixx.object sixx.id="138" sixx.name="firstname" sixx.type="String" >Kostas</sixx.object>
+							<sixx.object sixx.id="139" sixx.name="surname" sixx.type="String" >Kokkinos</sixx.object>
+							<sixx.object sixx.id="140" sixx.name="address" sixx.type="String" >Iraklio&#44; Evans 3</sixx.object>
+							<sixx.object sixx.id="141" sixx.name="birthdate" sixx.type="Date" >31 August 1977</sixx.object>
+							<sixx.object sixx.id="142" sixx.name="specialization" sixx.type="String" >surgeon</sixx.object>
+							<sixx.object sixx.id="143" sixx.name="visitations" sixx.type="Set" >
+								<sixx.object sixx.id="144" sixx.type="Visitation" >
+									<sixx.object sixx.idref="137" sixx.name="doctor" ></sixx.object>
+									<sixx.object sixx.idref="26" sixx.name="patient" ></sixx.object>
+									<sixx.object sixx.id="145" sixx.name="visitDate" sixx.type="Date" >31 October 2000</sixx.object>
+									<sixx.object sixx.id="146" sixx.name="diagnosis" sixx.type="String" >headache</sixx.object>
+									<sixx.object sixx.id="147" sixx.name="nextVisitDate" sixx.type="Date" >10 November 2000</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.idref="136" ></sixx.object>
+							</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.idref="56" sixx.name="patient" ></sixx.object>
+						<sixx.object sixx.id="148" sixx.name="visitDate" sixx.type="Date" >1 September 2000</sixx.object>
+						<sixx.object sixx.id="149" sixx.name="diagnosis" sixx.type="String" >appendicitis</sixx.object>
+						<sixx.object sixx.id="150" sixx.name="nextVisitDate" sixx.type="Date" >20 September 2000</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="151" sixx.type="Visitation" >
+						<sixx.object sixx.id="152" sixx.name="doctor" sixx.type="Doctor" >
+							<sixx.object sixx.id="153" sixx.name="firstname" sixx.type="String" >Joe</sixx.object>
+							<sixx.object sixx.id="154" sixx.name="surname" sixx.type="String" >Davidson</sixx.object>
+							<sixx.object sixx.id="155" sixx.name="address" sixx.type="String" >London&#44; Regent str. 5</sixx.object>
+							<sixx.object sixx.id="156" sixx.name="birthdate" sixx.type="Date" >27 March 1949</sixx.object>
+							<sixx.object sixx.id="157" sixx.name="specialization" sixx.type="String" >practicioner</sixx.object>
+							<sixx.object sixx.id="158" sixx.name="visitations" sixx.type="Set" >
+								<sixx.object sixx.id="159" sixx.type="Visitation" >
+									<sixx.object sixx.idref="152" sixx.name="doctor" ></sixx.object>
+									<sixx.object sixx.idref="81" sixx.name="patient" ></sixx.object>
+									<sixx.object sixx.id="160" sixx.name="visitDate" sixx.type="Date" >23 May 2000</sixx.object>
+									<sixx.object sixx.id="161" sixx.name="diagnosis" sixx.type="String" >tonsillitis</sixx.object>
+									<sixx.object sixx.id="162" sixx.name="nextVisitDate" sixx.type="Date" >24 May 2000</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.idref="151" ></sixx.object>
+							</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.idref="13" sixx.name="patient" ></sixx.object>
+						<sixx.object sixx.id="163" sixx.name="visitDate" sixx.type="Date" >3 March 2000</sixx.object>
+						<sixx.object sixx.id="164" sixx.name="diagnosis" sixx.type="String" >flu</sixx.object>
+						<sixx.object sixx.id="165" sixx.name="nextVisitDate" sixx.type="Date" >9 March 2000</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.idref="144" ></sixx.object>
+					<sixx.object sixx.id="166" sixx.type="Visitation" >
+						<sixx.object sixx.id="167" sixx.name="doctor" sixx.type="Doctor" >
+							<sixx.object sixx.id="168" sixx.name="firstname" sixx.type="String" >Ivan</sixx.object>
+							<sixx.object sixx.id="169" sixx.name="surname" sixx.type="String" >Zeleny</sixx.object>
+							<sixx.object sixx.id="170" sixx.name="address" sixx.type="String" >Moskva&#44; Pushkinova 2</sixx.object>
+							<sixx.object sixx.id="171" sixx.name="birthdate" sixx.type="Date" >15 November 1955</sixx.object>
+							<sixx.object sixx.id="172" sixx.name="specialization" sixx.type="String" >psychologist</sixx.object>
+							<sixx.object sixx.id="173" sixx.name="visitations" sixx.type="Set" >
+								<sixx.object sixx.idref="166" ></sixx.object>
+								<sixx.object sixx.id="174" sixx.type="Visitation" >
+									<sixx.object sixx.idref="167" sixx.name="doctor" ></sixx.object>
+									<sixx.object sixx.idref="66" sixx.name="patient" ></sixx.object>
+									<sixx.object sixx.id="175" sixx.name="visitDate" sixx.type="Date" >11 September 2000</sixx.object>
+									<sixx.object sixx.id="176" sixx.name="diagnosis" sixx.type="String" >depression</sixx.object>
+									<sixx.object sixx.id="177" sixx.name="nextVisitDate" sixx.type="Date" >11 October 2000</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.id="178" sixx.type="Visitation" >
+									<sixx.object sixx.idref="167" sixx.name="doctor" ></sixx.object>
+									<sixx.object sixx.idref="39" sixx.name="patient" ></sixx.object>
+									<sixx.object sixx.id="179" sixx.name="visitDate" sixx.type="Date" >11 November 2000</sixx.object>
+									<sixx.object sixx.id="180" sixx.name="diagnosis" sixx.type="String" >depression</sixx.object>
+									<sixx.object sixx.id="181" sixx.name="nextVisitDate" sixx.type="Date" >11 December 2000</sixx.object>
+								</sixx.object>
+							</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.idref="81" sixx.name="patient" ></sixx.object>
+						<sixx.object sixx.id="182" sixx.name="visitDate" sixx.type="Date" >22 October 2000</sixx.object>
+						<sixx.object sixx.id="183" sixx.name="diagnosis" sixx.type="String" >sleeplessness</sixx.object>
+						<sixx.object sixx.id="184" sixx.name="nextVisitDate" sixx.type="Date" >28 October 2000</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="185" sixx.type="Visitation" >
+						<sixx.object sixx.id="186" sixx.name="doctor" sixx.type="Doctor" >
+							<sixx.object sixx.id="187" sixx.name="firstname" sixx.type="String" >Ivan</sixx.object>
+							<sixx.object sixx.id="188" sixx.name="surname" sixx.type="String" >Drago</sixx.object>
+							<sixx.object sixx.id="189" sixx.name="address" sixx.type="String" >Sofia&#44; Duga 71</sixx.object>
+							<sixx.object sixx.id="190" sixx.name="birthdate" sixx.type="Date" >1 January 1979</sixx.object>
+							<sixx.object sixx.id="191" sixx.name="specialization" sixx.type="String" >surgeon</sixx.object>
+							<sixx.object sixx.id="192" sixx.name="visitations" sixx.type="Set" >
+								<sixx.object sixx.id="193" sixx.type="Visitation" >
+									<sixx.object sixx.idref="186" sixx.name="doctor" ></sixx.object>
+									<sixx.object sixx.idref="61" sixx.name="patient" ></sixx.object>
+									<sixx.object sixx.id="194" sixx.name="visitDate" sixx.type="Date" >23 August 2000</sixx.object>
+									<sixx.object sixx.id="195" sixx.name="diagnosis" sixx.type="String" >headache</sixx.object>
+									<sixx.object sixx.id="196" sixx.name="nextVisitDate" sixx.type="Date" >23 October 2000</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.idref="185" ></sixx.object>
+							</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.idref="76" sixx.name="patient" ></sixx.object>
+						<sixx.object sixx.id="197" sixx.name="visitDate" sixx.type="Date" >11 November 2000</sixx.object>
+						<sixx.object sixx.id="198" sixx.name="diagnosis" sixx.type="String" >appendicitis</sixx.object>
+						<sixx.object sixx.id="199" sixx.name="nextVisitDate" sixx.type="Date" >11 December 2000</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.idref="102" ></sixx.object>
+					<sixx.object sixx.idref="25" ></sixx.object>
+					<sixx.object sixx.idref="110" ></sixx.object>
+					<sixx.object sixx.idref="174" ></sixx.object>
+					<sixx.object sixx.idref="106" ></sixx.object>
+					<sixx.object sixx.idref="193" ></sixx.object>
+					<sixx.object sixx.idref="178" ></sixx.object>
+					<sixx.object sixx.idref="114" ></sixx.object>
+					<sixx.object sixx.idref="38" ></sixx.object>
+					<sixx.object sixx.idref="34" ></sixx.object>
+					<sixx.object sixx.idref="129" ></sixx.object>
+					<sixx.object sixx.idref="159" ></sixx.object>
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="200" sixx.type="Association" >
+				<sixx.object sixx.id="201" sixx.name="key" sixx.type="Symbol" >Doctors</sixx.object>
+				<sixx.object sixx.id="202" sixx.name="value" sixx.type="Set" >
+					<sixx.object sixx.idref="137" ></sixx.object>
+					<sixx.object sixx.idref="152" ></sixx.object>
+					<sixx.object sixx.idref="167" ></sixx.object>
+					<sixx.object sixx.idref="18" ></sixx.object>
+					<sixx.object sixx.idref="122" ></sixx.object>
+					<sixx.object sixx.idref="95" ></sixx.object>
+					<sixx.object sixx.idref="186" ></sixx.object>
+				</sixx.object>
+			</sixx.object>
+		</sixx.object>
+		<sixx.object sixx.id="203" sixx.name="workspaceText" sixx.type="String" >&quot;select all patients having dignosis diarrhoea&quot;
+
+&#40;Visitations select: [:v | v diagnosis = &#39;diarrhoea&#39;]&#41; 
+         collect: [:v | v patient]</sixx.object>
+		<sixx.object sixx.id="204" sixx.name="scriptText" sixx.type="String" >Doctors := Set new.
+Patients := Set new.
+Visitations := Set new.
+
+d01 := Doctor new 
+	firstname: &#39;Jan&#39;; surname: &#39;Novak&#39;; address: &#39;Praha&#44; Novakova 12&#39;; birthdate: &#39;4-JAN-1950&#39; asDate; specialization: &#39;practicioner&#39;.
+d02 := Doctor new 
+	firstname: &#39;Joe&#39;; surname: &#39;Davidson&#39;; address: &#39;London&#44; Regent str. 5&#39;; birthdate: &#39;27-MAR-1949&#39; asDate; specialization: &#39;practicioner&#39;.
+d03 := Doctor new 
+	firstname: &#39;Ivan&#39;; surname: &#39;Zeleny&#39;; address: &#39;Moskva&#44; Pushkinova 2&#39;; birthdate: &#39;15-NOV-1955&#39; asDate; specialization: &#39;psychologist&#39;.
+d04 := Doctor new 
+	firstname: &#39;Kostas&#39;; surname: &#39;Kokkinos&#39;; address: &#39;Iraklio&#44; Evans 3&#39;; birthdate: &#39;31-AUG-1977&#39; asDate; specialization: &#39;surgeon&#39;.
+d05 := Doctor new 
+	firstname: &#39;Ivan&#39;; surname: &#39;Drago&#39;; address: &#39;Sofia&#44; Duga 71&#39;; birthdate: &#39;1-JAN-1979&#39; asDate; specialization: &#39;surgeon&#39;.
+d06 := Doctor new 
+	firstname: &#39;Milan&#39;; surname: &#39;Novak&#39;; address: &#39;Brno&#44; V Lese 21&#39;; birthdate: &#39;20-FEB-1971&#39; asDate; specialization: &#39;psychologist&#39;.
+d07 := Doctor new 
+	firstname: &#39;Michailos&#39;; surname: &#39;Asklepios&#39;; address: &#39;Rodos&#44; Kalithea 3&#39;; birthdate: &#39;28-MAY-1975&#39; asDate; specialization: &#39;practicioner&#39;.
+
+Doctors add: d01; add: d02; add: d03; add: d04; add: d05; add: d06; add: d07.
+
+
+p01 := Person new 
+	firstname: &#39;Petr&#39;; surname: &#39;Novak&#39;; address: &#39;Praha&#44; Jeronymova 13&#39;; birthdate: &#39;4-OCT-1967&#39; asDate.
+p02 := Person new 
+	firstname: &#39;Michal&#39;; surname: &#39;Skrbek&#39;; address: &#39;Praha&#44; Parlerova 234&#39;; birthdate: &#39;6-DEC-1945&#39; asDate.
+p03 := Person new 
+	firstname: &#39;Jan&#39;; surname: &#39;Zeleny&#39;; address: &#39;Praha&#44; Novotneho 20&#39;; birthdate: &#39;8-MAR-1978&#39; asDate.
+p04 := Person new 
+	firstname: &#39;Pavel&#39;; surname: &#39;Novak&#39;; address: &#39;Praha&#44; Zizkova 10&#39;; birthdate: &#39;6-AUG-1976&#39; asDate.
+p05 := Person new 
+	firstname: &#39;Josef&#39;; surname: &#39;Polak&#39;; address: &#39;Praha&#44; Sotonova 89&#39;; birthdate: &#39;1-FEB-1933&#39; asDate.
+p06 := Person new 
+	firstname: &#39;Michal&#39;; surname: &#39;Capek&#39;; address: &#39;Praha&#44; Nerudova 123&#39;; birthdate: &#39;4-DEC-1999&#39; asDate.
+p07 := Person new 
+	firstname: &#39;Joe&#39;; surname: &#39;Smith&#39;; address: &#39;Praha&#44; Nerudova 34&#39;; birthdate: &#39;3-MAY-1965&#39; asDate.
+p08 := Person new 
+	firstname: &#39;Ivan&#39;; surname: &#39;Novak&#39;; address: &#39;Praha&#44; Sotonova 341&#39;; birthdate: &#39;19-JAN-1980&#39; asDate.
+p09 := Person new 
+	firstname: &#39;Ivan&#39;; surname: &#39;Vlcek&#39;; address: &#39;Praha&#44; Muklova 3&#39;; birthdate: &#39;10-DEC-1981&#39; asDate.
+p10 := Person new 
+	firstname: &#39;Milan&#39;; surname: &#39;Zeleny&#39;; address: &#39;Praha&#44; Muklova 7&#39;; birthdate: &#39;5-MAY-1988&#39; asDate.
+p11 := Person new 
+	firstname: &#39;Ivan&#39;; surname: &#39;Noha&#39;; address: &#39;Praha&#44; Zizkova 56&#39;; birthdate: &#39;3-JAN-1954&#39; asDate.
+p12 := Person new 
+	firstname: &#39;Jan&#39;; surname: &#39;Novak&#39;; address: &#39;Praha&#44; Nerudova 87&#39;; birthdate: &#39;12-FEB-1964&#39; asDate.
+
+Patients add: p01; add: p02; add: p03; add: p04; add: p05; add: p06; add: p07;
+ add: p08; add: p09; add: p10; add: p11; add: p12; add: d07.
+ 
+
+v01 := Visitation new doctor: d01; patient: p01; 
+	visitDate: &#39;12-DEC-2000&#39; asDate; diagnosis: &#39;tonsillitis&#39;; nextVisitDate: &#39;31-DEC-2000&#39; asDate.
+v02 := Visitation new doctor: d01; patient: p06; 
+	visitDate: &#39;2-FEB-2000&#39; asDate; diagnosis: &#39;flu&#39;; nextVisitDate: &#39;20-FEB-2000&#39; asDate.
+v03 := Visitation new doctor: d01; patient: p10; 
+	visitDate: &#39;3-NOV-2000&#39; asDate; diagnosis: &#39;alergy&#39;; nextVisitDate: &#39;3-DEC-2000&#39; asDate.
+v04 := Visitation new doctor: d01; patient: p12; 
+	visitDate: &#39;23-MAR-2000&#39; asDate; diagnosis: &#39;diarrhoea&#39;; nextVisitDate: &#39;26-MAR-2000&#39; asDate.
+v05 := Visitation new doctor: d02; patient: p11; 
+	visitDate: &#39;3-MAR-2000&#39; asDate; diagnosis: &#39;flu&#39;; nextVisitDate: &#39;9-MAR-2000&#39; asDate.
+v06 := Visitation new doctor: d02; patient: p03; 
+	visitDate: &#39;23-MAY-2000&#39; asDate; diagnosis: &#39;tonsillitis&#39;; nextVisitDate: &#39;24-MAY-2000&#39; asDate. 
+v07 := Visitation new doctor: d03; patient: p02; 
+	visitDate: &#39;11-NOV-2000&#39; asDate; diagnosis: &#39;depression&#39;; nextVisitDate: &#39;11-DEC-2000&#39; asDate. 
+v08 := Visitation new doctor: d03; patient: p03; 
+	visitDate: &#39;22-OCT-2000&#39; asDate; diagnosis: &#39;sleeplessness&#39;; nextVisitDate: &#39;28-OCT-2000&#39; asDate.
+v09 := Visitation new doctor: d03; patient: p05; 
+	visitDate: &#39;11-SEP-2000&#39; asDate; diagnosis: &#39;depression&#39;; nextVisitDate: &#39;11-OCT-2000&#39; asDate. 
+v10 := Visitation new doctor: d04; patient: p04; 
+	visitDate: &#39;1-SEP-2000&#39; asDate; diagnosis: &#39;appendicitis&#39;; nextVisitDate: &#39;20-SEP-2000&#39; asDate. 
+v11 := Visitation new doctor: d04; patient: p07; 
+	visitDate: &#39;31-OCT-2000&#39; asDate; diagnosis: &#39;headache&#39;; nextVisitDate: &#39;10-NOV-2000&#39; asDate.
+v12 := Visitation new doctor: d05; patient: p08; 
+	visitDate: &#39;11-NOV-2000&#39; asDate; diagnosis: &#39;appendicitis&#39;; nextVisitDate: &#39;11-DEC-2000&#39; asDate.
+v13 := Visitation new doctor: d05; patient: p09; 
+	visitDate: &#39;23-AUG-2000&#39; asDate; diagnosis: &#39;headache&#39;; nextVisitDate: &#39;23-OCT-2000&#39; asDate.
+v14 := Visitation new doctor: d06; patient: p10; 
+	visitDate: &#39;11-NOV-2000&#39; asDate; diagnosis: &#39;depression&#39;; nextVisitDate: &#39;11-DEC-2000&#39; asDate.
+v15 := Visitation new doctor: d06; patient: p11; 
+	visitDate: &#39;13-MAR-2000&#39; asDate; diagnosis: &#39;sleeplessness&#39;; nextVisitDate: &#39;13-APR-2000&#39; asDate.
+v16 := Visitation new doctor: d07; patient: p02; 
+	visitDate: &#39;11-NOV-2000&#39; asDate; diagnosis: &#39;tonsillitis&#39;; nextVisitDate: &#39;23-NOV-2000&#39; asDate. 
+v17 := Visitation new doctor: d07; patient: p10; 
+	visitDate: &#39;27-JUL-2000&#39; asDate; diagnosis: &#39;flu&#39;; nextVisitDate: &#39;27-AUG-2000&#39; asDate.
+v18 := Visitation new doctor: d07; patient: p11; 
+	visitDate: &#39;11-NOV-2000&#39; asDate; diagnosis: &#39;alergy&#39;; nextVisitDate: &#39;15-NOV-2000&#39; asDate. 
+v19 := Visitation new doctor: d07; patient: p07; 
+	visitDate: &#39;19-JUL-2000&#39; asDate; diagnosis: &#39;diarrhoea&#39;; nextVisitDate: &#39;20-JUL-2000&#39; asDate.
+v20  := Visitation new doctor: d01; patient: d07; 
+	visitDate: &#39;23-JUL-2000&#39; asDate; diagnosis: &#39;diarrhoea&#39;; nextVisitDate: &#39;24-JUL-2000&#39; asDate.
+
+d01 visitations add: v01; add: v02; add: v03; add: v04; add: v20.
+d02 visitations add: v05; add: v06.
+d03 visitations add: v07; add: v08; add: v09.
+d04 visitations add: v10; add: v11.
+d05 visitations add: v12; add: v13.
+d06 visitations add: v14; add: v15.
+d07 visitations add: v16; add: v17; add: v18; add: v19.
+
+Visitations add: v01; add: v02; add: v03; add: v04; add: v05; add: v06; add: v07; 
+add: v08; add: v09; add: v10; add: v11; add: v12; add: v13; add: v14; add: v15; 
+add: v16; add: v17; add: v18; add: v19; add: v20.
+</sixx.object>
+		<sixx.object sixx.id="205" sixx.name="messagesWithParMode" sixx.type="Symbol" >sendOnly</sixx.object>
+		<sixx.object sixx.id="206" sixx.name="messagesWithoutParMode" sixx.type="Symbol" >sendAndBrowse</sixx.object>
+		<sixx.object sixx.id="207" sixx.name="diagramSymbols" sixx.type="Set" >
+			<sixx.object sixx.id="208" sixx.type="DaskalosCollectionSymbol" >
+				<sixx.object sixx.idref="7" sixx.name="subject" ></sixx.object>
+				<sixx.object sixx.id="209" sixx.name="position" sixx.type="Rectangle" >
+					<sixx.object sixx.id="210" sixx.name="origin" sixx.type="Point" >180@90</sixx.object>
+					<sixx.object sixx.id="211" sixx.name="corner" sixx.type="Point" >280@173</sixx.object>
+				</sixx.object>
+				<sixx.object sixx.id="212" sixx.name="name" sixx.type="String" >Patients</sixx.object>
+				<sixx.object sixx.id="213" sixx.name="borderPoints" sixx.type="List" >
+					<sixx.object sixx.id="214" sixx.type="Point" >180@106</sixx.object>
+					<sixx.object sixx.id="215" sixx.type="Point" >230@90</sixx.object>
+					<sixx.object sixx.id="216" sixx.type="Point" >280@106</sixx.object>
+					<sixx.object sixx.id="217" sixx.type="Point" >280@157</sixx.object>
+					<sixx.object sixx.id="218" sixx.type="Point" >230@173</sixx.object>
+					<sixx.object sixx.id="219" sixx.type="Point" >180@157</sixx.object>
+					<sixx.object sixx.idref="214" ></sixx.object>
+				</sixx.object>
+				<sixx.object sixx.id="220" sixx.name="innerRectangle" sixx.type="Rectangle" >
+					<sixx.object sixx.id="221" sixx.name="origin" sixx.type="Point" >181@107</sixx.object>
+					<sixx.object sixx.id="222" sixx.name="corner" sixx.type="Point" >279@156</sixx.object>
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="223" sixx.type="DaskalosClassSymbol" >
+				<sixx.object sixx.id="224" sixx.name="subject" sixx.type="Symbol" >Person</sixx.object>
+				<sixx.object sixx.id="225" sixx.name="position" sixx.type="Rectangle" >
+					<sixx.object sixx.id="226" sixx.name="origin" sixx.type="Point" >30@30</sixx.object>
+					<sixx.object sixx.id="227" sixx.name="corner" sixx.type="Point" >130@160</sixx.object>
+				</sixx.object>
+				<sixx.object sixx.id="228" sixx.name="methodsText" sixx.type="ComposedText" >
+					<sixx.object sixx.id="229" sixx.name="textStyle" sixx.type="UndefinedObject" >nil</sixx.object>
+					<sixx.object sixx.id="230" sixx.name="text" sixx.type="Text" >
+						<sixx.object sixx.id="231" sixx.name="string" sixx.type="String" >age
+</sixx.object>
+						<sixx.object sixx.id="232" sixx.name="runs" sixx.type="RunArray" >
+							<sixx.object sixx.id="233" sixx.name="runs" sixx.type="Array" >
+								<sixx.object sixx.id="234" sixx.type="SmallInteger" >4</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="235" sixx.name="values" sixx.type="Array" >
+								<sixx.object sixx.idref="229" ></sixx.object>
+							</sixx.object>
+						</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="236" sixx.name="compositionWidth" sixx.type="SmallInteger" >21</sixx.object>
+					<sixx.object sixx.id="237" sixx.name="compositionHeight" sixx.type="SmallInteger" >38</sixx.object>
+					<sixx.object sixx.id="238" sixx.name="wordWrap" sixx.type="True" >true</sixx.object>
+					<sixx.object sixx.idref="229" sixx.name="fontPolicy" ></sixx.object>
+					<sixx.object sixx.id="239" sixx.name="lineTable" sixx.type="OptimizedLineInformationTable" >
+						<sixx.object sixx.id="240" sixx.name="lines" sixx.type="Array" >
+							<sixx.object sixx.id="241" sixx.type="SmallInteger" >1</sixx.object>
+							<sixx.object sixx.id="242" sixx.type="SmallInteger" >5</sixx.object>
+							<sixx.object sixx.idref="229" ></sixx.object>
+						</sixx.object>
+						<sixx.object sixx.idref="241" sixx.name="lastLine" ></sixx.object>
+						<sixx.object sixx.idref="229" sixx.name="adjustmentStartLine" ></sixx.object>
+						<sixx.object sixx.idref="229" sixx.name="adjustment" ></sixx.object>
+					</sixx.object>
+					<sixx.object sixx.idref="238" sixx.name="fitWidth" ></sixx.object>
+				</sixx.object>
+				<sixx.object sixx.id="243" sixx.name="instVarsText" sixx.type="ComposedText" >
+					<sixx.object sixx.idref="229" sixx.name="textStyle" ></sixx.object>
+					<sixx.object sixx.id="244" sixx.name="text" sixx.type="Text" >
+						<sixx.object sixx.id="245" sixx.name="string" sixx.type="String" >firstname
+surname
+address
+birthdate </sixx.object>
+						<sixx.object sixx.id="246" sixx.name="runs" sixx.type="RunArray" >
+							<sixx.object sixx.id="247" sixx.name="runs" sixx.type="Array" >
+								<sixx.object sixx.id="248" sixx.type="SmallInteger" >36</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="249" sixx.name="values" sixx.type="Array" >
+								<sixx.object sixx.idref="229" ></sixx.object>
+							</sixx.object>
+						</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="250" sixx.name="compositionWidth" sixx.type="SmallInteger" >54</sixx.object>
+					<sixx.object sixx.id="251" sixx.name="compositionHeight" sixx.type="SmallInteger" >76</sixx.object>
+					<sixx.object sixx.idref="238" sixx.name="wordWrap" ></sixx.object>
+					<sixx.object sixx.idref="229" sixx.name="fontPolicy" ></sixx.object>
+					<sixx.object sixx.id="252" sixx.name="lineTable" sixx.type="OptimizedLineInformationTable" >
+						<sixx.object sixx.id="253" sixx.name="lines" sixx.type="Array" >
+							<sixx.object sixx.idref="241" ></sixx.object>
+							<sixx.object sixx.id="254" sixx.type="SmallInteger" >11</sixx.object>
+							<sixx.object sixx.id="255" sixx.type="SmallInteger" >19</sixx.object>
+							<sixx.object sixx.id="256" sixx.type="SmallInteger" >27</sixx.object>
+							<sixx.object sixx.id="257" sixx.type="SmallInteger" >37</sixx.object>
+							<sixx.object sixx.idref="229" ></sixx.object>
+						</sixx.object>
+						<sixx.object sixx.idref="234" sixx.name="lastLine" ></sixx.object>
+						<sixx.object sixx.idref="229" sixx.name="adjustmentStartLine" ></sixx.object>
+						<sixx.object sixx.idref="229" sixx.name="adjustment" ></sixx.object>
+					</sixx.object>
+					<sixx.object sixx.idref="238" sixx.name="fitWidth" ></sixx.object>
+				</sixx.object>
+				<sixx.object sixx.id="258" sixx.name="compositionConnections" sixx.type="Set" >
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="259" sixx.type="DaskalosClassSymbol" >
+				<sixx.object sixx.id="260" sixx.name="subject" sixx.type="Symbol" >Doctor</sixx.object>
+				<sixx.object sixx.id="261" sixx.name="position" sixx.type="Rectangle" >
+					<sixx.object sixx.id="262" sixx.name="origin" sixx.type="Point" >160@220</sixx.object>
+					<sixx.object sixx.id="263" sixx.name="corner" sixx.type="Point" >260@300</sixx.object>
+				</sixx.object>
+				<sixx.object sixx.id="264" sixx.name="methodsText" sixx.type="ComposedText" >
+					<sixx.object sixx.idref="229" sixx.name="textStyle" ></sixx.object>
+					<sixx.object sixx.id="265" sixx.name="text" sixx.type="Text" >
+						<sixx.object sixx.id="266" sixx.name="string" sixx.type="String" ></sixx.object>
+						<sixx.object sixx.id="267" sixx.name="runs" sixx.type="RunArray" >
+							<sixx.object sixx.id="268" sixx.name="runs" sixx.type="Array" >
+							</sixx.object>
+							<sixx.object sixx.id="269" sixx.name="values" sixx.type="Array" >
+							</sixx.object>
+						</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="270" sixx.name="compositionWidth" sixx.type="SmallInteger" >0</sixx.object>
+					<sixx.object sixx.idref="270" sixx.name="compositionHeight" ></sixx.object>
+					<sixx.object sixx.idref="238" sixx.name="wordWrap" ></sixx.object>
+					<sixx.object sixx.idref="229" sixx.name="fontPolicy" ></sixx.object>
+					<sixx.object sixx.id="271" sixx.name="lineTable" sixx.type="OptimizedLineInformationTable" >
+						<sixx.object sixx.id="272" sixx.name="lines" sixx.type="Array" >
+							<sixx.object sixx.idref="241" ></sixx.object>
+							<sixx.object sixx.idref="229" ></sixx.object>
+							<sixx.object sixx.idref="229" ></sixx.object>
+							<sixx.object sixx.idref="229" ></sixx.object>
+							<sixx.object sixx.idref="229" ></sixx.object>
+						</sixx.object>
+						<sixx.object sixx.idref="270" sixx.name="lastLine" ></sixx.object>
+						<sixx.object sixx.idref="229" sixx.name="adjustmentStartLine" ></sixx.object>
+						<sixx.object sixx.idref="229" sixx.name="adjustment" ></sixx.object>
+					</sixx.object>
+					<sixx.object sixx.idref="238" sixx.name="fitWidth" ></sixx.object>
+				</sixx.object>
+				<sixx.object sixx.id="273" sixx.name="instVarsText" sixx.type="ComposedText" >
+					<sixx.object sixx.idref="229" sixx.name="textStyle" ></sixx.object>
+					<sixx.object sixx.id="274" sixx.name="text" sixx.type="Text" >
+						<sixx.object sixx.id="275" sixx.name="string" sixx.type="String" >specialization </sixx.object>
+						<sixx.object sixx.id="276" sixx.name="runs" sixx.type="RunArray" >
+							<sixx.object sixx.id="277" sixx.name="runs" sixx.type="Array" >
+								<sixx.object sixx.id="278" sixx.type="SmallInteger" >15</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="279" sixx.name="values" sixx.type="Array" >
+								<sixx.object sixx.idref="229" ></sixx.object>
+							</sixx.object>
+						</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="280" sixx.name="compositionWidth" sixx.type="SmallInteger" >83</sixx.object>
+					<sixx.object sixx.idref="255" sixx.name="compositionHeight" ></sixx.object>
+					<sixx.object sixx.idref="238" sixx.name="wordWrap" ></sixx.object>
+					<sixx.object sixx.idref="229" sixx.name="fontPolicy" ></sixx.object>
+					<sixx.object sixx.id="281" sixx.name="lineTable" sixx.type="OptimizedLineInformationTable" >
+						<sixx.object sixx.id="282" sixx.name="lines" sixx.type="Array" >
+							<sixx.object sixx.idref="241" ></sixx.object>
+							<sixx.object sixx.id="283" sixx.type="SmallInteger" >16</sixx.object>
+							<sixx.object sixx.idref="229" ></sixx.object>
+						</sixx.object>
+						<sixx.object sixx.idref="241" sixx.name="lastLine" ></sixx.object>
+						<sixx.object sixx.idref="229" sixx.name="adjustmentStartLine" ></sixx.object>
+						<sixx.object sixx.idref="229" sixx.name="adjustment" ></sixx.object>
+					</sixx.object>
+					<sixx.object sixx.idref="238" sixx.name="fitWidth" ></sixx.object>
+				</sixx.object>
+				<sixx.object sixx.id="284" sixx.name="compositionConnections" sixx.type="Set" >
+					<sixx.object sixx.id="285" sixx.type="DaskalosCompositionConnection" >
+						<sixx.object sixx.idref="259" sixx.name="fromSymbol" ></sixx.object>
+						<sixx.object sixx.id="286" sixx.name="toSymbol" sixx.type="DaskalosClassSymbol" >
+							<sixx.object sixx.id="287" sixx.name="subject" sixx.type="Symbol" >Visitation</sixx.object>
+							<sixx.object sixx.id="288" sixx.name="position" sixx.type="Rectangle" >
+								<sixx.object sixx.id="289" sixx.name="origin" sixx.type="Point" >380@30</sixx.object>
+								<sixx.object sixx.id="290" sixx.name="corner" sixx.type="Point" >480@140</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="291" sixx.name="methodsText" sixx.type="ComposedText" >
+								<sixx.object sixx.idref="229" sixx.name="textStyle" ></sixx.object>
+								<sixx.object sixx.id="292" sixx.name="text" sixx.type="Text" >
+									<sixx.object sixx.idref="266" sixx.name="string" ></sixx.object>
+									<sixx.object sixx.id="293" sixx.name="runs" sixx.type="RunArray" >
+										<sixx.object sixx.id="294" sixx.name="runs" sixx.type="Array" >
+										</sixx.object>
+										<sixx.object sixx.id="295" sixx.name="values" sixx.type="Array" >
+										</sixx.object>
+									</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.idref="270" sixx.name="compositionWidth" ></sixx.object>
+								<sixx.object sixx.idref="270" sixx.name="compositionHeight" ></sixx.object>
+								<sixx.object sixx.idref="238" sixx.name="wordWrap" ></sixx.object>
+								<sixx.object sixx.idref="229" sixx.name="fontPolicy" ></sixx.object>
+								<sixx.object sixx.id="296" sixx.name="lineTable" sixx.type="OptimizedLineInformationTable" >
+									<sixx.object sixx.id="297" sixx.name="lines" sixx.type="Array" >
+										<sixx.object sixx.idref="241" ></sixx.object>
+										<sixx.object sixx.idref="229" ></sixx.object>
+										<sixx.object sixx.idref="229" ></sixx.object>
+										<sixx.object sixx.idref="229" ></sixx.object>
+										<sixx.object sixx.idref="229" ></sixx.object>
+									</sixx.object>
+									<sixx.object sixx.idref="270" sixx.name="lastLine" ></sixx.object>
+									<sixx.object sixx.idref="229" sixx.name="adjustmentStartLine" ></sixx.object>
+									<sixx.object sixx.idref="229" sixx.name="adjustment" ></sixx.object>
+								</sixx.object>
+								<sixx.object sixx.idref="238" sixx.name="fitWidth" ></sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="298" sixx.name="instVarsText" sixx.type="ComposedText" >
+								<sixx.object sixx.idref="229" sixx.name="textStyle" ></sixx.object>
+								<sixx.object sixx.id="299" sixx.name="text" sixx.type="Text" >
+									<sixx.object sixx.id="300" sixx.name="string" sixx.type="String" >visitDate
+diagnosis
+nextVisitDate </sixx.object>
+									<sixx.object sixx.id="301" sixx.name="runs" sixx.type="RunArray" >
+										<sixx.object sixx.id="302" sixx.name="runs" sixx.type="Array" >
+											<sixx.object sixx.id="303" sixx.type="SmallInteger" >34</sixx.object>
+										</sixx.object>
+										<sixx.object sixx.id="304" sixx.name="values" sixx.type="Array" >
+											<sixx.object sixx.idref="229" ></sixx.object>
+										</sixx.object>
+									</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.id="305" sixx.name="compositionWidth" sixx.type="SmallInteger" >82</sixx.object>
+								<sixx.object sixx.id="306" sixx.name="compositionHeight" sixx.type="SmallInteger" >57</sixx.object>
+								<sixx.object sixx.idref="238" sixx.name="wordWrap" ></sixx.object>
+								<sixx.object sixx.idref="229" sixx.name="fontPolicy" ></sixx.object>
+								<sixx.object sixx.id="307" sixx.name="lineTable" sixx.type="OptimizedLineInformationTable" >
+									<sixx.object sixx.id="308" sixx.name="lines" sixx.type="Array" >
+										<sixx.object sixx.idref="241" ></sixx.object>
+										<sixx.object sixx.idref="254" ></sixx.object>
+										<sixx.object sixx.idref="236" ></sixx.object>
+										<sixx.object sixx.id="309" sixx.type="SmallInteger" >35</sixx.object>
+										<sixx.object sixx.idref="229" ></sixx.object>
+										<sixx.object sixx.idref="229" ></sixx.object>
+									</sixx.object>
+									<sixx.object sixx.id="310" sixx.name="lastLine" sixx.type="SmallInteger" >3</sixx.object>
+									<sixx.object sixx.idref="229" sixx.name="adjustmentStartLine" ></sixx.object>
+									<sixx.object sixx.idref="229" sixx.name="adjustment" ></sixx.object>
+								</sixx.object>
+								<sixx.object sixx.idref="238" sixx.name="fitWidth" ></sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="311" sixx.name="compositionConnections" sixx.type="Set" >
+								<sixx.object sixx.id="312" sixx.type="DaskalosCompositionConnection" >
+									<sixx.object sixx.idref="286" sixx.name="fromSymbol" ></sixx.object>
+									<sixx.object sixx.idref="259" sixx.name="toSymbol" ></sixx.object>
+									<sixx.object sixx.id="313" sixx.name="name" sixx.type="String" >doctor</sixx.object>
+									<sixx.object sixx.idref="266" sixx.name="cardinality" ></sixx.object>
+									<sixx.object sixx.idref="266" sixx.name="stereotype" ></sixx.object>
+									<sixx.object sixx.idref="229" sixx.name="fromPoint" ></sixx.object>
+									<sixx.object sixx.idref="229" sixx.name="toPoint" ></sixx.object>
+									<sixx.object sixx.id="314" sixx.name="controlPoints" sixx.type="List" >
+										<sixx.object sixx.idref="229" ></sixx.object>
+									</sixx.object>
+								</sixx.object>
+								<sixx.object sixx.id="315" sixx.type="DaskalosCompositionConnection" >
+									<sixx.object sixx.idref="286" sixx.name="fromSymbol" ></sixx.object>
+									<sixx.object sixx.idref="208" sixx.name="toSymbol" ></sixx.object>
+									<sixx.object sixx.id="316" sixx.name="name" sixx.type="String" >patient</sixx.object>
+									<sixx.object sixx.idref="266" sixx.name="cardinality" ></sixx.object>
+									<sixx.object sixx.idref="266" sixx.name="stereotype" ></sixx.object>
+									<sixx.object sixx.idref="229" sixx.name="fromPoint" ></sixx.object>
+									<sixx.object sixx.idref="229" sixx.name="toPoint" ></sixx.object>
+									<sixx.object sixx.id="317" sixx.name="controlPoints" sixx.type="List" >
+										<sixx.object sixx.idref="229" ></sixx.object>
+									</sixx.object>
+								</sixx.object>
+							</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="318" sixx.name="name" sixx.type="String" >visitations</sixx.object>
+						<sixx.object sixx.id="319" sixx.name="cardinality" sixx.type="String" >&#42;</sixx.object>
+						<sixx.object sixx.id="320" sixx.name="stereotype" sixx.type="String" >{Set}</sixx.object>
+						<sixx.object sixx.idref="229" sixx.name="fromPoint" ></sixx.object>
+						<sixx.object sixx.idref="229" sixx.name="toPoint" ></sixx.object>
+						<sixx.object sixx.id="321" sixx.name="controlPoints" sixx.type="List" >
+							<sixx.object sixx.idref="229" ></sixx.object>
+						</sixx.object>
+					</sixx.object>
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.idref="286" ></sixx.object>
+			<sixx.object sixx.id="322" sixx.type="DaskalosCollectionSymbol" >
+				<sixx.object sixx.idref="93" sixx.name="subject" ></sixx.object>
+				<sixx.object sixx.id="323" sixx.name="position" sixx.type="Rectangle" >
+					<sixx.object sixx.id="324" sixx.name="origin" sixx.type="Point" >510@90</sixx.object>
+					<sixx.object sixx.id="325" sixx.name="corner" sixx.type="Point" >610@173</sixx.object>
+				</sixx.object>
+				<sixx.object sixx.id="326" sixx.name="name" sixx.type="String" >Visitations</sixx.object>
+				<sixx.object sixx.id="327" sixx.name="borderPoints" sixx.type="List" >
+					<sixx.object sixx.id="328" sixx.type="Point" >510@106</sixx.object>
+					<sixx.object sixx.id="329" sixx.type="Point" >560@90</sixx.object>
+					<sixx.object sixx.id="330" sixx.type="Point" >610@106</sixx.object>
+					<sixx.object sixx.id="331" sixx.type="Point" >610@157</sixx.object>
+					<sixx.object sixx.id="332" sixx.type="Point" >560@173</sixx.object>
+					<sixx.object sixx.id="333" sixx.type="Point" >510@157</sixx.object>
+					<sixx.object sixx.idref="328" ></sixx.object>
+				</sixx.object>
+				<sixx.object sixx.id="334" sixx.name="innerRectangle" sixx.type="Rectangle" >
+					<sixx.object sixx.id="335" sixx.name="origin" sixx.type="Point" >511@107</sixx.object>
+					<sixx.object sixx.id="336" sixx.name="corner" sixx.type="Point" >609@156</sixx.object>
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="337" sixx.type="DaskalosCollectionSymbol" >
+				<sixx.object sixx.idref="202" sixx.name="subject" ></sixx.object>
+				<sixx.object sixx.id="338" sixx.name="position" sixx.type="Rectangle" >
+					<sixx.object sixx.id="339" sixx.name="origin" sixx.type="Point" >30@290</sixx.object>
+					<sixx.object sixx.id="340" sixx.name="corner" sixx.type="Point" >130@373</sixx.object>
+				</sixx.object>
+				<sixx.object sixx.id="341" sixx.name="name" sixx.type="String" >Doctors</sixx.object>
+				<sixx.object sixx.id="342" sixx.name="borderPoints" sixx.type="List" >
+					<sixx.object sixx.id="343" sixx.type="Point" >30@306</sixx.object>
+					<sixx.object sixx.id="344" sixx.type="Point" >80@290</sixx.object>
+					<sixx.object sixx.id="345" sixx.type="Point" >130@306</sixx.object>
+					<sixx.object sixx.id="346" sixx.type="Point" >130@357</sixx.object>
+					<sixx.object sixx.id="347" sixx.type="Point" >80@373</sixx.object>
+					<sixx.object sixx.id="348" sixx.type="Point" >30@357</sixx.object>
+					<sixx.object sixx.idref="343" ></sixx.object>
+				</sixx.object>
+				<sixx.object sixx.id="349" sixx.name="innerRectangle" sixx.type="Rectangle" >
+					<sixx.object sixx.id="350" sixx.name="origin" sixx.type="Point" >31@307</sixx.object>
+					<sixx.object sixx.id="351" sixx.name="corner" sixx.type="Point" >129@356</sixx.object>
+				</sixx.object>
+			</sixx.object>
+		</sixx.object>
+		<sixx.object sixx.id="352" sixx.name="diagramConnections" sixx.type="Set" >
+			<sixx.object sixx.id="353" sixx.type="DaskalosCompositionConnection" >
+				<sixx.object sixx.idref="286" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="208" sixx.name="toSymbol" ></sixx.object>
+				<sixx.object sixx.id="354" sixx.name="name" sixx.type="String" >patient</sixx.object>
+				<sixx.object sixx.idref="266" sixx.name="cardinality" ></sixx.object>
+				<sixx.object sixx.idref="266" sixx.name="stereotype" ></sixx.object>
+				<sixx.object sixx.id="355" sixx.name="fromPoint" sixx.type="Point" >380@80</sixx.object>
+				<sixx.object sixx.id="356" sixx.name="toPoint" sixx.type="Point" >(2485/9)@(5663/54)</sixx.object>
+				<sixx.object sixx.id="357" sixx.name="controlPoints" sixx.type="List" >
+					<sixx.object sixx.id="358" sixx.type="Point" >350@80</sixx.object>
+					<sixx.object sixx.id="359" sixx.type="Point" >320@80</sixx.object>
+					<sixx.object sixx.id="360" sixx.type="Point" >(5365/18)@(9983/108)</sixx.object>
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="361" sixx.type="DaskalosCompositionConnection" >
+				<sixx.object sixx.idref="286" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="259" sixx.name="toSymbol" ></sixx.object>
+				<sixx.object sixx.id="362" sixx.name="name" sixx.type="String" >doctor</sixx.object>
+				<sixx.object sixx.idref="266" sixx.name="cardinality" ></sixx.object>
+				<sixx.object sixx.idref="266" sixx.name="stereotype" ></sixx.object>
+				<sixx.object sixx.id="363" sixx.name="fromPoint" sixx.type="Point" >410@140</sixx.object>
+				<sixx.object sixx.id="364" sixx.name="toPoint" sixx.type="Point" >260@250</sixx.object>
+				<sixx.object sixx.id="365" sixx.name="controlPoints" sixx.type="List" >
+					<sixx.object sixx.id="366" sixx.type="Point" >410@195</sixx.object>
+					<sixx.object sixx.id="367" sixx.type="Point" >410@250</sixx.object>
+					<sixx.object sixx.id="368" sixx.type="Point" >335@250</sixx.object>
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="369" sixx.type="DaskalosElementConnection" >
+				<sixx.object sixx.idref="286" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="322" sixx.name="toSymbol" ></sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="370" sixx.type="DaskalosCompositionConnection" >
+				<sixx.object sixx.idref="259" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="286" sixx.name="toSymbol" ></sixx.object>
+				<sixx.object sixx.id="371" sixx.name="name" sixx.type="String" >visitations</sixx.object>
+				<sixx.object sixx.idref="319" sixx.name="cardinality" ></sixx.object>
+				<sixx.object sixx.idref="320" sixx.name="stereotype" ></sixx.object>
+				<sixx.object sixx.id="372" sixx.name="fromPoint" sixx.type="Point" >260@290</sixx.object>
+				<sixx.object sixx.id="373" sixx.name="toPoint" sixx.type="Point" >450@140</sixx.object>
+				<sixx.object sixx.id="374" sixx.name="controlPoints" sixx.type="List" >
+					<sixx.object sixx.id="375" sixx.type="Point" >355@290</sixx.object>
+					<sixx.object sixx.id="376" sixx.type="Point" >450@290</sixx.object>
+					<sixx.object sixx.id="377" sixx.type="Point" >450@215</sixx.object>
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="378" sixx.type="DaskalosInheritanceConnection" >
+				<sixx.object sixx.idref="259" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="223" sixx.name="toSymbol" ></sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="379" sixx.type="DaskalosElementConnection" >
+				<sixx.object sixx.idref="259" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="208" sixx.name="toSymbol" ></sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="380" sixx.type="DaskalosElementConnection" >
+				<sixx.object sixx.idref="223" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="208" sixx.name="toSymbol" ></sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="381" sixx.type="DaskalosElementConnection" >
+				<sixx.object sixx.idref="259" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="337" sixx.name="toSymbol" ></sixx.object>
+			</sixx.object>
+		</sixx.object>
+	</sixx.object>
+</sixx>

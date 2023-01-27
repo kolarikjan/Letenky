@@ -1,0 +1,480 @@
+<HTML>
+<STYLE TYPE="TEXT/CSS">
+TABLE.UML {
+	BORDER-WIDTH: 1PX 1PX 1PX 1PX;
+	BORDER-SPACING: 0PX;
+	BORDER-STYLE: SOLID SOLID SOLID SOLID;
+	BORDER-COLOR: BLACK BLACK BLACK BLACK;
+	BORDER-COLLAPSE: SEPARATE;
+	BACKGROUND-COLOR: WHITE;
+}
+
+CODE {
+	FONT-FAMILY: ARIAL;
+	FONT-SIZE: 80%;
+}
+
+PRE {
+	FONT-FAMILY: ARIAL;
+	FONT-SIZE: 80%;
+}
+
+H1 {
+	FONT-FAMILY: ARIAL;
+	FONT-SIZE: 144%;
+	FONT-STYLE: BOLD;
+}
+
+H2 {
+	FONT-FAMILY: ARIAL;
+	FONT-SIZE: 120%;
+	FONT-STYLE: BOLD;
+}
+
+H3 {
+	FONT-FAMILY: ARIAL;
+	FONT-SIZE: 100%;
+	FONT-STYLE: BOLD;
+}
+
+</STYLE>
+<HEAD>
+<TITLE>
+Doctor&#39;s Office</TITLE>
+</HEAD>
+<BODY>
+<H1>Doctor&#39;s Office</H1>
+<B>author&#40;s&#41;: </B>Vojtech Merunka
+<BR>
+<P>
+OODB Example with Doctors&#44; Patients&#44; Visitations<BR>
+<BR>
+&#40;C&#41; 2006-2007 V.M.
+</P>
+
+<BR>
+<HR>
+<H2>Workspace</H2>
+<PRE>&quot;select all patients having dignosis diarrhoea&quot;
+
+&#40;Visitations select: [:v | v diagnosis = &#39;diarrhoea&#39;]&#41; 
+         collect: [:v | v patient]</PRE>
+<H4>Workspace Objects</H4>
+<UL>
+
+<BR>
+<LI>
+<CODE>
+Doctors :Set
+</CODE>
+<LI>
+<CODE>
+Patients :Set
+</CODE>
+<LI>
+<CODE>
+Visitations :Set
+</CODE>
+</UL>
+
+<BR>
+<HR>
+<H2>Script</H2>
+<PRE>Doctors := Set new.
+Patients := Set new.
+Visitations := Set new.
+
+d01 := Doctor new 
+	firstname: &#39;Jan&#39;; surname: &#39;Novak&#39;; address: &#39;Praha&#44; Novakova 12&#39;; birthdate: &#39;4-JAN-1950&#39; asDate; specialization: &#39;practicioner&#39;.
+d02 := Doctor new 
+	firstname: &#39;Joe&#39;; surname: &#39;Davidson&#39;; address: &#39;London&#44; Regent str. 5&#39;; birthdate: &#39;27-MAR-1949&#39; asDate; specialization: &#39;practicioner&#39;.
+d03 := Doctor new 
+	firstname: &#39;Ivan&#39;; surname: &#39;Zeleny&#39;; address: &#39;Moskva&#44; Pushkinova 2&#39;; birthdate: &#39;15-NOV-1955&#39; asDate; specialization: &#39;psychologist&#39;.
+d04 := Doctor new 
+	firstname: &#39;Kostas&#39;; surname: &#39;Kokkinos&#39;; address: &#39;Iraklio&#44; Evans 3&#39;; birthdate: &#39;31-AUG-1977&#39; asDate; specialization: &#39;surgeon&#39;.
+d05 := Doctor new 
+	firstname: &#39;Ivan&#39;; surname: &#39;Drago&#39;; address: &#39;Sofia&#44; Duga 71&#39;; birthdate: &#39;1-JAN-1979&#39; asDate; specialization: &#39;surgeon&#39;.
+d06 := Doctor new 
+	firstname: &#39;Milan&#39;; surname: &#39;Novak&#39;; address: &#39;Brno&#44; V Lese 21&#39;; birthdate: &#39;20-FEB-1971&#39; asDate; specialization: &#39;psychologist&#39;.
+d07 := Doctor new 
+	firstname: &#39;Michailos&#39;; surname: &#39;Asklepios&#39;; address: &#39;Rodos&#44; Kalithea 3&#39;; birthdate: &#39;28-MAY-1975&#39; asDate; specialization: &#39;practicioner&#39;.
+
+Doctors add: d01; add: d02; add: d03; add: d04; add: d05; add: d06; add: d07.
+
+
+p01 := Person new 
+	firstname: &#39;Petr&#39;; surname: &#39;Novak&#39;; address: &#39;Praha&#44; Jeronymova 13&#39;; birthdate: &#39;4-OCT-1967&#39; asDate.
+p02 := Person new 
+	firstname: &#39;Michal&#39;; surname: &#39;Skrbek&#39;; address: &#39;Praha&#44; Parlerova 234&#39;; birthdate: &#39;6-DEC-1945&#39; asDate.
+p03 := Person new 
+	firstname: &#39;Jan&#39;; surname: &#39;Zeleny&#39;; address: &#39;Praha&#44; Novotneho 20&#39;; birthdate: &#39;8-MAR-1978&#39; asDate.
+p04 := Person new 
+	firstname: &#39;Pavel&#39;; surname: &#39;Novak&#39;; address: &#39;Praha&#44; Zizkova 10&#39;; birthdate: &#39;6-AUG-1976&#39; asDate.
+p05 := Person new 
+	firstname: &#39;Josef&#39;; surname: &#39;Polak&#39;; address: &#39;Praha&#44; Sotonova 89&#39;; birthdate: &#39;1-FEB-1933&#39; asDate.
+p06 := Person new 
+	firstname: &#39;Michal&#39;; surname: &#39;Capek&#39;; address: &#39;Praha&#44; Nerudova 123&#39;; birthdate: &#39;4-DEC-1999&#39; asDate.
+p07 := Person new 
+	firstname: &#39;Joe&#39;; surname: &#39;Smith&#39;; address: &#39;Praha&#44; Nerudova 34&#39;; birthdate: &#39;3-MAY-1965&#39; asDate.
+p08 := Person new 
+	firstname: &#39;Ivan&#39;; surname: &#39;Novak&#39;; address: &#39;Praha&#44; Sotonova 341&#39;; birthdate: &#39;19-JAN-1980&#39; asDate.
+p09 := Person new 
+	firstname: &#39;Ivan&#39;; surname: &#39;Vlcek&#39;; address: &#39;Praha&#44; Muklova 3&#39;; birthdate: &#39;10-DEC-1981&#39; asDate.
+p10 := Person new 
+	firstname: &#39;Milan&#39;; surname: &#39;Zeleny&#39;; address: &#39;Praha&#44; Muklova 7&#39;; birthdate: &#39;5-MAY-1988&#39; asDate.
+p11 := Person new 
+	firstname: &#39;Ivan&#39;; surname: &#39;Noha&#39;; address: &#39;Praha&#44; Zizkova 56&#39;; birthdate: &#39;3-JAN-1954&#39; asDate.
+p12 := Person new 
+	firstname: &#39;Jan&#39;; surname: &#39;Novak&#39;; address: &#39;Praha&#44; Nerudova 87&#39;; birthdate: &#39;12-FEB-1964&#39; asDate.
+
+Patients add: p01; add: p02; add: p03; add: p04; add: p05; add: p06; add: p07;
+ add: p08; add: p09; add: p10; add: p11; add: p12; add: d07.
+ 
+
+v01 := Visitation new doctor: d01; patient: p01; 
+	visitDate: &#39;12-DEC-2000&#39; asDate; diagnosis: &#39;tonsillitis&#39;; nextVisitDate: &#39;31-DEC-2000&#39; asDate.
+v02 := Visitation new doctor: d01; patient: p06; 
+	visitDate: &#39;2-FEB-2000&#39; asDate; diagnosis: &#39;flu&#39;; nextVisitDate: &#39;20-FEB-2000&#39; asDate.
+v03 := Visitation new doctor: d01; patient: p10; 
+	visitDate: &#39;3-NOV-2000&#39; asDate; diagnosis: &#39;alergy&#39;; nextVisitDate: &#39;3-DEC-2000&#39; asDate.
+v04 := Visitation new doctor: d01; patient: p12; 
+	visitDate: &#39;23-MAR-2000&#39; asDate; diagnosis: &#39;diarrhoea&#39;; nextVisitDate: &#39;26-MAR-2000&#39; asDate.
+v05 := Visitation new doctor: d02; patient: p11; 
+	visitDate: &#39;3-MAR-2000&#39; asDate; diagnosis: &#39;flu&#39;; nextVisitDate: &#39;9-MAR-2000&#39; asDate.
+v06 := Visitation new doctor: d02; patient: p03; 
+	visitDate: &#39;23-MAY-2000&#39; asDate; diagnosis: &#39;tonsillitis&#39;; nextVisitDate: &#39;24-MAY-2000&#39; asDate. 
+v07 := Visitation new doctor: d03; patient: p02; 
+	visitDate: &#39;11-NOV-2000&#39; asDate; diagnosis: &#39;depression&#39;; nextVisitDate: &#39;11-DEC-2000&#39; asDate. 
+v08 := Visitation new doctor: d03; patient: p03; 
+	visitDate: &#39;22-OCT-2000&#39; asDate; diagnosis: &#39;sleeplessness&#39;; nextVisitDate: &#39;28-OCT-2000&#39; asDate.
+v09 := Visitation new doctor: d03; patient: p05; 
+	visitDate: &#39;11-SEP-2000&#39; asDate; diagnosis: &#39;depression&#39;; nextVisitDate: &#39;11-OCT-2000&#39; asDate. 
+v10 := Visitation new doctor: d04; patient: p04; 
+	visitDate: &#39;1-SEP-2000&#39; asDate; diagnosis: &#39;appendicitis&#39;; nextVisitDate: &#39;20-SEP-2000&#39; asDate. 
+v11 := Visitation new doctor: d04; patient: p07; 
+	visitDate: &#39;31-OCT-2000&#39; asDate; diagnosis: &#39;headache&#39;; nextVisitDate: &#39;10-NOV-2000&#39; asDate.
+v12 := Visitation new doctor: d05; patient: p08; 
+	visitDate: &#39;11-NOV-2000&#39; asDate; diagnosis: &#39;appendicitis&#39;; nextVisitDate: &#39;11-DEC-2000&#39; asDate.
+v13 := Visitation new doctor: d05; patient: p09; 
+	visitDate: &#39;23-AUG-2000&#39; asDate; diagnosis: &#39;headache&#39;; nextVisitDate: &#39;23-OCT-2000&#39; asDate.
+v14 := Visitation new doctor: d06; patient: p10; 
+	visitDate: &#39;11-NOV-2000&#39; asDate; diagnosis: &#39;depression&#39;; nextVisitDate: &#39;11-DEC-2000&#39; asDate.
+v15 := Visitation new doctor: d06; patient: p11; 
+	visitDate: &#39;13-MAR-2000&#39; asDate; diagnosis: &#39;sleeplessness&#39;; nextVisitDate: &#39;13-APR-2000&#39; asDate.
+v16 := Visitation new doctor: d07; patient: p02; 
+	visitDate: &#39;11-NOV-2000&#39; asDate; diagnosis: &#39;tonsillitis&#39;; nextVisitDate: &#39;23-NOV-2000&#39; asDate. 
+v17 := Visitation new doctor: d07; patient: p10; 
+	visitDate: &#39;27-JUL-2000&#39; asDate; diagnosis: &#39;flu&#39;; nextVisitDate: &#39;27-AUG-2000&#39; asDate.
+v18 := Visitation new doctor: d07; patient: p11; 
+	visitDate: &#39;11-NOV-2000&#39; asDate; diagnosis: &#39;alergy&#39;; nextVisitDate: &#39;15-NOV-2000&#39; asDate. 
+v19 := Visitation new doctor: d07; patient: p07; 
+	visitDate: &#39;19-JUL-2000&#39; asDate; diagnosis: &#39;diarrhoea&#39;; nextVisitDate: &#39;20-JUL-2000&#39; asDate.
+v20  := Visitation new doctor: d01; patient: d07; 
+	visitDate: &#39;23-JUL-2000&#39; asDate; diagnosis: &#39;diarrhoea&#39;; nextVisitDate: &#39;24-JUL-2000&#39; asDate.
+
+d01 visitations add: v01; add: v02; add: v03; add: v04; add: v20.
+d02 visitations add: v05; add: v06.
+d03 visitations add: v07; add: v08; add: v09.
+d04 visitations add: v10; add: v11.
+d05 visitations add: v12; add: v13.
+d06 visitations add: v14; add: v15.
+d07 visitations add: v16; add: v17; add: v18; add: v19.
+
+Visitations add: v01; add: v02; add: v03; add: v04; add: v05; add: v06; add: v07; 
+add: v08; add: v09; add: v10; add: v11; add: v12; add: v13; add: v14; add: v15; 
+add: v16; add: v17; add: v18; add: v19; add: v20.
+</PRE>
+<HR>
+<H2>Diagram</H2>
+<IMG SRC="doctors.gif">
+<HR>
+<H2>Classes</H2>
+<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
+<TR>
+<TD WIDTH=20%>
+<TABLE WIDTH=95% BORDER="1" CELLSPACING="0" BORDERCOLOR=BLACK>
+<TR><TD><BIG>
+<B><CODE>
+Person
+</CODE></B>
+</BIG></TD></TR>
+<TR><TD>
+<I><SMALL>instance variables</SMALL></I><BR>
+<CODE>
+address :String
+</CODE>
+<BR>
+<CODE>
+birthdate :Date
+</CODE>
+<BR>
+<CODE>
+firstname :String
+</CODE>
+<BR>
+<CODE>
+surname :String
+</CODE>
+<BR>
+</TD></TR>
+<TR><TD>
+<I><SMALL>methods</SMALL></I><BR>
+<CODE>
+address
+</CODE>
+<BR>
+<CODE>
+address:
+</CODE>
+<BR>
+<CODE>
+age
+</CODE>
+<BR>
+<CODE>
+birthdate
+</CODE>
+<BR>
+<CODE>
+birthdate:
+</CODE>
+<BR>
+<CODE>
+firstname
+</CODE>
+<BR>
+<CODE>
+firstname:
+</CODE>
+<BR>
+<CODE>
+initialize
+</CODE>
+<BR>
+<CODE>
+surname
+</CODE>
+<BR>
+<CODE>
+surname:
+</CODE>
+<BR>
+</TD></TR>
+</TABLE>
+</TD>
+<TD VALIGN="TOP">
+<P>
+Instances of this class stores info about persons.<BR>
+Each person knows its name &#40;firstname &amp; surname&#41;&#44; address and birthdate.<BR>
+Attribute of each person has also age&#44; but this attribute is made by method.
+</P>
+</TD>
+</TR>
+</TABLE>
+<H4>code of non-accessing methods: </H4>
+<UL>
+<LI>
+<B><CODE>
+age
+</CODE></B>
+<PRE>
+
+birthdate isNil
+	ifTrue: [^nil]
+	ifFalse: [^&#40;&#40;Date today subtractDate: birthdate&#41; / 365.2422&#41; truncated]</PRE>
+<LI>
+<B><CODE>
+initialize
+</CODE></B>
+<PRE>
+&quot;generated by Daskalos&quot;
+
+     super initialize.
+     firstname := nil.
+     surname := nil.
+     address := nil.
+     birthdate := nil.</PRE>
+</UL>
+<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
+<TR>
+<TD WIDTH=20%>
+<TABLE WIDTH=95% BORDER="1" CELLSPACING="0" BORDERCOLOR=BLACK>
+<TR><TD><BIG>
+<B><CODE>
+Visitation
+</CODE></B>
+</BIG></TD></TR>
+<TR><TD>
+<I><SMALL>instance variables</SMALL></I><BR>
+<CODE>
+diagnosis :String
+</CODE>
+<BR>
+<CODE>
+doctor :Object
+</CODE>
+<BR>
+<CODE>
+nextVisitDate :Date
+</CODE>
+<BR>
+<CODE>
+patient :Object
+</CODE>
+<BR>
+<CODE>
+visitDate :Date
+</CODE>
+<BR>
+</TD></TR>
+<TR><TD>
+<I><SMALL>methods</SMALL></I><BR>
+<CODE>
+diagnosis
+</CODE>
+<BR>
+<CODE>
+diagnosis:
+</CODE>
+<BR>
+<CODE>
+doctor
+</CODE>
+<BR>
+<CODE>
+doctor:
+</CODE>
+<BR>
+<CODE>
+initialize
+</CODE>
+<BR>
+<CODE>
+nextVisitDate
+</CODE>
+<BR>
+<CODE>
+nextVisitDate:
+</CODE>
+<BR>
+<CODE>
+patient
+</CODE>
+<BR>
+<CODE>
+patient:
+</CODE>
+<BR>
+<CODE>
+visitDate
+</CODE>
+<BR>
+<CODE>
+visitDate:
+</CODE>
+<BR>
+</TD></TR>
+</TABLE>
+</TD>
+<TD VALIGN="TOP">
+<P>
+This is class having instances&#44; which stores data about visitation of some person at some doctor.<BR>
+
+</P>
+</TD>
+</TR>
+</TABLE>
+<H4>code of non-accessing methods: </H4>
+<UL>
+<LI>
+<B><CODE>
+initialize
+</CODE></B>
+<PRE>
+&quot;generated by Daskalos&quot;
+
+     super initialize.
+     doctor := nil.
+     patient := nil.
+     visitDate := nil.
+     diagnosis := nil.
+     nextVisitDate := nil.</PRE>
+</UL>
+<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
+<TR>
+<TD WIDTH=20%>
+<TABLE WIDTH=95% BORDER="1" CELLSPACING="0" BORDERCOLOR=BLACK>
+<TR><TD><BIG>
+<B><CODE>
+Doctor
+</CODE></B>
+</BIG></TD></TR>
+<TR><TD>
+<I><SMALL>instance variables</SMALL></I><BR>
+<CODE>
+specialization :String
+</CODE>
+<BR>
+<CODE>
+visitations :Set
+</CODE>
+<BR>
+</TD></TR>
+<TR><TD>
+<I><SMALL>methods</SMALL></I><BR>
+<CODE>
+initialize
+</CODE>
+<BR>
+<CODE>
+specialization
+</CODE>
+<BR>
+<CODE>
+specialization:
+</CODE>
+<BR>
+<CODE>
+visitations
+</CODE>
+<BR>
+</TD></TR>
+</TABLE>
+</TD>
+<TD VALIGN="TOP">
+<P>
+Concrete subclass of class Person&#44; which add specific behavior for persons being medical doctors. note that a doctor may be a patient as well.
+</P>
+</TD>
+</TR>
+</TABLE>
+<H4>code of non-accessing methods: </H4>
+<UL>
+<LI>
+<B><CODE>
+initialize
+</CODE></B>
+<PRE>
+&quot;generated by Daskalos&quot;
+
+     super initialize.
+     specialization := nil.
+     visitations := Set new.</PRE>
+</UL>
+<HR>
+<H2>Links</H2>
+<A HREF="doctors.xml">Data file</A> and 
+<A HREF="doctors.st">class source</A>.
+
+<BR>
+
+<BR>
+<CODE>
+Generated by Daskalos - Object Modeling Tutor &#40;C&#41; 2006 V. Merunka
+</CODE>
+
+<BR>
+<CODE>
+May 7&#44; 2007
+</CODE>
+</BODY></HTML>
