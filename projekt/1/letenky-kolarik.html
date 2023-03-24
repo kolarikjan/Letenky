@@ -391,7 +391,11 @@ nazev:
 </TD>
 <TD VALIGN="TOP">
 <P>
-
+Atributy:<BR>
+	- kod = kazde letiste ma trojmistny kod&#44; nap&#345;&#237;klad Leti&#353;t&#283; V&#225;clava Havla v Praze m&#225; k&#243;d PRG<BR>
+	- nazev&#44; mesto<BR>
+Metody:<BR>
+	- frekvenceLetu = vypocitava kolikrat se letiste objevilo v nejakem z let&#367; a je jedno jestli to bylo leti&#353;t&#283; odkud se odl&#233;talo nebo kam se p&#345;&#237;l&#233;talo
 </P>
 </TD>
 </TR>
@@ -478,7 +482,10 @@ uDveri:
 </TD>
 <TD VALIGN="TOP">
 <P>
-
+Atributy:<BR>
+	- oznaceni = unik&#225;tn&#237; identifik&#225;tor m&#237;sta - celkov&#283; jsem zjednodu&#353;il&#44; proto&#382;e ka&#382;d&#253; model letadla m&#225; jin&#253; po&#269;et a jin&#233; rozlo&#382;en&#237; sedadel - modely letadel apod jsem v projektu ne&#345;e&#353;il<BR>
+	- trida = v jakem &quot;vagonu&quot; se m&#237;sto nach&#225;z&#237; - &#269;ili economy&#44; bussines&#44; first class<BR>
+	- uDveri = 0 nebo 1 podle toho&#44; jestli se nachazi misto u dveri&#44; nektere aerospole&#269;nosti nedovoluj&#237; nezletil&#237;m sed&#283;t u oken
 </P>
 </TD>
 </TR>
@@ -592,7 +599,13 @@ vek
 </TD>
 <TD VALIGN="TOP">
 <P>
-
+Atributy:<BR>
+	- jmeno&#44; prijmeni&#44; datumNarozeni&#44; stat<BR>
+	- cisloDokladu = t&#237;mto mysl&#237;m &#269;&#237;slo OP<BR>
+Metody:<BR>
+	- celkemUtraceno = vypo&#269;&#237;t&#225;v&#225;m celkovou &#269;&#225;stku&#44; kterou cestuj&#237;c&#237; utratil za letenky u t&#233;to spole&#269;nosti - zjist&#237;m&#44; jak&#233; letenky pat&#345;&#237; k jednotliv&#253;m osob&#225;m a potom je se&#269;tu<BR>
+	- pocetLetenek = zjist&#237;m jak&#233; letenky pat&#345;&#237; k jednotliv&#253;m osob&#225;m a potom pomoc&#237; size zjist&#237;m&#44; kolik jich celkem cestuj&#237;c&#237; m&#225;<BR>
+	- vek = vypo&#269;&#237;t&#225;m z m&#237;stn&#237;ho atributu datum Narozen&#237; k dne&#353;n&#237;mu dni
 </P>
 </TD>
 </TR>
@@ -755,7 +768,16 @@ spoj:
 </TD>
 <TD VALIGN="TOP">
 <P>
-
+Atributy:<BR>
+	- cislo = reprezentuje jak&#253;si unik&#225;tn&#237; identifik&#225;tor pro letenku&#44; ka&#382;d&#225; letenka by m&#283;la m&#237;t n&#283;jak&#233; unik&#225;tn&#237; id<BR>
+	- cena<BR>
+	- pocetZavazadel = kolik zavazadel &#40;nemysl&#237;m t&#237;m p&#345;&#237;ru&#269;n&#237; zavazadla&#41; m&#225; cestuj&#237;c&#237; zaplaceno<BR>
+	- prednostniNastup = zda letenka oprav&#328;uje cestuj&#237;c&#237;ho k p&#345;ednostn&#237;mu n&#225;stupu&#44; obsahuje bu&#271; ano nebo ne<BR>
+	- patri = odkaz na cestujiciho<BR>
+	- rezervovanemMisto = odkaz na sedadlo<BR>
+	- spoj = odkaz na let<BR>
+Metody:<BR>
+	- pristupDoSalonku - pokud letenka byla drazsi nez 5000 a sedadlo neni v economy tride&#44; ma cestujici narok na pristup do VIP salonku pred odletem
 </P>
 </TD>
 </TR>
@@ -911,7 +933,15 @@ zpozdeniMinuty:
 </TD>
 <TD VALIGN="TOP">
 <P>
-
+Atributy:<BR>
+	- cislo = unikatn&#237; identifik&#225;tor letu<BR>
+	- datumOdletu&#44; casOdletu<BR>
+	- datumPriletu&#44; casPriletu = u dokon&#269;en&#253;ch let&#367; se zde zobrazuje re&#225;ln&#253; &#269;as a datum&#44; kdy letadlo p&#345;ist&#225;lo a u napl&#225;novan&#253;ch let&#367; jejich p&#345;edpokl&#225;dan&#253; &#269;as p&#345;&#237;letu<BR>
+	- zpozdeniMinuty = u dokon&#269;en&#253;ch let&#367; v rozmez&#237; od 0 do x&#44; u nedokon&#269;en&#253;ch let&#367; je zde hodnota -1<BR>
+	- zLetiste&#44; naLetiste = odkaz na Letiste<BR>
+Metody:<BR>
+	- zpozdeniMinuty = jake je zaznamenane zpozeni&#44; u naplanovanych letu je zde hodnota -1<BR>
+	- letDokoncen = jestli je zde nejake zaznamenane zpozdeni &#40;0 a v&#237;ce minut&#41;&#44; je automaticky jasn&#233;&#44; &#382;e let byl ji&#382; dokon&#269;en
 </P>
 </TD>
 </TR>

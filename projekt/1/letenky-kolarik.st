@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <st-source>
-<time-stamp>From VisualWorks® NonCommercial, 7.4.1 of May 30, 2006 on April 30, 2023 at 7:24:44 pm</time-stamp>
+<time-stamp>From VisualWorks® NonCommercial, 7.4.1 of May 30, 2006 on April 30, 2023 at 7:31:36 pm</time-stamp>
 
 
 <class>
@@ -32,6 +32,15 @@
 
 <!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   -->
 
+
+<comment>
+<class-id>Letiste</class-id>
+<body>Atributy:
+	- kod = kazde letiste ma trojmistny kod, například Letiště Václava Havla v Praze má kód PRG
+	- nazev, mesto
+Metody:
+	- frekvenceLetu = vypocitava kolikrat se letiste objevilo v nejakem z letů a je jedno jestli to bylo letiště odkud se odlétalo nebo kam se přílétalo</body>
+</comment>
 
 <methods>
 <class-id>Letiste</class-id> <category>accessing</category>
@@ -120,6 +129,14 @@
 <!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   -->
 
 
+<comment>
+<class-id>Sedadlo</class-id>
+<body>Atributy:
+	- oznaceni = unikátní identifikátor místa - celkově jsem zjednodušil, protože každý model letadla má jiný počet a jiné rozložení sedadel - modely letadel apod jsem v projektu neřešil
+	- trida = v jakem "vagonu" se místo nachází - čili economy, bussines, first class
+	- uDveri = 0 nebo 1 podle toho, jestli se nachazi misto u dveri, nektere aerospolečnosti nedovolují nezletilím sedět u oken</body>
+</comment>
+
 <methods>
 <class-id>Sedadlo</class-id> <category>accessing</category>
 
@@ -196,6 +213,17 @@
 
 <!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   -->
 
+
+<comment>
+<class-id>Cestujici</class-id>
+<body>Atributy:
+	- jmeno, prijmeni, datumNarozeni, stat
+	- cisloDokladu = tímto myslím číslo OP
+Metody:
+	- celkemUtraceno = vypočítávám celkovou částku, kterou cestující utratil za letenky u této společnosti - zjistím, jaké letenky patří k jednotlivým osobám a potom je sečtu
+	- pocetLetenek = zjistím jaké letenky patří k jednotlivým osobám a potom pomocí size zjistím, kolik jich celkem cestující má
+	- vek = vypočítám z místního atributu datum Narození k dnešnímu dni</body>
+</comment>
 
 <methods>
 <class-id>Cestujici</class-id> <category>accessing</category>
@@ -321,6 +349,20 @@
 
 <!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   -->
 
+
+<comment>
+<class-id>Letenka</class-id>
+<body>Atributy:
+	- cislo = reprezentuje jakýsi unikátní identifikátor pro letenku, každá letenka by měla mít nějaké unikátní id
+	- cena
+	- pocetZavazadel = kolik zavazadel (nemyslím tím příruční zavazadla) má cestující zaplaceno
+	- prednostniNastup = zda letenka opravňuje cestujícího k přednostnímu nástupu, obsahuje buď ano nebo ne
+	- patri = odkaz na cestujiciho
+	- rezervovanemMisto = odkaz na sedadlo
+	- spoj = odkaz na let
+Metody:
+	- pristupDoSalonku - pokud letenka byla drazsi nez 5000 a sedadlo neni v economy tride, ma cestujici narok na pristup do VIP salonku pred odletem</body>
+</comment>
 
 <methods>
 <class-id>Letenka</class-id> <category>accessing</category>
@@ -453,6 +495,19 @@
 
 <!-- -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -   -->
 
+
+<comment>
+<class-id>Let</class-id>
+<body>Atributy:
+	- cislo = unikatní identifikátor letu
+	- datumOdletu, casOdletu
+	- datumPriletu, casPriletu = u dokončených letů se zde zobrazuje reálný čas a datum, kdy letadlo přistálo a u naplánovaných letů jejich předpokládaný čas příletu
+	- zpozdeniMinuty = u dokončených letů v rozmezí od 0 do x, u nedokončených letů je zde hodnota -1
+	- zLetiste, naLetiste = odkaz na Letiste
+Metody:
+	- zpozdeniMinuty = jake je zaznamenane zpozeni, u naplanovanych letu je zde hodnota -1
+	- letDokoncen = jestli je zde nejake zaznamenane zpozdeni (0 a více minut), je automaticky jasné, že let byl již dokončen</body>
+</comment>
 
 <methods>
 <class-id>Let</class-id> <category>accessing</category>
