@@ -1,0 +1,899 @@
+<HTML>
+<STYLE TYPE="TEXT/CSS">
+TABLE.UML {
+	BORDER-WIDTH: 1PX 1PX 1PX 1PX;
+	BORDER-SPACING: 0PX;
+	BORDER-STYLE: SOLID SOLID SOLID SOLID;
+	BORDER-COLOR: BLACK BLACK BLACK BLACK;
+	BORDER-COLLAPSE: SEPARATE;
+	BACKGROUND-COLOR: WHITE;
+}
+
+CODE {
+	FONT-FAMILY: ARIAL;
+	FONT-SIZE: 80%;
+}
+
+PRE {
+	FONT-FAMILY: ARIAL;
+	FONT-SIZE: 80%;
+}
+
+H1 {
+	FONT-FAMILY: ARIAL;
+	FONT-SIZE: 144%;
+	FONT-STYLE: BOLD;
+}
+
+H2 {
+	FONT-FAMILY: ARIAL;
+	FONT-SIZE: 120%;
+	FONT-STYLE: BOLD;
+}
+
+H3 {
+	FONT-FAMILY: ARIAL;
+	FONT-SIZE: 100%;
+	FONT-STYLE: BOLD;
+}
+
+</STYLE>
+<HEAD>
+<TITLE>
+letenky</TITLE>
+</HEAD>
+<BODY>
+<H1>letenky</H1>
+<B>author&#40;s&#41;: </B>Jan Kola&#345;&#237;k
+<BR>
+<P>
+
+</P>
+
+<BR>
+<HR>
+<H2>Workspace</H2>
+<PRE></PRE>
+<H4>Workspace Objects</H4>
+<UL>
+
+<BR>
+<LI>
+<CODE>
+CestujiciSet :Set
+</CODE>
+<LI>
+<CODE>
+LetenkySet :Set
+</CODE>
+<LI>
+<CODE>
+LetisteSet :Set
+</CODE>
+<LI>
+<CODE>
+LetySet :Set
+</CODE>
+</UL>
+
+<BR>
+<HR>
+<H2>Script</H2>
+<PRE>LetisteSet := Set new .
+LetySet := Set new .
+LetenkySet := Set new .
+CestujiciSet := Set new .
+
+&quot; Sedadla - data ----------------------------------------------------------------------------------------------------------------------------------&quot;
+
+
+s1 := Sedadlo new .
+s1 oznaceni: &#39;C30&#39;; trida: &#39;economy&#39;; uDveri: 0. 
+s2 := Sedadlo new .
+s2 oznaceni: &#39;A12&#39;; trida: &#39;business&#39;; uDveri: 0. 
+s3 := Sedadlo new .
+s3 oznaceni: &#39;C01&#39;; trida: &#39;economy&#39;; uDveri: 1. 
+s4 := Sedadlo new .
+s4 oznaceni: &#39;B42&#39;; trida: &#39;economy&#39;; uDveri: 1. 
+s5 := Sedadlo new .
+s5 oznaceni: &#39;Z02&#39;; trida: &#39;firstClass&#39;; uDveri: 0. 
+s6 := Sedadlo new .
+s6 oznaceni: &#39;C22&#39;; trida: &#39;economy&#39;; uDveri: 0. 
+s7 := Sedadlo new .
+s7 oznaceni: &#39;A18&#39;; trida: &#39;business&#39;; uDveri: 0. 
+
+
+&quot; Letiste - data ----------------------------------------------------------------------------------------------------------------------------------&quot;
+
+
+letiste1 := Letiste new .
+letiste1 kod: &#39;PRG&#39;; nazev: &#39;Leti&#353;t&#283; V&#225;clava Havla Praha&#39;; mesto: &#39;Praha&#39; .
+letiste2 := Letiste new .
+letiste2 kod: &#39;AMS&#39;; nazev: &#39;Amsterdam Airport Schiphol&#39;; mesto: &#39;Amsterdam&#39; .
+letiste3 := Letiste new .
+letiste3 kod: &#39;BTS&#39;; nazev: &#39;Leti&#353;te Bratislava&#39;; mesto: &#39;Bratislava&#39; .
+letiste4 := Letiste new .
+letiste4 kod: &#39;SPU&#39;; nazev: &#39;Leti&#353;te Split&#39;; mesto: &#39;Split&#39; .
+letiste5 := Letiste new .
+letiste5 kod: &#39;PMI&#39;; nazev: &#39;Leti&#353;te Palma de Mallorca&#39;; mesto: &#39;Mallorca&#39; .
+letiste6 := Letiste new .
+letiste6 kod: &#39;LHR&#39;; nazev: &#39;Leti&#353;te London Heathrow&#39;; mesto: &#39;London&#39; .
+letiste7 := Letiste new .
+letiste7 kod: &#39;JFK&#39;; nazev: &#39;Mezin&#225;rodn&#237; leti&#353;te Johna F. Kennedyho&#39;; mesto: &#39;New York&#39; .
+letiste8 := Letiste new .
+letiste8 kod: &#39;DXB&#39;; nazev: &#39;Dubai International Airport&#39;; mesto: &#39;Dubai&#39; .
+letiste9 := Letiste new .
+letiste9 kod: &#39;RHO&#39;; nazev: &#39;Letisko Rodos Diagoras&#39;; mesto: &#39;Rodos&#39; .
+
+&quot; Letiste - pridavani do setu&quot;
+LetisteSet add: letiste1; add: letiste2; add: letiste3; add: letiste4; add: letiste5; add: letiste6; add: letiste7; add: letiste8; add: letiste9.
+
+
+&quot; Lety - data  ----------------------------------------------------------------------------------------------------------------------------------&quot;
+
+
+let1 := Let new .
+let1 cislo: 109507; datumOdletu: &#39;20-JAN-2023&#39; asDate; datumPriletu: &#39;20-JAN-2023&#39; asDate; casOdletu: 1400; casPriletu: 1630; zpozdeniMinuty: 0.
+let1 zLetiste: letiste1 .
+let1 naLetiste: letiste2 .
+let2 := Let new .
+let2 cislo: 564120; datumOdletu: &#39;08-AUG-2023&#39; asDate; casOdletu: 2200 .
+let2 zLetiste: letiste3 .
+let2 naLetiste: letiste5 .
+let3 := Let new .
+let3 cislo: 451230; datumOdletu: &#39;29-JAN-2023&#39; asDate; datumPriletu: &#39;29-JAN-2023&#39; asDate; casOdletu: 0900; casPriletu: 1500; zpozdeniMinuty: 50 .
+let3 zLetiste: letiste9 .
+let3 naLetiste: letiste8 .
+let4 := Let new .
+let4 cislo: 550210; datumOdletu: &#39;11-MAY-2023&#39; asDate; datumPriletu: &#39;11-MAY-2023&#39; asDate; casOdletu: 1200; casPriletu: 1315; zpozdeniMinuty: 15 .
+let4 zLetiste: letiste1 .
+let4 naLetiste: letiste4 .
+let5 := Let new .
+let5 cislo: 9023153; datumOdletu: &#39;12-DEC-2022&#39; asDate; datumPriletu: &#39;13-DEC-2022&#39; asDate; casOdletu: 1900; casPriletu: 2345; zpozdeniMinuty: 0 .
+let5 zLetiste: letiste5 .
+let5 naLetiste: letiste6 .
+let6 := Let new .
+let6 cislo: 891003; datumOdletu: &#39;22-NOV-2022&#39; asDate; datumPriletu: &#39;22-NOV-2022&#39; asDate; casOdletu: 1800; casPriletu: 2350; zpozdeniMinuty: 210 .
+let6 zLetiste: letiste9 .
+let6 naLetiste: letiste3 .
+let7 := Let new .
+let7 cislo: 779514; datumOdletu: &#39;15-NOV-2023&#39; asDate; casOdletu: 1700 .
+let7 zLetiste: letiste7 .
+let7 naLetiste: letiste6 .
+let8 :=  Let new .
+let8 cislo: 109507; datumOdletu: &#39;02-FEB-2023&#39; asDate; datumPriletu: &#39;02-FEB-2023&#39; asDate; casOdletu: 1030; casPriletu: 1520; zpozdeniMinuty: 10 .
+let8 zLetiste: letiste9 .
+let8 naLetiste: letiste1 .
+
+&quot; Lety - pridavani do setu&quot;
+LetySet add: let1; add: let2; add: let3; add: let4; add: let5; add: let6; add: let7; add: let8 .
+
+
+&quot; Cestujici - data ----------------------------------------------------------------------------------------------------------------------------------&quot;
+
+
+c1 := Cestujici new .
+c1 jmeno: &#39;Jan&#39;; prijmeni: &#39;Nov&#225;k&#39;; datumNarozeni: &#39;18-SEP-1996&#39; asDate; stat: &#39;&#268;esk&#225; republika&#39;; cisloDokladu: 984106330 . 
+c2 := Cestujici new .
+c2 jmeno: &#39;Kate&#345;ina&#39;; prijmeni: &#39;Zemanov&#225;&#39;; datumNarozeni: &#39;09-JAN-1956&#39; asDate; stat: &#39;&#268;esk&#225; republika&#39;; cisloDokladu: 848612015 .  
+c3 := Cestujici new .
+c3 jmeno: &#39;Marmaduke&#39;; prijmeni: &#39;Prisca&#39;; datumNarozeni: &#39;22-DEC-2001&#39; asDate; stat: &#39;Velk&#225; Brit&#225;nie&#39;; cisloDokladu: 486512130 .  
+c4 := Cestujici new .
+c4 jmeno: &#39;Anastazja&#39;; prijmeni: &#39;Archie&#39;; datumNarozeni: &#39;08-NOV-2003&#39; asDate; stat: &#39;Polsko&#39;; cisloDokladu: 788854102 .  
+c5 := Cestujici new .
+c5 jmeno: &#39;Kristi&#225;n&#39;; prijmeni: &#39;Zdeno&#39;; datumNarozeni: &#39;28-JUN-1988&#39; asDate; stat: &#39;Slovensko&#39;; cisloDokladu: 481231285 .  
+c6 := Cestujici new .
+c6 jmeno: &#39;Eva&#39;; prijmeni: &#39;Pokorn&#225;&#39;; datumNarozeni: &#39;10-FEB-1956&#39; asDate; stat: &#39;&#268;esk&#225; republika&#39;; cisloDokladu: 286121475 .  
+c7 := Cestujici new .
+c7 jmeno: &#39;Jakub&#39;; prijmeni: &#39;Dvo&#345;&#225;k&#39;; datumNarozeni: &#39;29-NOV-1996&#39; asDate; stat: &#39;&#268;esk&#225; republika&#39;; cisloDokladu: 989156123 .  
+c8 := Cestujici new .
+c8 jmeno: &#39;Tatiana&#39;; prijmeni: &#39;Metod&#39;; datumNarozeni: &#39;12-SEP-1999&#39; asDate; stat: &#39;Slovensko&#39;; cisloDokladu: 786151023 .  
+c9 := Cestujici new .
+c9 jmeno: &#39;Alena&#39;; prijmeni: &#39;Markov&#225;&#39;; datumNarozeni: &#39;30-JAN-1978&#39; asDate; stat: &#39;&#268;esk&#225; republika&#39;; cisloDokladu: 894612321 . 
+
+&quot; Cestujici - pridavani do setu&quot;
+CestujiciSet add: c1; add: c2; add: c3; add: c4; add: c5; add: c6; add: c7; add: c8; add: c9.
+
+
+&quot; Letenky - data  ----------------------------------------------------------------------------------------------------------------------------------&quot;
+
+
+letenka1 := Letenka new .
+letenka1 cislo: 100068502; cena: 4600; pocetZavazadel: 1; prednostniNastup: 0 .
+letenka1 spoj: let1 .
+letenka1 rezervovaneMisto: s1 .
+letenka1 patri: c1 .
+letenka2 := Letenka new .
+letenka2 cislo: 100077842; cena: 8000; pocetZavazadel: 2; prednostniNastup: 0 .
+letenka2 spoj: let2 .
+letenka2 rezervovaneMisto: s4 .
+letenka2 patri: c6 .
+letenka3 := Letenka new .
+letenka3 cislo: 10010032; cena: 2200; pocetZavazadel: 0; prednostniNastup: 1 .
+letenka3 spoj: let7 .
+letenka3 rezervovaneMisto: s3 .
+letenka3 patri: c7 .
+letenka4 := Letenka new .
+letenka4 cislo: 100052346; cena: 3500; pocetZavazadel: 1; prednostniNastup: 0 .
+letenka4 spoj: let6 .
+letenka4 rezervovaneMisto: s6 .
+letenka4 patri: c8 .
+letenka5 := Letenka new .
+letenka5 cislo: 100044874; cena: 5000; pocetZavazadel: 1; prednostniNastup: 1 .
+letenka5 spoj: let8 .
+letenka5 rezervovaneMisto: s5 .
+letenka5 patri: c7 .
+
+&quot; Letenky - pridavani do setu&quot;
+LetenkySet add: letenka1; add: letenka2; add: letenka3; add: letenka4; add: letenka5 .
+</PRE>
+<HR>
+<H2>Diagram</H2>
+<IMG SRC="letenky-kolarik.gif">
+<HR>
+<H2>Classes</H2>
+<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
+<TR>
+<TD WIDTH=20%>
+<TABLE WIDTH=95% BORDER="1" CELLSPACING="0" BORDERCOLOR=BLACK>
+<TR><TD><BIG>
+<B><CODE>
+Letiste
+</CODE></B>
+</BIG></TD></TR>
+<TR><TD>
+<I><SMALL>instance variables</SMALL></I><BR>
+<CODE>
+kod :String
+</CODE>
+<BR>
+<CODE>
+mesto :String
+</CODE>
+<BR>
+<CODE>
+nazev :String
+</CODE>
+<BR>
+</TD></TR>
+<TR><TD>
+<I><SMALL>methods</SMALL></I><BR>
+<CODE>
+frekvenceLetu
+</CODE>
+<BR>
+<CODE>
+initialize
+</CODE>
+<BR>
+<CODE>
+kod
+</CODE>
+<BR>
+<CODE>
+kod:
+</CODE>
+<BR>
+<CODE>
+mesto
+</CODE>
+<BR>
+<CODE>
+mesto:
+</CODE>
+<BR>
+<CODE>
+nazev
+</CODE>
+<BR>
+<CODE>
+nazev:
+</CODE>
+<BR>
+</TD></TR>
+</TABLE>
+</TD>
+<TD VALIGN="TOP">
+<P>
+
+</P>
+</TD>
+</TR>
+</TABLE>
+<H4>code of non-accessing methods: </H4>
+<UL>
+<LI>
+<B><CODE>
+frekvenceLetu
+</CODE></B>
+<PRE>
+	&quot;vypocita v kolika letech se jednotliva letiste nachazeji &#40;ze bud z letiste odleta nebo tam prileta&#41;&quot;
+
+	^&#40;Let allInstances select: [:e | e zLetiste = self]&#41; size 
+		&#43; &#40;Let allInstances select: [:e | e naLetiste = self]&#41; size</PRE>
+<LI>
+<B><CODE>
+initialize
+</CODE></B>
+<PRE>
+&quot;generated by Daskalos&quot;
+
+     super initialize.
+     kod := nil.
+     nazev := nil.
+     mesto := nil.</PRE>
+</UL>
+<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
+<TR>
+<TD WIDTH=20%>
+<TABLE WIDTH=95% BORDER="1" CELLSPACING="0" BORDERCOLOR=BLACK>
+<TR><TD><BIG>
+<B><CODE>
+Sedadlo
+</CODE></B>
+</BIG></TD></TR>
+<TR><TD>
+<I><SMALL>instance variables</SMALL></I><BR>
+<CODE>
+oznaceni :String
+</CODE>
+<BR>
+<CODE>
+trida :String
+</CODE>
+<BR>
+<CODE>
+uDveri :Number
+</CODE>
+<BR>
+</TD></TR>
+<TR><TD>
+<I><SMALL>methods</SMALL></I><BR>
+<CODE>
+initialize
+</CODE>
+<BR>
+<CODE>
+oznaceni
+</CODE>
+<BR>
+<CODE>
+oznaceni:
+</CODE>
+<BR>
+<CODE>
+trida
+</CODE>
+<BR>
+<CODE>
+trida:
+</CODE>
+<BR>
+<CODE>
+uDveri
+</CODE>
+<BR>
+<CODE>
+uDveri:
+</CODE>
+<BR>
+</TD></TR>
+</TABLE>
+</TD>
+<TD VALIGN="TOP">
+<P>
+
+</P>
+</TD>
+</TR>
+</TABLE>
+<H4>code of non-accessing methods: </H4>
+<UL>
+<LI>
+<B><CODE>
+initialize
+</CODE></B>
+<PRE>
+&quot;generated by Daskalos&quot;
+
+     super initialize.
+     oznaceni := nil.
+     trida := nil.
+     uDveri := nil.</PRE>
+</UL>
+<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
+<TR>
+<TD WIDTH=20%>
+<TABLE WIDTH=95% BORDER="1" CELLSPACING="0" BORDERCOLOR=BLACK>
+<TR><TD><BIG>
+<B><CODE>
+Cestujici
+</CODE></B>
+</BIG></TD></TR>
+<TR><TD>
+<I><SMALL>instance variables</SMALL></I><BR>
+<CODE>
+cisloDokladu :Number
+</CODE>
+<BR>
+<CODE>
+datumNarozeni :Date
+</CODE>
+<BR>
+<CODE>
+jmeno :String
+</CODE>
+<BR>
+<CODE>
+prijmeni :String
+</CODE>
+<BR>
+<CODE>
+stat :String
+</CODE>
+<BR>
+</TD></TR>
+<TR><TD>
+<I><SMALL>methods</SMALL></I><BR>
+<CODE>
+celkemUtraceno
+</CODE>
+<BR>
+<CODE>
+cisloDokladu
+</CODE>
+<BR>
+<CODE>
+cisloDokladu:
+</CODE>
+<BR>
+<CODE>
+datumNarozeni
+</CODE>
+<BR>
+<CODE>
+datumNarozeni:
+</CODE>
+<BR>
+<CODE>
+initialize
+</CODE>
+<BR>
+<CODE>
+jmeno
+</CODE>
+<BR>
+<CODE>
+jmeno:
+</CODE>
+<BR>
+<CODE>
+pocetLetenek
+</CODE>
+<BR>
+<CODE>
+prijmeni
+</CODE>
+<BR>
+<CODE>
+prijmeni:
+</CODE>
+<BR>
+<CODE>
+stat
+</CODE>
+<BR>
+<CODE>
+stat:
+</CODE>
+<BR>
+<CODE>
+vek
+</CODE>
+<BR>
+</TD></TR>
+</TABLE>
+</TD>
+<TD VALIGN="TOP">
+<P>
+
+</P>
+</TD>
+</TR>
+</TABLE>
+<H4>code of non-accessing methods: </H4>
+<UL>
+<LI>
+<B><CODE>
+celkemUtraceno
+</CODE></B>
+<PRE>
+	&quot;vypocita&#44; kolik celkem cestujici utratil celkove za letenky&quot;
+
+	| select total |
+	total := 0.
+	select := &#40;Letenka allInstances select: [:e | e patri = self]&#41; 
+				collect: [:t | t cena].
+	select do: [:e | total := total &#43; e].
+	^total</PRE>
+<LI>
+<B><CODE>
+initialize
+</CODE></B>
+<PRE>
+&quot;generated by Daskalos&quot;
+
+     super initialize.
+     jmeno := nil.
+     prijmeni := nil.
+     datumNarozeni := nil.
+     stat := nil.
+     cisloDokladu := nil.</PRE>
+<LI>
+<B><CODE>
+pocetLetenek
+</CODE></B>
+<PRE>
+	&quot;vypocita celkovy pocet letenek&#44; co si jednotlivi cestujici zakoupili&quot;
+
+	^&#40;Letenka allInstances select: [:e | e patri = self]&#41; size</PRE>
+<LI>
+<B><CODE>
+vek
+</CODE></B>
+<PRE>
+	&quot;vrati vek osoby &#40;v pripade chybejicich atributu vraci -1&#41;&quot;
+
+	datumNarozeni isNil 
+		ifTrue: [^-1]
+		ifFalse: [^&#40;&#40;Date today subtractDate: datumNarozeni&#41; / 365&#41; truncated]</PRE>
+</UL>
+<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
+<TR>
+<TD WIDTH=20%>
+<TABLE WIDTH=95% BORDER="1" CELLSPACING="0" BORDERCOLOR=BLACK>
+<TR><TD><BIG>
+<B><CODE>
+Let
+</CODE></B>
+</BIG></TD></TR>
+<TR><TD>
+<I><SMALL>instance variables</SMALL></I><BR>
+<CODE>
+casOdletu :Number
+</CODE>
+<BR>
+<CODE>
+casPriletu :Number
+</CODE>
+<BR>
+<CODE>
+cislo :Number
+</CODE>
+<BR>
+<CODE>
+datumOdletu :Date
+</CODE>
+<BR>
+<CODE>
+datumPriletu :Date
+</CODE>
+<BR>
+<CODE>
+naLetiste :Object
+</CODE>
+<BR>
+<CODE>
+stav :String
+</CODE>
+<BR>
+<CODE>
+zLetiste :Object
+</CODE>
+<BR>
+<CODE>
+zpozdeniMinuty :Number
+</CODE>
+<BR>
+</TD></TR>
+<TR><TD>
+<I><SMALL>methods</SMALL></I><BR>
+<CODE>
+casOdletu
+</CODE>
+<BR>
+<CODE>
+casOdletu:
+</CODE>
+<BR>
+<CODE>
+casPriletu
+</CODE>
+<BR>
+<CODE>
+casPriletu:
+</CODE>
+<BR>
+<CODE>
+cislo
+</CODE>
+<BR>
+<CODE>
+cislo:
+</CODE>
+<BR>
+<CODE>
+datumOdletu
+</CODE>
+<BR>
+<CODE>
+datumOdletu:
+</CODE>
+<BR>
+<CODE>
+datumPriletu
+</CODE>
+<BR>
+<CODE>
+datumPriletu:
+</CODE>
+<BR>
+<CODE>
+delkaLetu
+</CODE>
+<BR>
+<CODE>
+initialize
+</CODE>
+<BR>
+<CODE>
+letDokoncen
+</CODE>
+<BR>
+<CODE>
+naLetiste
+</CODE>
+<BR>
+<CODE>
+naLetiste:
+</CODE>
+<BR>
+<CODE>
+stav
+</CODE>
+<BR>
+<CODE>
+stav:
+</CODE>
+<BR>
+<CODE>
+zLetiste
+</CODE>
+<BR>
+<CODE>
+zLetiste:
+</CODE>
+<BR>
+<CODE>
+zpozdeniMinuty
+</CODE>
+<BR>
+<CODE>
+zpozdeniMinuty:
+</CODE>
+<BR>
+</TD></TR>
+</TABLE>
+</TD>
+<TD VALIGN="TOP">
+<P>
+
+</P>
+</TD>
+</TR>
+</TABLE>
+<H4>code of non-accessing methods: </H4>
+<UL>
+<LI>
+<B><CODE>
+delkaLetu
+</CODE></B>
+<PRE>
+	&quot;comment stating purpose of message&quot;</PRE>
+<LI>
+<B><CODE>
+initialize
+</CODE></B>
+<PRE>
+&quot;generated by Daskalos&quot;
+
+     super initialize.
+     cislo := nil.
+     zLetiste := nil.
+     naLetiste := nil.
+     datumOdletu := nil.
+     casOdletu := nil.
+     datumPriletu := nil.
+     casPriletu := nil.
+     zpozdeniMinuty := nil.
+     stav := nil.</PRE>
+<LI>
+<B><CODE>
+letDokoncen
+</CODE></B>
+<PRE>
+	&quot;comment stating purpose of message&quot;</PRE>
+</UL>
+<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
+<TR>
+<TD WIDTH=20%>
+<TABLE WIDTH=95% BORDER="1" CELLSPACING="0" BORDERCOLOR=BLACK>
+<TR><TD><BIG>
+<B><CODE>
+Letenka
+</CODE></B>
+</BIG></TD></TR>
+<TR><TD>
+<I><SMALL>instance variables</SMALL></I><BR>
+<CODE>
+cena :Number
+</CODE>
+<BR>
+<CODE>
+cislo :Number
+</CODE>
+<BR>
+<CODE>
+patri :Object
+</CODE>
+<BR>
+<CODE>
+pocetZavazadel :Number
+</CODE>
+<BR>
+<CODE>
+prednostniNastup :Number
+</CODE>
+<BR>
+<CODE>
+rezervovaneMisto :Object
+</CODE>
+<BR>
+<CODE>
+spoj :Object
+</CODE>
+<BR>
+</TD></TR>
+<TR><TD>
+<I><SMALL>methods</SMALL></I><BR>
+<CODE>
+cena
+</CODE>
+<BR>
+<CODE>
+cena:
+</CODE>
+<BR>
+<CODE>
+cislo
+</CODE>
+<BR>
+<CODE>
+cislo:
+</CODE>
+<BR>
+<CODE>
+doplatekExtraZavazadlo
+</CODE>
+<BR>
+<CODE>
+initialize
+</CODE>
+<BR>
+<CODE>
+kompenzaceZpozdeni
+</CODE>
+<BR>
+<CODE>
+patri
+</CODE>
+<BR>
+<CODE>
+patri:
+</CODE>
+<BR>
+<CODE>
+pocetZavazadel
+</CODE>
+<BR>
+<CODE>
+pocetZavazadel:
+</CODE>
+<BR>
+<CODE>
+prednostniNastup
+</CODE>
+<BR>
+<CODE>
+prednostniNastup:
+</CODE>
+<BR>
+<CODE>
+rezervovaneMisto
+</CODE>
+<BR>
+<CODE>
+rezervovaneMisto:
+</CODE>
+<BR>
+<CODE>
+spoj
+</CODE>
+<BR>
+<CODE>
+spoj:
+</CODE>
+<BR>
+</TD></TR>
+</TABLE>
+</TD>
+<TD VALIGN="TOP">
+<P>
+
+</P>
+</TD>
+</TR>
+</TABLE>
+<H4>code of non-accessing methods: </H4>
+<UL>
+<LI>
+<B><CODE>
+doplatekExtraZavazadlo
+</CODE></B>
+<PRE>
+	&quot;v pripade&#44; ze cestujici ma vice nez jedno zavazadlo&#44; bude platit poplatek za extra zavazadlo&quot;
+
+	pocetZavazadel &gt; 1 ifTrue: [^&#39;ano&#39;] ifFalse: [^&#39;ne&#39;]</PRE>
+<LI>
+<B><CODE>
+initialize
+</CODE></B>
+<PRE>
+&quot;generated by Daskalos&quot;
+
+     super initialize.
+     cislo := nil.
+     spoj := nil.
+     rezervovaneMisto := nil.
+     cena := nil.
+     patri := nil.
+     pocetZavazadel := nil.
+     prednostniNastup := nil.</PRE>
+<LI>
+<B><CODE>
+kompenzaceZpozdeni
+</CODE></B>
+<PRE>
+	&quot;pokud ma let zpozdeni 3 hodiny a vice&#44; ma cestujici narok na kompenzaci&quot;
+
+	spoj zpozdeniMinuty isNil not 
+		ifTrue: [spoj zpozdeniMinuty &gt; 179 ifTrue: [^&#39;ano&#39;] ifFalse: [^&#39;ne&#39;]]
+		ifFalse: [^&#39;ne&#39;]</PRE>
+</UL>
+<HR>
+<H2>Links</H2>
+<A HREF="letenky-kolarik.xml">Data file</A> and 
+<A HREF="letenky-kolarik.st">class source</A>.
+
+<BR>
+
+<BR>
+<CODE>
+Generated by Daskalos - Object Modeling Tutor &#40;C&#41; 2006 V. Merunka
+</CODE>
+
+<BR>
+<CODE>
+April 22&#44; 2023
+</CODE>
+</BODY></HTML>
