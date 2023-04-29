@@ -2,294 +2,380 @@
 	<sixx.object sixx.id="0" sixx.type="DaskalosProject" >
 		<sixx.object sixx.id="1" sixx.name="name" sixx.type="String" >letenky</sixx.object>
 		<sixx.object sixx.id="2" sixx.name="author" sixx.type="String" >Jan Kola&#345;&#237;k</sixx.object>
-		<sixx.object sixx.id="3" sixx.name="description" sixx.type="String" ></sixx.object>
+		<sixx.object sixx.id="3" sixx.name="description" sixx.type="String" >Projekt vyobrazuje zjednodu&#353;enou objektovou situaci nap&#345;&#237;klad u n&#283;jak&#233; men&#353;&#237; spole&#269;nosti prod&#225;vaj&#237;c&#237; letenky
+
+Vzhledem k tomu&#44; jak &#353;iroce by se tato sitace dala zpracovat a kolik v&#283;c&#237; okolo se zaznamen&#225;v&#225;&#44; tak jsem se pokusil o redukci na 5 t&#345;&#237;d s t&#237;m&#44; aby byl zachov&#225;n n&#283;jak&#253; z&#225;kladn&#237; smysl. Nejsem &#382;&#225;dn&#253; expert na t&#233;matiku syst&#233;mu letenek&#44; ale m&#283;l jsem n&#283;jakou p&#345;edstavu&#44; kterou jsem se sna&#382;il v tomto projektu zn&#225;zornit. Omezil jsem se tedy na t&#345;&#237;dy:
+
+Popis objekt&#367; a metod &#40;p&#345;&#237;padn&#225; dovysv&#283;tlen&#237; jak jsem co myslel&#41;
+
+1&#41; Letenka - tato t&#345;&#237;da je centrem cel&#233;ho projektu
+	Atributy:
+		- cislo = reprezentuje jak&#253;si unik&#225;tn&#237; identifik&#225;tor pro letenku&#44; ka&#382;d&#225; letenka by m&#283;la m&#237;t n&#283;jak&#233; unik&#225;tn&#237; id
+		- cena
+		- pocetZavazadel = kolik zavazadel &#40;nemysl&#237;m t&#237;m p&#345;&#237;ru&#269;n&#237; zavazadla&#41; m&#225; cestuj&#237;c&#237; zaplaceno
+		- prednostniNastup = zda letenka oprav&#328;uje cestuj&#237;c&#237;ho k p&#345;ednostn&#237;mu n&#225;stupu&#44; obsahuje bu&#271; ano nebo ne
+		- patri = odkaz na cestujiciho
+		- rezervovanemMisto = odkaz na sedadlo
+		- spoj = odkaz na let
+	Metody:
+		- pristupDoSalonku - pokud letenka byla drazsi nez 5000 a sedadlo neni v economy tride&#44; ma cestujici narok na pristup do VIP salonku pred odletem
+2&#41; Cestuj&#237;c&#237; - tato t&#345;&#237;da reprezentuje &#269;lov&#283;ka&#44; jen&#382; si zaplatil letenku
+	Atributy:
+		- jmeno&#44; prijmeni&#44; datumNarozeni&#44; stat
+		- cisloDokladu = t&#237;mto mysl&#237;m &#269;&#237;slo OP
+	Metody:
+		- celkemUtraceno = vypo&#269;&#237;t&#225;v&#225;m celkovou &#269;&#225;stku&#44; kterou cestuj&#237;c&#237; utratil za letenky u t&#233;to spole&#269;nosti - zjist&#237;m&#44; jak&#233; letenky pat&#345;&#237; k jednotliv&#253;m osob&#225;m a potom je se&#269;tu
+		- pocetLetenek = zjist&#237;m jak&#233; letenky pat&#345;&#237; k jednotliv&#253;m osob&#225;m a potom pomoc&#237; size zjist&#237;m&#44; kolik jich celkem cestuj&#237;c&#237; m&#225;
+		- vek = vypo&#269;&#237;t&#225;m z m&#237;stn&#237;ho atributu datum Narozen&#237; k dne&#353;n&#237;mu dni
+
+3&#41; Sedadlo - t&#345;&#237;du pou&#382;&#237;v&#225;m k p&#345;i&#345;azen&#237; m&#237;sta k letence
+	Atributy:
+		- oznaceni = unik&#225;tn&#237; identifik&#225;tor m&#237;sta - celkov&#283; jsem zjednodu&#353;il&#44; proto&#382;e ka&#382;d&#253; model letadla m&#225; jin&#253; po&#269;et a jin&#233; rozlo&#382;en&#237; sedadel - modely letadel apod jsem v projektu ne&#345;e&#353;il
+		- trida = v jakem &quot;vagonu&quot; se m&#237;sto nach&#225;z&#237; - &#269;ili economy&#44; bussines&#44; first class
+		- uDveri = 0 nebo 1 podle toho&#44; jestli se nachazi misto u dveri&#44; nektere aerospole&#269;nosti nedovoluj&#237; nezletil&#237;m sed&#283;t u oken
+4&#41; Let - t&#237;mto mysl&#237;m samotn&#253; let z m&#237;sta x do m&#237;sta y
+	Atributy:
+		- cislo = unikatn&#237; identifik&#225;tor letu
+		- datumOdletu&#44; casOdletu
+		- datumPriletu&#44; casPriletu = u dokon&#269;en&#253;ch let&#367; se zde zobrazuje re&#225;ln&#253; &#269;as a datum&#44; kdy letadlo p&#345;ist&#225;lo a u napl&#225;novan&#253;ch let&#367; jejich p&#345;edpokl&#225;dan&#253; &#269;as p&#345;&#237;letu
+		- zpozdeniMinuty = u dokon&#269;en&#253;ch let&#367; v rozmez&#237; od 0 do x&#44; u nedokon&#269;en&#253;ch let&#367; je zde hodnota -1
+		- zLetiste&#44; naLetiste = odkaz na Letiste
+	Metody:
+		- zpozdeniMinuty = jake je zaznamenane zpozeni&#44; u naplanovanych letu je zde hodnota -1
+		- letDokoncen = jestli je zde nejake zaznamenane zpozdeni &#40;0 a v&#237;ce minut&#41;&#44; je automaticky jasn&#233;&#44; &#382;e let byl ji&#382; dokon&#269;en
+5&#41; Letiste - jednotliva letiste
+	Atributy:
+		- kod = kazde letiste ma trojmistny kod&#44; nap&#345;&#237;klad Leti&#353;t&#283; V&#225;clava Havla v Praze m&#225; k&#243;d PRG
+		- nazev&#44; mesto
+	Metody:
+		- frekvenceLetu = vypocitava kolikrat se letiste objevilo v nejakem z let&#367; a je jedno jestli to bylo leti&#353;t&#283; odkud se odl&#233;talo nebo kam se p&#345;&#237;l&#233;talo
+
+Popis doataz&#367;:
+
+1&#41; LetySet select: [:m | m zpozdeniMinuty = 0 and: [ m letDokoncen = &#39;ano&#39;]]
+	- &quot;Lety&#44; ktere byly dokonceny a pristaly s nulovym zpozdenim&quot;
+	- Slou&#382;&#237; k v&#253;b&#283;ru tzv. neprobl&#233;mov&#253;ch let&#367;&#44; kdy letadlo p&#345;ist&#225;lo s nulov&#253;m zpo&#382;d&#283;n&#237;m
+
+2&#41; LetySet select: [:m | m zLetiste kod = &#39;PRG&#39; or: [ m naLetiste kod = &#39;PRG&#39;]]
+	- &quot;Lety&#44; ktere bud zacinaly nebo koncily na letisti v Praze&quot;
+	- Slou&#382;&#237; k v&#253;b&#283;ru let&#367;&#44; kter&#233; se t&#253;kaj&#237; ur&#269;&#237;t&#233;ho leti&#353;t&#283;&#44; v tomto p&#345;&#237;pad&#283; Prahy. Vr&#225;t&#237; n&#225;m seznam let&#367;&#44; kter&#233; bu&#271; odl&#233;taly z Prahy nebo p&#345;il&#233;taly v Praze
+
+3&#41; LetenkySet select: [:m | m rezervovaneMisto trida = &#39;economy&#39;]
+	- &quot;Letenky&#44; ktere meli sedadlo nachazejici se v economy tride&quot;
+	- V&#253;pis v&#353;ech letenek&#44; kter&#233; maj&#237; jsou prov&#225;z&#225;ny se sedadlem&#44; kter&#233; se nach&#225;z&#237; v economy t&#345;&#237;d&#283;
+
+4&#41; &#40;LetenkySet select: [:m | m patri jmeno = &#39;Jakub&#39; and: [ m patri prijmeni = &#39;Dvo&#345;&#225;k&#39; ]]&#41; 
+	- &quot;Vsechny letenky u osoby pojmenovane Jakub Dvo&#345;&#225;k&quot;
+	- Tento dotaz vybere v&#353;echny letenky&#44; kter&#233; maj&#237; odkaz na cestuj&#237;c&#237;ho se jm&#233;nem Jakub Dvo&#345;&#225;k
+
+5&#41; CestujiciSet select: [:m | m celkemUtraceno &gt;= 5000 ]
+	- &quot;Oblibeni zakaznici - cestujici&#44; kteri utratili za letenky vice nez 5000&quot;
+	- Vybere na&#353;e &quot;nejobl&#237;ben&#283;j&#353;&#237; cestuj&#237;c&#237;&quot;&#44; &#269;ili lidi&#44; kte&#345;&#237; za letenky utratili v&#237;ce ne&#382; n&#283;jakou ur&#269;itou &#269;&#225;stku&#44; v tomto p&#345;&#237;pad&#283; p&#345;es 5000 K&#269;
+
+6&#41; &#40;LetySet select: [:m | m datumOdletu &gt; &#39;01-01-2022&#39; asDate and: [ m datumPriletu &lt; &#39;12-31-2022&#39; asDate]]&#41;
+	- &quot;Lety&#44; ktere probehly v prubehu roku 2022&quot;
+	- Vyp&#237;&#353;e v&#353;echny Lety&#44; kter&#233; prob&#283;hly od 1. 1. 2022 do 31. 12. 2022&#44; &#269;ili v roce 2022
+
+7&#41; &#40;LetySet select: [:m | m letDokoncen = &#39;ne&#39;]&#41; 
+	- &quot;Naplanovane&#44; nedokoncene lety&quot;
+	- Jednoduch&#253; dotaz na konec :&#41;&#44; vybere v&#353;echny napl&#225;novan&#233; lety
+	</sixx.object>
 		<sixx.object sixx.id="4" sixx.name="workspaceVariables" sixx.type="Dictionary" >
 			<sixx.object sixx.id="5" sixx.type="Association" >
-				<sixx.object sixx.id="6" sixx.name="key" sixx.type="Symbol" >CestujiciSet</sixx.object>
+				<sixx.object sixx.id="6" sixx.name="key" sixx.type="Symbol" >LetenkySet</sixx.object>
 				<sixx.object sixx.id="7" sixx.name="value" sixx.type="Set" >
-					<sixx.object sixx.id="8" sixx.type="Cestujici" >
-						<sixx.object sixx.id="9" sixx.name="jmeno" sixx.type="String" >Jakub</sixx.object>
-						<sixx.object sixx.id="10" sixx.name="prijmeni" sixx.type="String" >Dvo&#345;&#225;k</sixx.object>
-						<sixx.object sixx.id="11" sixx.name="datumNarozeni" sixx.type="Date" >29 November 1996</sixx.object>
-						<sixx.object sixx.id="12" sixx.name="stat" sixx.type="String" >&#268;esk&#225; republika</sixx.object>
-						<sixx.object sixx.id="13" sixx.name="cisloDokladu" sixx.type="LargePositiveInteger" >989156123</sixx.object>
+					<sixx.object sixx.id="8" sixx.type="Letenka" >
+						<sixx.object sixx.id="9" sixx.name="cislo" sixx.type="SmallInteger" >100052346</sixx.object>
+						<sixx.object sixx.id="10" sixx.name="spoj" sixx.type="Let" >
+							<sixx.object sixx.id="11" sixx.name="cislo" sixx.type="SmallInteger" >891003</sixx.object>
+							<sixx.object sixx.id="12" sixx.name="zLetiste" sixx.type="Letiste" >
+								<sixx.object sixx.id="13" sixx.name="kod" sixx.type="String" >RHO</sixx.object>
+								<sixx.object sixx.id="14" sixx.name="nazev" sixx.type="String" >Letisko Rodos Diagoras</sixx.object>
+								<sixx.object sixx.id="15" sixx.name="mesto" sixx.type="String" >Rodos</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="16" sixx.name="naLetiste" sixx.type="Letiste" >
+								<sixx.object sixx.id="17" sixx.name="kod" sixx.type="String" >BTS</sixx.object>
+								<sixx.object sixx.id="18" sixx.name="nazev" sixx.type="String" >Leti&#353;te Bratislava</sixx.object>
+								<sixx.object sixx.id="19" sixx.name="mesto" sixx.type="String" >Bratislava</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="20" sixx.name="datumOdletu" sixx.type="Date" >22 November 2022</sixx.object>
+							<sixx.object sixx.id="21" sixx.name="casOdletu" sixx.type="SmallInteger" >1800</sixx.object>
+							<sixx.object sixx.id="22" sixx.name="datumPriletu" sixx.type="Date" >22 November 2022</sixx.object>
+							<sixx.object sixx.id="23" sixx.name="casPriletu" sixx.type="SmallInteger" >2350</sixx.object>
+							<sixx.object sixx.id="24" sixx.name="zpozdeniMinuty" sixx.type="SmallInteger" >210</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="25" sixx.name="rezervovaneMisto" sixx.type="Sedadlo" >
+							<sixx.object sixx.id="26" sixx.name="oznaceni" sixx.type="String" >C22</sixx.object>
+							<sixx.object sixx.id="27" sixx.name="trida" sixx.type="String" >economy</sixx.object>
+							<sixx.object sixx.id="28" sixx.name="uDveri" sixx.type="SmallInteger" >0</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="29" sixx.name="cena" sixx.type="SmallInteger" >3500</sixx.object>
+						<sixx.object sixx.id="30" sixx.name="patri" sixx.type="Cestujici" >
+							<sixx.object sixx.id="31" sixx.name="jmeno" sixx.type="String" >Tatiana</sixx.object>
+							<sixx.object sixx.id="32" sixx.name="prijmeni" sixx.type="String" >Metod</sixx.object>
+							<sixx.object sixx.id="33" sixx.name="datumNarozeni" sixx.type="Date" >12 September 1999</sixx.object>
+							<sixx.object sixx.id="34" sixx.name="stat" sixx.type="String" >Slovensko</sixx.object>
+							<sixx.object sixx.id="35" sixx.name="cisloDokladu" sixx.type="LargePositiveInteger" >786151023</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="36" sixx.name="pocetZavazadel" sixx.type="SmallInteger" >1</sixx.object>
+						<sixx.object sixx.idref="28" sixx.name="prednostniNastup" ></sixx.object>
 					</sixx.object>
-					<sixx.object sixx.id="14" sixx.type="Cestujici" >
-						<sixx.object sixx.id="15" sixx.name="jmeno" sixx.type="String" >Kate&#345;ina</sixx.object>
-						<sixx.object sixx.id="16" sixx.name="prijmeni" sixx.type="String" >Zemanov&#225;</sixx.object>
-						<sixx.object sixx.id="17" sixx.name="datumNarozeni" sixx.type="Date" >9 January 1956</sixx.object>
-						<sixx.object sixx.id="18" sixx.name="stat" sixx.type="String" >&#268;esk&#225; republika</sixx.object>
-						<sixx.object sixx.id="19" sixx.name="cisloDokladu" sixx.type="LargePositiveInteger" >848612015</sixx.object>
+					<sixx.object sixx.id="37" sixx.type="Letenka" >
+						<sixx.object sixx.id="38" sixx.name="cislo" sixx.type="SmallInteger" >100044874</sixx.object>
+						<sixx.object sixx.id="39" sixx.name="spoj" sixx.type="Let" >
+							<sixx.object sixx.id="40" sixx.name="cislo" sixx.type="SmallInteger" >779514</sixx.object>
+							<sixx.object sixx.id="41" sixx.name="zLetiste" sixx.type="Letiste" >
+								<sixx.object sixx.id="42" sixx.name="kod" sixx.type="String" >JFK</sixx.object>
+								<sixx.object sixx.id="43" sixx.name="nazev" sixx.type="String" >Mezin&#225;rodn&#237; leti&#353;te Johna F. Kennedyho</sixx.object>
+								<sixx.object sixx.id="44" sixx.name="mesto" sixx.type="String" >New York</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="45" sixx.name="naLetiste" sixx.type="Letiste" >
+								<sixx.object sixx.id="46" sixx.name="kod" sixx.type="String" >LHR</sixx.object>
+								<sixx.object sixx.id="47" sixx.name="nazev" sixx.type="String" >Leti&#353;te London Heathrow</sixx.object>
+								<sixx.object sixx.id="48" sixx.name="mesto" sixx.type="String" >London</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="49" sixx.name="datumOdletu" sixx.type="Date" >15 November 2023</sixx.object>
+							<sixx.object sixx.id="50" sixx.name="casOdletu" sixx.type="SmallInteger" >1700</sixx.object>
+							<sixx.object sixx.id="51" sixx.name="datumPriletu" sixx.type="Date" >16 November 2023</sixx.object>
+							<sixx.object sixx.id="52" sixx.name="casPriletu" sixx.type="SmallInteger" >1100</sixx.object>
+							<sixx.object sixx.id="53" sixx.name="zpozdeniMinuty" sixx.type="UndefinedObject" >nil</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="54" sixx.name="rezervovaneMisto" sixx.type="Sedadlo" >
+							<sixx.object sixx.id="55" sixx.name="oznaceni" sixx.type="String" >Z02</sixx.object>
+							<sixx.object sixx.id="56" sixx.name="trida" sixx.type="String" >firstClass</sixx.object>
+							<sixx.object sixx.idref="28" sixx.name="uDveri" ></sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="57" sixx.name="cena" sixx.type="SmallInteger" >5000</sixx.object>
+						<sixx.object sixx.id="58" sixx.name="patri" sixx.type="Cestujici" >
+							<sixx.object sixx.id="59" sixx.name="jmeno" sixx.type="String" >Jakub</sixx.object>
+							<sixx.object sixx.id="60" sixx.name="prijmeni" sixx.type="String" >Dvo&#345;&#225;k</sixx.object>
+							<sixx.object sixx.id="61" sixx.name="datumNarozeni" sixx.type="Date" >29 November 1996</sixx.object>
+							<sixx.object sixx.id="62" sixx.name="stat" sixx.type="String" >&#268;esk&#225; republika</sixx.object>
+							<sixx.object sixx.id="63" sixx.name="cisloDokladu" sixx.type="LargePositiveInteger" >989156123</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.idref="36" sixx.name="pocetZavazadel" ></sixx.object>
+						<sixx.object sixx.idref="36" sixx.name="prednostniNastup" ></sixx.object>
 					</sixx.object>
-					<sixx.object sixx.id="20" sixx.type="Cestujici" >
-						<sixx.object sixx.id="21" sixx.name="jmeno" sixx.type="String" >Marmaduke</sixx.object>
-						<sixx.object sixx.id="22" sixx.name="prijmeni" sixx.type="String" >Prisca</sixx.object>
-						<sixx.object sixx.id="23" sixx.name="datumNarozeni" sixx.type="Date" >22 December 2001</sixx.object>
-						<sixx.object sixx.id="24" sixx.name="stat" sixx.type="String" >Velk&#225; Brit&#225;nie</sixx.object>
-						<sixx.object sixx.id="25" sixx.name="cisloDokladu" sixx.type="SmallInteger" >486512130</sixx.object>
+					<sixx.object sixx.id="64" sixx.type="Letenka" >
+						<sixx.object sixx.id="65" sixx.name="cislo" sixx.type="SmallInteger" >100068502</sixx.object>
+						<sixx.object sixx.id="66" sixx.name="spoj" sixx.type="Let" >
+							<sixx.object sixx.id="67" sixx.name="cislo" sixx.type="SmallInteger" >109507</sixx.object>
+							<sixx.object sixx.id="68" sixx.name="zLetiste" sixx.type="Letiste" >
+								<sixx.object sixx.id="69" sixx.name="kod" sixx.type="String" >PRG</sixx.object>
+								<sixx.object sixx.id="70" sixx.name="nazev" sixx.type="String" >Leti&#353;t&#283; V&#225;clava Havla Praha</sixx.object>
+								<sixx.object sixx.id="71" sixx.name="mesto" sixx.type="String" >Praha</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="72" sixx.name="naLetiste" sixx.type="Letiste" >
+								<sixx.object sixx.id="73" sixx.name="kod" sixx.type="String" >AMS</sixx.object>
+								<sixx.object sixx.id="74" sixx.name="nazev" sixx.type="String" >Amsterdam Airport Schiphol</sixx.object>
+								<sixx.object sixx.id="75" sixx.name="mesto" sixx.type="String" >Amsterdam</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="76" sixx.name="datumOdletu" sixx.type="Date" >20 January 2023</sixx.object>
+							<sixx.object sixx.id="77" sixx.name="casOdletu" sixx.type="SmallInteger" >1400</sixx.object>
+							<sixx.object sixx.id="78" sixx.name="datumPriletu" sixx.type="Date" >20 January 2023</sixx.object>
+							<sixx.object sixx.id="79" sixx.name="casPriletu" sixx.type="SmallInteger" >1630</sixx.object>
+							<sixx.object sixx.idref="28" sixx.name="zpozdeniMinuty" ></sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="80" sixx.name="rezervovaneMisto" sixx.type="Sedadlo" >
+							<sixx.object sixx.id="81" sixx.name="oznaceni" sixx.type="String" >C30</sixx.object>
+							<sixx.object sixx.id="82" sixx.name="trida" sixx.type="String" >economy</sixx.object>
+							<sixx.object sixx.idref="28" sixx.name="uDveri" ></sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="83" sixx.name="cena" sixx.type="SmallInteger" >4600</sixx.object>
+						<sixx.object sixx.id="84" sixx.name="patri" sixx.type="Cestujici" >
+							<sixx.object sixx.id="85" sixx.name="jmeno" sixx.type="String" >Jan</sixx.object>
+							<sixx.object sixx.id="86" sixx.name="prijmeni" sixx.type="String" >Nov&#225;k</sixx.object>
+							<sixx.object sixx.id="87" sixx.name="datumNarozeni" sixx.type="Date" >18 September 1996</sixx.object>
+							<sixx.object sixx.id="88" sixx.name="stat" sixx.type="String" >&#268;esk&#225; republika</sixx.object>
+							<sixx.object sixx.id="89" sixx.name="cisloDokladu" sixx.type="LargePositiveInteger" >984106330</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.idref="36" sixx.name="pocetZavazadel" ></sixx.object>
+						<sixx.object sixx.idref="28" sixx.name="prednostniNastup" ></sixx.object>
 					</sixx.object>
-					<sixx.object sixx.id="26" sixx.type="Cestujici" >
-						<sixx.object sixx.id="27" sixx.name="jmeno" sixx.type="String" >Jan</sixx.object>
-						<sixx.object sixx.id="28" sixx.name="prijmeni" sixx.type="String" >Nov&#225;k</sixx.object>
-						<sixx.object sixx.id="29" sixx.name="datumNarozeni" sixx.type="Date" >18 September 1996</sixx.object>
-						<sixx.object sixx.id="30" sixx.name="stat" sixx.type="String" >&#268;esk&#225; republika</sixx.object>
-						<sixx.object sixx.id="31" sixx.name="cisloDokladu" sixx.type="LargePositiveInteger" >984106330</sixx.object>
+					<sixx.object sixx.id="90" sixx.type="Letenka" >
+						<sixx.object sixx.id="91" sixx.name="cislo" sixx.type="SmallInteger" >10010032</sixx.object>
+						<sixx.object sixx.id="92" sixx.name="spoj" sixx.type="Let" >
+							<sixx.object sixx.idref="67" sixx.name="cislo" ></sixx.object>
+							<sixx.object sixx.idref="12" sixx.name="zLetiste" ></sixx.object>
+							<sixx.object sixx.idref="68" sixx.name="naLetiste" ></sixx.object>
+							<sixx.object sixx.id="93" sixx.name="datumOdletu" sixx.type="Date" >2 February 2023</sixx.object>
+							<sixx.object sixx.id="94" sixx.name="casOdletu" sixx.type="SmallInteger" >1030</sixx.object>
+							<sixx.object sixx.id="95" sixx.name="datumPriletu" sixx.type="Date" >2 February 2023</sixx.object>
+							<sixx.object sixx.id="96" sixx.name="casPriletu" sixx.type="SmallInteger" >1520</sixx.object>
+							<sixx.object sixx.id="97" sixx.name="zpozdeniMinuty" sixx.type="SmallInteger" >10</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="98" sixx.name="rezervovaneMisto" sixx.type="Sedadlo" >
+							<sixx.object sixx.id="99" sixx.name="oznaceni" sixx.type="String" >C01</sixx.object>
+							<sixx.object sixx.id="100" sixx.name="trida" sixx.type="String" >economy</sixx.object>
+							<sixx.object sixx.idref="36" sixx.name="uDveri" ></sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="101" sixx.name="cena" sixx.type="SmallInteger" >2200</sixx.object>
+						<sixx.object sixx.idref="58" sixx.name="patri" ></sixx.object>
+						<sixx.object sixx.idref="28" sixx.name="pocetZavazadel" ></sixx.object>
+						<sixx.object sixx.idref="36" sixx.name="prednostniNastup" ></sixx.object>
 					</sixx.object>
-					<sixx.object sixx.id="32" sixx.type="Cestujici" >
-						<sixx.object sixx.id="33" sixx.name="jmeno" sixx.type="String" >Eva</sixx.object>
-						<sixx.object sixx.id="34" sixx.name="prijmeni" sixx.type="String" >Pokorn&#225;</sixx.object>
-						<sixx.object sixx.id="35" sixx.name="datumNarozeni" sixx.type="Date" >10 February 1956</sixx.object>
-						<sixx.object sixx.id="36" sixx.name="stat" sixx.type="String" >&#268;esk&#225; republika</sixx.object>
-						<sixx.object sixx.id="37" sixx.name="cisloDokladu" sixx.type="SmallInteger" >286121475</sixx.object>
-					</sixx.object>
-					<sixx.object sixx.id="38" sixx.type="Cestujici" >
-						<sixx.object sixx.id="39" sixx.name="jmeno" sixx.type="String" >Anastazja</sixx.object>
-						<sixx.object sixx.id="40" sixx.name="prijmeni" sixx.type="String" >Archie</sixx.object>
-						<sixx.object sixx.id="41" sixx.name="datumNarozeni" sixx.type="Date" >8 November 2003</sixx.object>
-						<sixx.object sixx.id="42" sixx.name="stat" sixx.type="String" >Polsko</sixx.object>
-						<sixx.object sixx.id="43" sixx.name="cisloDokladu" sixx.type="LargePositiveInteger" >788854102</sixx.object>
-					</sixx.object>
-					<sixx.object sixx.id="44" sixx.type="Cestujici" >
-						<sixx.object sixx.id="45" sixx.name="jmeno" sixx.type="String" >Tatiana</sixx.object>
-						<sixx.object sixx.id="46" sixx.name="prijmeni" sixx.type="String" >Metod</sixx.object>
-						<sixx.object sixx.id="47" sixx.name="datumNarozeni" sixx.type="Date" >12 September 1999</sixx.object>
-						<sixx.object sixx.id="48" sixx.name="stat" sixx.type="String" >Slovensko</sixx.object>
-						<sixx.object sixx.id="49" sixx.name="cisloDokladu" sixx.type="LargePositiveInteger" >786151023</sixx.object>
-					</sixx.object>
-					<sixx.object sixx.id="50" sixx.type="Cestujici" >
-						<sixx.object sixx.id="51" sixx.name="jmeno" sixx.type="String" >Kristi&#225;n</sixx.object>
-						<sixx.object sixx.id="52" sixx.name="prijmeni" sixx.type="String" >Zdeno</sixx.object>
-						<sixx.object sixx.id="53" sixx.name="datumNarozeni" sixx.type="Date" >28 June 1988</sixx.object>
-						<sixx.object sixx.id="54" sixx.name="stat" sixx.type="String" >Slovensko</sixx.object>
-						<sixx.object sixx.id="55" sixx.name="cisloDokladu" sixx.type="SmallInteger" >481231285</sixx.object>
-					</sixx.object>
-					<sixx.object sixx.id="56" sixx.type="Cestujici" >
-						<sixx.object sixx.id="57" sixx.name="jmeno" sixx.type="String" >Alena</sixx.object>
-						<sixx.object sixx.id="58" sixx.name="prijmeni" sixx.type="String" >Markov&#225;</sixx.object>
-						<sixx.object sixx.id="59" sixx.name="datumNarozeni" sixx.type="Date" >30 January 1978</sixx.object>
-						<sixx.object sixx.id="60" sixx.name="stat" sixx.type="String" >&#268;esk&#225; republika</sixx.object>
-						<sixx.object sixx.id="61" sixx.name="cisloDokladu" sixx.type="LargePositiveInteger" >894612321</sixx.object>
+					<sixx.object sixx.id="102" sixx.type="Letenka" >
+						<sixx.object sixx.id="103" sixx.name="cislo" sixx.type="SmallInteger" >100077842</sixx.object>
+						<sixx.object sixx.id="104" sixx.name="spoj" sixx.type="Let" >
+							<sixx.object sixx.id="105" sixx.name="cislo" sixx.type="SmallInteger" >564120</sixx.object>
+							<sixx.object sixx.idref="16" sixx.name="zLetiste" ></sixx.object>
+							<sixx.object sixx.id="106" sixx.name="naLetiste" sixx.type="Letiste" >
+								<sixx.object sixx.id="107" sixx.name="kod" sixx.type="String" >PMI</sixx.object>
+								<sixx.object sixx.id="108" sixx.name="nazev" sixx.type="String" >Leti&#353;te Palma de Mallorca</sixx.object>
+								<sixx.object sixx.id="109" sixx.name="mesto" sixx.type="String" >Mallorca</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.id="110" sixx.name="datumOdletu" sixx.type="Date" >8 August 2023</sixx.object>
+							<sixx.object sixx.id="111" sixx.name="casOdletu" sixx.type="SmallInteger" >1615</sixx.object>
+							<sixx.object sixx.id="112" sixx.name="datumPriletu" sixx.type="Date" >8 January 2023</sixx.object>
+							<sixx.object sixx.id="113" sixx.name="casPriletu" sixx.type="SmallInteger" >2000</sixx.object>
+							<sixx.object sixx.idref="53" sixx.name="zpozdeniMinuty" ></sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="114" sixx.name="rezervovaneMisto" sixx.type="Sedadlo" >
+							<sixx.object sixx.id="115" sixx.name="oznaceni" sixx.type="String" >B42</sixx.object>
+							<sixx.object sixx.id="116" sixx.name="trida" sixx.type="String" >firstClass</sixx.object>
+							<sixx.object sixx.idref="36" sixx.name="uDveri" ></sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="117" sixx.name="cena" sixx.type="SmallInteger" >8000</sixx.object>
+						<sixx.object sixx.id="118" sixx.name="patri" sixx.type="Cestujici" >
+							<sixx.object sixx.id="119" sixx.name="jmeno" sixx.type="String" >Eva</sixx.object>
+							<sixx.object sixx.id="120" sixx.name="prijmeni" sixx.type="String" >Pokorn&#225;</sixx.object>
+							<sixx.object sixx.id="121" sixx.name="datumNarozeni" sixx.type="Date" >10 February 1956</sixx.object>
+							<sixx.object sixx.id="122" sixx.name="stat" sixx.type="String" >&#268;esk&#225; republika</sixx.object>
+							<sixx.object sixx.id="123" sixx.name="cisloDokladu" sixx.type="SmallInteger" >286121475</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="124" sixx.name="pocetZavazadel" sixx.type="SmallInteger" >2</sixx.object>
+						<sixx.object sixx.idref="28" sixx.name="prednostniNastup" ></sixx.object>
 					</sixx.object>
 				</sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="62" sixx.type="Association" >
-				<sixx.object sixx.id="63" sixx.name="key" sixx.type="Symbol" >LetenkySet</sixx.object>
-				<sixx.object sixx.id="64" sixx.name="value" sixx.type="Set" >
-					<sixx.object sixx.id="65" sixx.type="Letenka" >
-						<sixx.object sixx.id="66" sixx.name="cislo" sixx.type="SmallInteger" >100052346</sixx.object>
-						<sixx.object sixx.id="67" sixx.name="spoj" sixx.type="Let" >
-							<sixx.object sixx.id="68" sixx.name="cislo" sixx.type="SmallInteger" >891003</sixx.object>
-							<sixx.object sixx.id="69" sixx.name="zLetiste" sixx.type="Letiste" >
-								<sixx.object sixx.id="70" sixx.name="kod" sixx.type="String" >RHO</sixx.object>
-								<sixx.object sixx.id="71" sixx.name="nazev" sixx.type="String" >Letisko Rodos Diagoras</sixx.object>
-								<sixx.object sixx.id="72" sixx.name="mesto" sixx.type="String" >Rodos</sixx.object>
-							</sixx.object>
-							<sixx.object sixx.id="73" sixx.name="naLetiste" sixx.type="Letiste" >
-								<sixx.object sixx.id="74" sixx.name="kod" sixx.type="String" >BTS</sixx.object>
-								<sixx.object sixx.id="75" sixx.name="nazev" sixx.type="String" >Leti&#353;te Bratislava</sixx.object>
-								<sixx.object sixx.id="76" sixx.name="mesto" sixx.type="String" >Bratislava</sixx.object>
-							</sixx.object>
-							<sixx.object sixx.id="77" sixx.name="datumOdletu" sixx.type="Date" >22 November 2022</sixx.object>
-							<sixx.object sixx.id="78" sixx.name="casOdletu" sixx.type="SmallInteger" >1800</sixx.object>
-							<sixx.object sixx.id="79" sixx.name="datumPriletu" sixx.type="Date" >22 November 2022</sixx.object>
-							<sixx.object sixx.id="80" sixx.name="casPriletu" sixx.type="SmallInteger" >2350</sixx.object>
-							<sixx.object sixx.id="81" sixx.name="zpozdeniMinuty" sixx.type="SmallInteger" >210</sixx.object>
-						</sixx.object>
-						<sixx.object sixx.id="82" sixx.name="rezervovaneMisto" sixx.type="Sedadlo" >
-							<sixx.object sixx.id="83" sixx.name="oznaceni" sixx.type="String" >C22</sixx.object>
-							<sixx.object sixx.id="84" sixx.name="trida" sixx.type="String" >economy</sixx.object>
-							<sixx.object sixx.id="85" sixx.name="uDveri" sixx.type="SmallInteger" >0</sixx.object>
-						</sixx.object>
-						<sixx.object sixx.id="86" sixx.name="cena" sixx.type="SmallInteger" >3500</sixx.object>
-						<sixx.object sixx.idref="44" sixx.name="patri" ></sixx.object>
-						<sixx.object sixx.id="87" sixx.name="pocetZavazadel" sixx.type="SmallInteger" >1</sixx.object>
-						<sixx.object sixx.idref="85" sixx.name="prednostniNastup" ></sixx.object>
-					</sixx.object>
-					<sixx.object sixx.id="88" sixx.type="Letenka" >
-						<sixx.object sixx.id="89" sixx.name="cislo" sixx.type="SmallInteger" >100068502</sixx.object>
-						<sixx.object sixx.id="90" sixx.name="spoj" sixx.type="Let" >
-							<sixx.object sixx.id="91" sixx.name="cislo" sixx.type="SmallInteger" >109507</sixx.object>
-							<sixx.object sixx.id="92" sixx.name="zLetiste" sixx.type="Letiste" >
-								<sixx.object sixx.id="93" sixx.name="kod" sixx.type="String" >PRG</sixx.object>
-								<sixx.object sixx.id="94" sixx.name="nazev" sixx.type="String" >Leti&#353;t&#283; V&#225;clava Havla Praha</sixx.object>
-								<sixx.object sixx.id="95" sixx.name="mesto" sixx.type="String" >Praha</sixx.object>
-							</sixx.object>
-							<sixx.object sixx.id="96" sixx.name="naLetiste" sixx.type="Letiste" >
-								<sixx.object sixx.id="97" sixx.name="kod" sixx.type="String" >AMS</sixx.object>
-								<sixx.object sixx.id="98" sixx.name="nazev" sixx.type="String" >Amsterdam Airport Schiphol</sixx.object>
-								<sixx.object sixx.id="99" sixx.name="mesto" sixx.type="String" >Amsterdam</sixx.object>
-							</sixx.object>
-							<sixx.object sixx.id="100" sixx.name="datumOdletu" sixx.type="Date" >20 January 2023</sixx.object>
-							<sixx.object sixx.id="101" sixx.name="casOdletu" sixx.type="SmallInteger" >1400</sixx.object>
-							<sixx.object sixx.id="102" sixx.name="datumPriletu" sixx.type="Date" >20 January 2023</sixx.object>
-							<sixx.object sixx.id="103" sixx.name="casPriletu" sixx.type="SmallInteger" >1630</sixx.object>
-							<sixx.object sixx.idref="85" sixx.name="zpozdeniMinuty" ></sixx.object>
-						</sixx.object>
-						<sixx.object sixx.id="104" sixx.name="rezervovaneMisto" sixx.type="Sedadlo" >
-							<sixx.object sixx.id="105" sixx.name="oznaceni" sixx.type="String" >C30</sixx.object>
-							<sixx.object sixx.id="106" sixx.name="trida" sixx.type="String" >economy</sixx.object>
-							<sixx.object sixx.idref="85" sixx.name="uDveri" ></sixx.object>
-						</sixx.object>
-						<sixx.object sixx.id="107" sixx.name="cena" sixx.type="SmallInteger" >4600</sixx.object>
-						<sixx.object sixx.idref="26" sixx.name="patri" ></sixx.object>
-						<sixx.object sixx.idref="87" sixx.name="pocetZavazadel" ></sixx.object>
-						<sixx.object sixx.idref="85" sixx.name="prednostniNastup" ></sixx.object>
-					</sixx.object>
-					<sixx.object sixx.id="108" sixx.type="Letenka" >
-						<sixx.object sixx.id="109" sixx.name="cislo" sixx.type="SmallInteger" >100044874</sixx.object>
-						<sixx.object sixx.id="110" sixx.name="spoj" sixx.type="Let" >
-							<sixx.object sixx.idref="91" sixx.name="cislo" ></sixx.object>
-							<sixx.object sixx.idref="69" sixx.name="zLetiste" ></sixx.object>
-							<sixx.object sixx.idref="92" sixx.name="naLetiste" ></sixx.object>
-							<sixx.object sixx.id="111" sixx.name="datumOdletu" sixx.type="Date" >2 February 2023</sixx.object>
-							<sixx.object sixx.id="112" sixx.name="casOdletu" sixx.type="SmallInteger" >1030</sixx.object>
-							<sixx.object sixx.id="113" sixx.name="datumPriletu" sixx.type="Date" >2 February 2023</sixx.object>
-							<sixx.object sixx.id="114" sixx.name="casPriletu" sixx.type="SmallInteger" >1520</sixx.object>
-							<sixx.object sixx.id="115" sixx.name="zpozdeniMinuty" sixx.type="SmallInteger" >10</sixx.object>
-						</sixx.object>
-						<sixx.object sixx.id="116" sixx.name="rezervovaneMisto" sixx.type="Sedadlo" >
-							<sixx.object sixx.id="117" sixx.name="oznaceni" sixx.type="String" >Z02</sixx.object>
-							<sixx.object sixx.id="118" sixx.name="trida" sixx.type="String" >firstClass</sixx.object>
-							<sixx.object sixx.idref="85" sixx.name="uDveri" ></sixx.object>
-						</sixx.object>
-						<sixx.object sixx.id="119" sixx.name="cena" sixx.type="SmallInteger" >5000</sixx.object>
-						<sixx.object sixx.idref="8" sixx.name="patri" ></sixx.object>
-						<sixx.object sixx.idref="87" sixx.name="pocetZavazadel" ></sixx.object>
-						<sixx.object sixx.idref="87" sixx.name="prednostniNastup" ></sixx.object>
-					</sixx.object>
-					<sixx.object sixx.id="120" sixx.type="Letenka" >
-						<sixx.object sixx.id="121" sixx.name="cislo" sixx.type="SmallInteger" >10010032</sixx.object>
-						<sixx.object sixx.id="122" sixx.name="spoj" sixx.type="Let" >
-							<sixx.object sixx.id="123" sixx.name="cislo" sixx.type="SmallInteger" >779514</sixx.object>
-							<sixx.object sixx.id="124" sixx.name="zLetiste" sixx.type="Letiste" >
-								<sixx.object sixx.id="125" sixx.name="kod" sixx.type="String" >JFK</sixx.object>
-								<sixx.object sixx.id="126" sixx.name="nazev" sixx.type="String" >Mezin&#225;rodn&#237; leti&#353;te Johna F. Kennedyho</sixx.object>
-								<sixx.object sixx.id="127" sixx.name="mesto" sixx.type="String" >New York</sixx.object>
-							</sixx.object>
-							<sixx.object sixx.id="128" sixx.name="naLetiste" sixx.type="Letiste" >
-								<sixx.object sixx.id="129" sixx.name="kod" sixx.type="String" >LHR</sixx.object>
-								<sixx.object sixx.id="130" sixx.name="nazev" sixx.type="String" >Leti&#353;te London Heathrow</sixx.object>
-								<sixx.object sixx.id="131" sixx.name="mesto" sixx.type="String" >London</sixx.object>
-							</sixx.object>
-							<sixx.object sixx.id="132" sixx.name="datumOdletu" sixx.type="Date" >15 November 2023</sixx.object>
-							<sixx.object sixx.id="133" sixx.name="casOdletu" sixx.type="SmallInteger" >1700</sixx.object>
-							<sixx.object sixx.id="134" sixx.name="datumPriletu" sixx.type="UndefinedObject" >nil</sixx.object>
-							<sixx.object sixx.idref="134" sixx.name="casPriletu" ></sixx.object>
-							<sixx.object sixx.idref="134" sixx.name="zpozdeniMinuty" ></sixx.object>
-						</sixx.object>
-						<sixx.object sixx.id="135" sixx.name="rezervovaneMisto" sixx.type="Sedadlo" >
-							<sixx.object sixx.id="136" sixx.name="oznaceni" sixx.type="String" >C01</sixx.object>
-							<sixx.object sixx.id="137" sixx.name="trida" sixx.type="String" >economy</sixx.object>
-							<sixx.object sixx.idref="87" sixx.name="uDveri" ></sixx.object>
-						</sixx.object>
-						<sixx.object sixx.id="138" sixx.name="cena" sixx.type="SmallInteger" >2200</sixx.object>
-						<sixx.object sixx.idref="8" sixx.name="patri" ></sixx.object>
-						<sixx.object sixx.idref="85" sixx.name="pocetZavazadel" ></sixx.object>
-						<sixx.object sixx.idref="87" sixx.name="prednostniNastup" ></sixx.object>
-					</sixx.object>
-					<sixx.object sixx.id="139" sixx.type="Letenka" >
-						<sixx.object sixx.id="140" sixx.name="cislo" sixx.type="SmallInteger" >100077842</sixx.object>
-						<sixx.object sixx.id="141" sixx.name="spoj" sixx.type="Let" >
-							<sixx.object sixx.id="142" sixx.name="cislo" sixx.type="SmallInteger" >564120</sixx.object>
-							<sixx.object sixx.idref="73" sixx.name="zLetiste" ></sixx.object>
-							<sixx.object sixx.id="143" sixx.name="naLetiste" sixx.type="Letiste" >
-								<sixx.object sixx.id="144" sixx.name="kod" sixx.type="String" >PMI</sixx.object>
-								<sixx.object sixx.id="145" sixx.name="nazev" sixx.type="String" >Leti&#353;te Palma de Mallorca</sixx.object>
-								<sixx.object sixx.id="146" sixx.name="mesto" sixx.type="String" >Mallorca</sixx.object>
-							</sixx.object>
-							<sixx.object sixx.id="147" sixx.name="datumOdletu" sixx.type="Date" >8 August 2023</sixx.object>
-							<sixx.object sixx.idref="138" sixx.name="casOdletu" ></sixx.object>
-							<sixx.object sixx.idref="134" sixx.name="datumPriletu" ></sixx.object>
-							<sixx.object sixx.idref="134" sixx.name="casPriletu" ></sixx.object>
-							<sixx.object sixx.idref="134" sixx.name="zpozdeniMinuty" ></sixx.object>
-						</sixx.object>
-						<sixx.object sixx.id="148" sixx.name="rezervovaneMisto" sixx.type="Sedadlo" >
-							<sixx.object sixx.id="149" sixx.name="oznaceni" sixx.type="String" >B42</sixx.object>
-							<sixx.object sixx.id="150" sixx.name="trida" sixx.type="String" >economy</sixx.object>
-							<sixx.object sixx.idref="87" sixx.name="uDveri" ></sixx.object>
-						</sixx.object>
-						<sixx.object sixx.id="151" sixx.name="cena" sixx.type="SmallInteger" >8000</sixx.object>
-						<sixx.object sixx.idref="32" sixx.name="patri" ></sixx.object>
-						<sixx.object sixx.id="152" sixx.name="pocetZavazadel" sixx.type="SmallInteger" >2</sixx.object>
-						<sixx.object sixx.idref="85" sixx.name="prednostniNastup" ></sixx.object>
-					</sixx.object>
-				</sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="153" sixx.type="Association" >
-				<sixx.object sixx.id="154" sixx.name="key" sixx.type="Symbol" >LetySet</sixx.object>
-				<sixx.object sixx.id="155" sixx.name="value" sixx.type="Set" >
-					<sixx.object sixx.id="156" sixx.type="Let" >
-						<sixx.object sixx.id="157" sixx.name="cislo" sixx.type="SmallInteger" >9023153</sixx.object>
-						<sixx.object sixx.idref="143" sixx.name="zLetiste" ></sixx.object>
-						<sixx.object sixx.idref="128" sixx.name="naLetiste" ></sixx.object>
-						<sixx.object sixx.id="158" sixx.name="datumOdletu" sixx.type="Date" >12 December 2022</sixx.object>
-						<sixx.object sixx.id="159" sixx.name="casOdletu" sixx.type="SmallInteger" >1900</sixx.object>
-						<sixx.object sixx.id="160" sixx.name="datumPriletu" sixx.type="Date" >13 December 2022</sixx.object>
-						<sixx.object sixx.id="161" sixx.name="casPriletu" sixx.type="SmallInteger" >2345</sixx.object>
-						<sixx.object sixx.idref="85" sixx.name="zpozdeniMinuty" ></sixx.object>
-					</sixx.object>
-					<sixx.object sixx.id="162" sixx.type="Let" >
-						<sixx.object sixx.id="163" sixx.name="cislo" sixx.type="SmallInteger" >550210</sixx.object>
-						<sixx.object sixx.idref="92" sixx.name="zLetiste" ></sixx.object>
-						<sixx.object sixx.id="164" sixx.name="naLetiste" sixx.type="Letiste" >
-							<sixx.object sixx.id="165" sixx.name="kod" sixx.type="String" >SPU</sixx.object>
-							<sixx.object sixx.id="166" sixx.name="nazev" sixx.type="String" >Leti&#353;te Split</sixx.object>
-							<sixx.object sixx.id="167" sixx.name="mesto" sixx.type="String" >Split</sixx.object>
-						</sixx.object>
-						<sixx.object sixx.id="168" sixx.name="datumOdletu" sixx.type="Date" >11 May 2023</sixx.object>
-						<sixx.object sixx.id="169" sixx.name="casOdletu" sixx.type="SmallInteger" >1200</sixx.object>
-						<sixx.object sixx.id="170" sixx.name="datumPriletu" sixx.type="Date" >11 May 2023</sixx.object>
-						<sixx.object sixx.id="171" sixx.name="casPriletu" sixx.type="SmallInteger" >1315</sixx.object>
-						<sixx.object sixx.id="172" sixx.name="zpozdeniMinuty" sixx.type="SmallInteger" >15</sixx.object>
-					</sixx.object>
-					<sixx.object sixx.idref="122" ></sixx.object>
-					<sixx.object sixx.id="173" sixx.type="Let" >
-						<sixx.object sixx.id="174" sixx.name="cislo" sixx.type="SmallInteger" >451230</sixx.object>
-						<sixx.object sixx.idref="69" sixx.name="zLetiste" ></sixx.object>
-						<sixx.object sixx.id="175" sixx.name="naLetiste" sixx.type="Letiste" >
-							<sixx.object sixx.id="176" sixx.name="kod" sixx.type="String" >DXB</sixx.object>
-							<sixx.object sixx.id="177" sixx.name="nazev" sixx.type="String" >Dubai International Airport</sixx.object>
-							<sixx.object sixx.id="178" sixx.name="mesto" sixx.type="String" >Dubai</sixx.object>
-						</sixx.object>
-						<sixx.object sixx.id="179" sixx.name="datumOdletu" sixx.type="Date" >29 January 2023</sixx.object>
-						<sixx.object sixx.id="180" sixx.name="casOdletu" sixx.type="SmallInteger" >900</sixx.object>
-						<sixx.object sixx.id="181" sixx.name="datumPriletu" sixx.type="Date" >29 January 2023</sixx.object>
-						<sixx.object sixx.id="182" sixx.name="casPriletu" sixx.type="SmallInteger" >1500</sixx.object>
-						<sixx.object sixx.id="183" sixx.name="zpozdeniMinuty" sixx.type="SmallInteger" >50</sixx.object>
-					</sixx.object>
-					<sixx.object sixx.idref="110" ></sixx.object>
-					<sixx.object sixx.idref="90" ></sixx.object>
-					<sixx.object sixx.idref="141" ></sixx.object>
-					<sixx.object sixx.idref="67" ></sixx.object>
-				</sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="184" sixx.type="Association" >
-				<sixx.object sixx.id="185" sixx.name="key" sixx.type="Symbol" >LetisteSet</sixx.object>
-				<sixx.object sixx.id="186" sixx.name="value" sixx.type="Set" >
-					<sixx.object sixx.idref="69" ></sixx.object>
-					<sixx.object sixx.idref="175" ></sixx.object>
-					<sixx.object sixx.idref="96" ></sixx.object>
-					<sixx.object sixx.idref="164" ></sixx.object>
-					<sixx.object sixx.idref="143" ></sixx.object>
-					<sixx.object sixx.idref="124" ></sixx.object>
-					<sixx.object sixx.idref="128" ></sixx.object>
-					<sixx.object sixx.idref="73" ></sixx.object>
+			<sixx.object sixx.id="125" sixx.type="Association" >
+				<sixx.object sixx.id="126" sixx.name="key" sixx.type="Symbol" >LetySet</sixx.object>
+				<sixx.object sixx.id="127" sixx.name="value" sixx.type="Set" >
+					<sixx.object sixx.idref="104" ></sixx.object>
+					<sixx.object sixx.idref="66" ></sixx.object>
+					<sixx.object sixx.idref="10" ></sixx.object>
 					<sixx.object sixx.idref="92" ></sixx.object>
+					<sixx.object sixx.id="128" sixx.type="Let" >
+						<sixx.object sixx.id="129" sixx.name="cislo" sixx.type="SmallInteger" >451230</sixx.object>
+						<sixx.object sixx.idref="12" sixx.name="zLetiste" ></sixx.object>
+						<sixx.object sixx.id="130" sixx.name="naLetiste" sixx.type="Letiste" >
+							<sixx.object sixx.id="131" sixx.name="kod" sixx.type="String" >DXB</sixx.object>
+							<sixx.object sixx.id="132" sixx.name="nazev" sixx.type="String" >Dubai International Airport</sixx.object>
+							<sixx.object sixx.id="133" sixx.name="mesto" sixx.type="String" >Dubai</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="134" sixx.name="datumOdletu" sixx.type="Date" >29 January 2023</sixx.object>
+						<sixx.object sixx.id="135" sixx.name="casOdletu" sixx.type="SmallInteger" >900</sixx.object>
+						<sixx.object sixx.id="136" sixx.name="datumPriletu" sixx.type="Date" >29 January 2023</sixx.object>
+						<sixx.object sixx.id="137" sixx.name="casPriletu" sixx.type="SmallInteger" >1500</sixx.object>
+						<sixx.object sixx.id="138" sixx.name="zpozdeniMinuty" sixx.type="SmallInteger" >50</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="139" sixx.type="Let" >
+						<sixx.object sixx.id="140" sixx.name="cislo" sixx.type="SmallInteger" >9023153</sixx.object>
+						<sixx.object sixx.idref="106" sixx.name="zLetiste" ></sixx.object>
+						<sixx.object sixx.idref="45" sixx.name="naLetiste" ></sixx.object>
+						<sixx.object sixx.id="141" sixx.name="datumOdletu" sixx.type="Date" >12 December 2022</sixx.object>
+						<sixx.object sixx.id="142" sixx.name="casOdletu" sixx.type="SmallInteger" >1900</sixx.object>
+						<sixx.object sixx.id="143" sixx.name="datumPriletu" sixx.type="Date" >13 December 2022</sixx.object>
+						<sixx.object sixx.id="144" sixx.name="casPriletu" sixx.type="SmallInteger" >2345</sixx.object>
+						<sixx.object sixx.idref="28" sixx.name="zpozdeniMinuty" ></sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="145" sixx.type="Let" >
+						<sixx.object sixx.id="146" sixx.name="cislo" sixx.type="SmallInteger" >550210</sixx.object>
+						<sixx.object sixx.idref="68" sixx.name="zLetiste" ></sixx.object>
+						<sixx.object sixx.id="147" sixx.name="naLetiste" sixx.type="Letiste" >
+							<sixx.object sixx.id="148" sixx.name="kod" sixx.type="String" >SPU</sixx.object>
+							<sixx.object sixx.id="149" sixx.name="nazev" sixx.type="String" >Leti&#353;te Split</sixx.object>
+							<sixx.object sixx.id="150" sixx.name="mesto" sixx.type="String" >Split</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="151" sixx.name="datumOdletu" sixx.type="Date" >11 May 2023</sixx.object>
+						<sixx.object sixx.id="152" sixx.name="casOdletu" sixx.type="SmallInteger" >1200</sixx.object>
+						<sixx.object sixx.id="153" sixx.name="datumPriletu" sixx.type="Date" >11 May 2023</sixx.object>
+						<sixx.object sixx.id="154" sixx.name="casPriletu" sixx.type="SmallInteger" >1315</sixx.object>
+						<sixx.object sixx.id="155" sixx.name="zpozdeniMinuty" sixx.type="SmallInteger" >15</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.idref="39" ></sixx.object>
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="156" sixx.type="Association" >
+				<sixx.object sixx.id="157" sixx.name="key" sixx.type="Symbol" >LetisteSet</sixx.object>
+				<sixx.object sixx.id="158" sixx.name="value" sixx.type="Set" >
+					<sixx.object sixx.idref="72" ></sixx.object>
+					<sixx.object sixx.idref="68" ></sixx.object>
+					<sixx.object sixx.idref="45" ></sixx.object>
+					<sixx.object sixx.idref="12" ></sixx.object>
+					<sixx.object sixx.idref="130" ></sixx.object>
+					<sixx.object sixx.idref="16" ></sixx.object>
+					<sixx.object sixx.idref="106" ></sixx.object>
+					<sixx.object sixx.idref="147" ></sixx.object>
+					<sixx.object sixx.idref="41" ></sixx.object>
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="159" sixx.type="Association" >
+				<sixx.object sixx.id="160" sixx.name="key" sixx.type="Symbol" >CestujiciSet</sixx.object>
+				<sixx.object sixx.id="161" sixx.name="value" sixx.type="Set" >
+					<sixx.object sixx.idref="58" ></sixx.object>
+					<sixx.object sixx.id="162" sixx.type="Cestujici" >
+						<sixx.object sixx.id="163" sixx.name="jmeno" sixx.type="String" >Kate&#345;ina</sixx.object>
+						<sixx.object sixx.id="164" sixx.name="prijmeni" sixx.type="String" >Zemanov&#225;</sixx.object>
+						<sixx.object sixx.id="165" sixx.name="datumNarozeni" sixx.type="Date" >9 January 1956</sixx.object>
+						<sixx.object sixx.id="166" sixx.name="stat" sixx.type="String" >&#268;esk&#225; republika</sixx.object>
+						<sixx.object sixx.id="167" sixx.name="cisloDokladu" sixx.type="LargePositiveInteger" >848612015</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.idref="84" ></sixx.object>
+					<sixx.object sixx.id="168" sixx.type="Cestujici" >
+						<sixx.object sixx.id="169" sixx.name="jmeno" sixx.type="String" >Alena</sixx.object>
+						<sixx.object sixx.id="170" sixx.name="prijmeni" sixx.type="String" >Markov&#225;</sixx.object>
+						<sixx.object sixx.id="171" sixx.name="datumNarozeni" sixx.type="Date" >30 January 1978</sixx.object>
+						<sixx.object sixx.id="172" sixx.name="stat" sixx.type="String" >&#268;esk&#225; republika</sixx.object>
+						<sixx.object sixx.id="173" sixx.name="cisloDokladu" sixx.type="LargePositiveInteger" >894612321</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.idref="118" ></sixx.object>
+					<sixx.object sixx.id="174" sixx.type="Cestujici" >
+						<sixx.object sixx.id="175" sixx.name="jmeno" sixx.type="String" >Kristi&#225;n</sixx.object>
+						<sixx.object sixx.id="176" sixx.name="prijmeni" sixx.type="String" >Zdeno</sixx.object>
+						<sixx.object sixx.id="177" sixx.name="datumNarozeni" sixx.type="Date" >28 June 1988</sixx.object>
+						<sixx.object sixx.id="178" sixx.name="stat" sixx.type="String" >Slovensko</sixx.object>
+						<sixx.object sixx.id="179" sixx.name="cisloDokladu" sixx.type="SmallInteger" >481231285</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.idref="30" ></sixx.object>
+					<sixx.object sixx.id="180" sixx.type="Cestujici" >
+						<sixx.object sixx.id="181" sixx.name="jmeno" sixx.type="String" >Anastazja</sixx.object>
+						<sixx.object sixx.id="182" sixx.name="prijmeni" sixx.type="String" >Archie</sixx.object>
+						<sixx.object sixx.id="183" sixx.name="datumNarozeni" sixx.type="Date" >8 November 2003</sixx.object>
+						<sixx.object sixx.id="184" sixx.name="stat" sixx.type="String" >Polsko</sixx.object>
+						<sixx.object sixx.id="185" sixx.name="cisloDokladu" sixx.type="LargePositiveInteger" >788854102</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="186" sixx.type="Cestujici" >
+						<sixx.object sixx.id="187" sixx.name="jmeno" sixx.type="String" >Marmaduke</sixx.object>
+						<sixx.object sixx.id="188" sixx.name="prijmeni" sixx.type="String" >Prisca</sixx.object>
+						<sixx.object sixx.id="189" sixx.name="datumNarozeni" sixx.type="Date" >22 December 2001</sixx.object>
+						<sixx.object sixx.id="190" sixx.name="stat" sixx.type="String" >Velk&#225; Brit&#225;nie</sixx.object>
+						<sixx.object sixx.id="191" sixx.name="cisloDokladu" sixx.type="SmallInteger" >486512130</sixx.object>
+					</sixx.object>
 				</sixx.object>
 			</sixx.object>
 		</sixx.object>
-		<sixx.object sixx.id="187" sixx.name="workspaceText" sixx.type="String" >&quot;Lety&#44; ktere byly dokonceny a pristaly s nulovym zpozdenim&quot;
+		<sixx.object sixx.id="192" sixx.name="workspaceText" sixx.type="String" >&quot;Lety&#44; ktere byly dokonceny a pristaly s nulovym zpozdenim&quot;
 LetySet select: [:m | m zpozdeniMinuty = 0 and: [ m letDokoncen = &#39;ano&#39;]]
 
 &quot;Lety&#44; ktere bud zacinaly nebo koncily na letisti v Praze&quot;
 LetySet select: [:m | m zLetiste kod = &#39;PRG&#39; or: [ m naLetiste kod = &#39;PRG&#39;]]
 
+&quot;Letenky&#44; ktere meli sedadlo nachazejici se v economy tride&quot;
+LetenkySet select: [:m | m rezervovaneMisto trida = &#39;economy&#39;]
+
+&quot;Vsechny letenky u osoby pojmenovane Jakub Dvo&#345;&#225;k&quot;
+&#40;LetenkySet select: [:m | m patri jmeno = &#39;Jakub&#39; and: [ m patri prijmeni = &#39;Dvo&#345;&#225;k&#39; ]]&#41; 
+
 &quot;Oblibeni zakaznici - cestujici&#44; kteri utratili za letenky vice nez 5000&quot;
-CestujiciSet select: [:m | m celkemUtraceno &gt; 5000 ]
+CestujiciSet select: [:m | m celkemUtraceno &gt;= 5000 ]
 
 &quot;Lety&#44; ktere probehly v prubehu roku 2022&quot;
-&#40;LetySet select: [:m | m datumOdletu &gt; &#39;01-01-2022&#39; asDate and: [ m datumPriletu isNil not and: [ m datumPriletu &lt; &#39;12-31-2022&#39; asDate]]]&#41; </sixx.object>
-		<sixx.object sixx.id="188" sixx.name="scriptText" sixx.type="String" >LetisteSet := Set new .
+&#40;LetySet select: [:m | m datumOdletu &gt; &#39;01-01-2022&#39; asDate and: [ m datumPriletu &lt; &#39;12-31-2022&#39; asDate]]&#41;
+
+&quot;Naplanovane&#44; nedokoncene lety&quot;
+&#40;LetySet select: [:m | m letDokoncen = &#39;ne&#39;]&#41; </sixx.object>
+		<sixx.object sixx.id="193" sixx.name="scriptText" sixx.type="String" >LetisteSet := Set new .
 LetySet := Set new .
 LetenkySet := Set new .
 CestujiciSet := Set new .
@@ -304,7 +390,7 @@ s2 oznaceni: &#39;A12&#39;; trida: &#39;business&#39;; uDveri: 0.
 s3 := Sedadlo new .
 s3 oznaceni: &#39;C01&#39;; trida: &#39;economy&#39;; uDveri: 1. 
 s4 := Sedadlo new .
-s4 oznaceni: &#39;B42&#39;; trida: &#39;economy&#39;; uDveri: 1. 
+s4 oznaceni: &#39;B42&#39;; trida: &#39;firstClass&#39;; uDveri: 1. 
 s5 := Sedadlo new .
 s5 oznaceni: &#39;Z02&#39;; trida: &#39;firstClass&#39;; uDveri: 0. 
 s6 := Sedadlo new .
@@ -347,7 +433,7 @@ let1 cislo: 109507; datumOdletu: &#39;20-JAN-2023&#39; asDate; datumPriletu: &#3
 let1 zLetiste: letiste1 .
 let1 naLetiste: letiste2 .
 let2 := Let new .
-let2 cislo: 564120; datumOdletu: &#39;08-AUG-2023&#39; asDate; casOdletu: 2200 .
+let2 cislo: 564120; datumOdletu: &#39;08-AUG-2023&#39; asDate; datumPriletu: &#39;08-JAN-2023&#39; asDate; casOdletu: 1615; casPriletu: 2000.
 let2 zLetiste: letiste3 .
 let2 naLetiste: letiste5 .
 let3 := Let new .
@@ -367,7 +453,7 @@ let6 cislo: 891003; datumOdletu: &#39;22-NOV-2022&#39; asDate; datumPriletu: &#3
 let6 zLetiste: letiste9 .
 let6 naLetiste: letiste3 .
 let7 := Let new .
-let7 cislo: 779514; datumOdletu: &#39;15-NOV-2023&#39; asDate; casOdletu: 1700 .
+let7 cislo: 779514; datumOdletu: &#39;15-NOV-2023&#39; asDate;  datumPriletu: &#39;16-NOV-2023&#39; asDate; casOdletu: 1700; casPriletu: 1100 .
 let7 zLetiste: letiste7 .
 let7 naLetiste: letiste6 .
 let8 :=  Let new .
@@ -420,7 +506,7 @@ letenka2 rezervovaneMisto: s4 .
 letenka2 patri: c6 .
 letenka3 := Letenka new .
 letenka3 cislo: 10010032; cena: 2200; pocetZavazadel: 0; prednostniNastup: 1 .
-letenka3 spoj: let7 .
+letenka3 spoj: let8 .
 letenka3 rezervovaneMisto: s3 .
 letenka3 patri: c7 .
 letenka4 := Letenka new .
@@ -430,298 +516,298 @@ letenka4 rezervovaneMisto: s6 .
 letenka4 patri: c8 .
 letenka5 := Letenka new .
 letenka5 cislo: 100044874; cena: 5000; pocetZavazadel: 1; prednostniNastup: 1 .
-letenka5 spoj: let8 .
+letenka5 spoj: let7 .
 letenka5 rezervovaneMisto: s5 .
 letenka5 patri: c7 .
 
 &quot; Letenky - pridavani do setu&quot;
 LetenkySet add: letenka1; add: letenka2; add: letenka3; add: letenka4; add: letenka5 .
 </sixx.object>
-		<sixx.object sixx.id="189" sixx.name="messagesWithParMode" sixx.type="Symbol" >sendOnly</sixx.object>
-		<sixx.object sixx.id="190" sixx.name="messagesWithoutParMode" sixx.type="Symbol" >sendAndBrowse</sixx.object>
-		<sixx.object sixx.id="191" sixx.name="diagramSymbols" sixx.type="Set" >
-			<sixx.object sixx.id="192" sixx.type="DaskalosClassSymbol" >
-				<sixx.object sixx.id="193" sixx.name="subject" sixx.type="Symbol" >Cestujici</sixx.object>
-				<sixx.object sixx.id="194" sixx.name="position" sixx.type="Rectangle" >
-					<sixx.object sixx.id="195" sixx.name="origin" sixx.type="Point" >750@310</sixx.object>
-					<sixx.object sixx.id="196" sixx.name="corner" sixx.type="Point" >920@530</sixx.object>
+		<sixx.object sixx.id="194" sixx.name="messagesWithParMode" sixx.type="Symbol" >sendOnly</sixx.object>
+		<sixx.object sixx.id="195" sixx.name="messagesWithoutParMode" sixx.type="Symbol" >sendAndBrowse</sixx.object>
+		<sixx.object sixx.id="196" sixx.name="diagramSymbols" sixx.type="Set" >
+			<sixx.object sixx.id="197" sixx.type="DaskalosCollectionSymbol" >
+				<sixx.object sixx.idref="127" sixx.name="subject" ></sixx.object>
+				<sixx.object sixx.id="198" sixx.name="position" sixx.type="Rectangle" >
+					<sixx.object sixx.id="199" sixx.name="origin" sixx.type="Point" >160@300</sixx.object>
+					<sixx.object sixx.id="200" sixx.name="corner" sixx.type="Point" >260@383</sixx.object>
 				</sixx.object>
-				<sixx.object sixx.idref="134" sixx.name="methodsText" ></sixx.object>
-				<sixx.object sixx.idref="134" sixx.name="instVarsText" ></sixx.object>
-				<sixx.object sixx.id="197" sixx.name="compositionConnections" sixx.type="Set" >
+				<sixx.object sixx.id="201" sixx.name="name" sixx.type="String" >LetySet</sixx.object>
+				<sixx.object sixx.id="202" sixx.name="borderPoints" sixx.type="List" >
+					<sixx.object sixx.id="203" sixx.type="Point" >160@316</sixx.object>
+					<sixx.object sixx.id="204" sixx.type="Point" >210@300</sixx.object>
+					<sixx.object sixx.id="205" sixx.type="Point" >260@316</sixx.object>
+					<sixx.object sixx.id="206" sixx.type="Point" >260@367</sixx.object>
+					<sixx.object sixx.id="207" sixx.type="Point" >210@383</sixx.object>
+					<sixx.object sixx.id="208" sixx.type="Point" >160@367</sixx.object>
+					<sixx.object sixx.idref="203" ></sixx.object>
 				</sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="198" sixx.type="DaskalosCollectionSymbol" >
-				<sixx.object sixx.idref="155" sixx.name="subject" ></sixx.object>
-				<sixx.object sixx.id="199" sixx.name="position" sixx.type="Rectangle" >
-					<sixx.object sixx.id="200" sixx.name="origin" sixx.type="Point" >60@390</sixx.object>
-					<sixx.object sixx.id="201" sixx.name="corner" sixx.type="Point" >160@473</sixx.object>
-				</sixx.object>
-				<sixx.object sixx.id="202" sixx.name="name" sixx.type="String" >LetySet</sixx.object>
-				<sixx.object sixx.id="203" sixx.name="borderPoints" sixx.type="List" >
-					<sixx.object sixx.id="204" sixx.type="Point" >60@406</sixx.object>
-					<sixx.object sixx.id="205" sixx.type="Point" >110@390</sixx.object>
-					<sixx.object sixx.id="206" sixx.type="Point" >160@406</sixx.object>
-					<sixx.object sixx.id="207" sixx.type="Point" >160@457</sixx.object>
-					<sixx.object sixx.id="208" sixx.type="Point" >110@473</sixx.object>
-					<sixx.object sixx.id="209" sixx.type="Point" >60@457</sixx.object>
-					<sixx.object sixx.idref="204" ></sixx.object>
-				</sixx.object>
-				<sixx.object sixx.id="210" sixx.name="innerRectangle" sixx.type="Rectangle" >
-					<sixx.object sixx.id="211" sixx.name="origin" sixx.type="Point" >61@407</sixx.object>
-					<sixx.object sixx.id="212" sixx.name="corner" sixx.type="Point" >159@456</sixx.object>
+				<sixx.object sixx.id="209" sixx.name="innerRectangle" sixx.type="Rectangle" >
+					<sixx.object sixx.id="210" sixx.name="origin" sixx.type="Point" >161@317</sixx.object>
+					<sixx.object sixx.id="211" sixx.name="corner" sixx.type="Point" >259@366</sixx.object>
 				</sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="213" sixx.type="DaskalosCollectionSymbol" >
+			<sixx.object sixx.id="212" sixx.type="DaskalosCollectionSymbol" >
 				<sixx.object sixx.idref="7" sixx.name="subject" ></sixx.object>
-				<sixx.object sixx.id="214" sixx.name="position" sixx.type="Rectangle" >
-					<sixx.object sixx.id="215" sixx.name="origin" sixx.type="Point" >970@250</sixx.object>
-					<sixx.object sixx.id="216" sixx.name="corner" sixx.type="Point" >1070@333</sixx.object>
+				<sixx.object sixx.id="213" sixx.name="position" sixx.type="Rectangle" >
+					<sixx.object sixx.id="214" sixx.name="origin" sixx.type="Point" >30@300</sixx.object>
+					<sixx.object sixx.id="215" sixx.name="corner" sixx.type="Point" >130@383</sixx.object>
 				</sixx.object>
-				<sixx.object sixx.id="217" sixx.name="name" sixx.type="String" >CestujiciSet</sixx.object>
-				<sixx.object sixx.id="218" sixx.name="borderPoints" sixx.type="List" >
-					<sixx.object sixx.id="219" sixx.type="Point" >970@266</sixx.object>
-					<sixx.object sixx.id="220" sixx.type="Point" >1020@250</sixx.object>
-					<sixx.object sixx.id="221" sixx.type="Point" >1070@266</sixx.object>
-					<sixx.object sixx.id="222" sixx.type="Point" >1070@317</sixx.object>
-					<sixx.object sixx.id="223" sixx.type="Point" >1020@333</sixx.object>
-					<sixx.object sixx.id="224" sixx.type="Point" >970@317</sixx.object>
-					<sixx.object sixx.idref="219" ></sixx.object>
+				<sixx.object sixx.id="216" sixx.name="name" sixx.type="String" >LetenkySet</sixx.object>
+				<sixx.object sixx.id="217" sixx.name="borderPoints" sixx.type="List" >
+					<sixx.object sixx.id="218" sixx.type="Point" >30@316</sixx.object>
+					<sixx.object sixx.id="219" sixx.type="Point" >80@300</sixx.object>
+					<sixx.object sixx.id="220" sixx.type="Point" >130@316</sixx.object>
+					<sixx.object sixx.id="221" sixx.type="Point" >130@367</sixx.object>
+					<sixx.object sixx.id="222" sixx.type="Point" >80@383</sixx.object>
+					<sixx.object sixx.id="223" sixx.type="Point" >30@367</sixx.object>
+					<sixx.object sixx.idref="218" ></sixx.object>
 				</sixx.object>
-				<sixx.object sixx.id="225" sixx.name="innerRectangle" sixx.type="Rectangle" >
-					<sixx.object sixx.id="226" sixx.name="origin" sixx.type="Point" >971@267</sixx.object>
-					<sixx.object sixx.id="227" sixx.name="corner" sixx.type="Point" >1069@316</sixx.object>
-				</sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="228" sixx.type="DaskalosClassSymbol" >
-				<sixx.object sixx.id="229" sixx.name="subject" sixx.type="Symbol" >Sedadlo</sixx.object>
-				<sixx.object sixx.id="230" sixx.name="position" sixx.type="Rectangle" >
-					<sixx.object sixx.id="231" sixx.name="origin" sixx.type="Point" >760@50</sixx.object>
-					<sixx.object sixx.id="232" sixx.name="corner" sixx.type="Point" >910@210</sixx.object>
-				</sixx.object>
-				<sixx.object sixx.idref="134" sixx.name="methodsText" ></sixx.object>
-				<sixx.object sixx.idref="134" sixx.name="instVarsText" ></sixx.object>
-				<sixx.object sixx.id="233" sixx.name="compositionConnections" sixx.type="Set" >
+				<sixx.object sixx.id="224" sixx.name="innerRectangle" sixx.type="Rectangle" >
+					<sixx.object sixx.id="225" sixx.name="origin" sixx.type="Point" >31@317</sixx.object>
+					<sixx.object sixx.id="226" sixx.name="corner" sixx.type="Point" >129@366</sixx.object>
 				</sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="234" sixx.type="DaskalosClassSymbol" >
-				<sixx.object sixx.id="235" sixx.name="subject" sixx.type="Symbol" >Letiste</sixx.object>
-				<sixx.object sixx.id="236" sixx.name="position" sixx.type="Rectangle" >
-					<sixx.object sixx.id="237" sixx.name="origin" sixx.type="Point" >270@30</sixx.object>
-					<sixx.object sixx.id="238" sixx.name="corner" sixx.type="Point" >440@160</sixx.object>
+			<sixx.object sixx.id="227" sixx.type="DaskalosClassSymbol" >
+				<sixx.object sixx.id="228" sixx.name="subject" sixx.type="Symbol" >Let</sixx.object>
+				<sixx.object sixx.id="229" sixx.name="position" sixx.type="Rectangle" >
+					<sixx.object sixx.id="230" sixx.name="origin" sixx.type="Point" >50@70</sixx.object>
+					<sixx.object sixx.id="231" sixx.name="corner" sixx.type="Point" >210@310</sixx.object>
 				</sixx.object>
-				<sixx.object sixx.idref="134" sixx.name="methodsText" ></sixx.object>
-				<sixx.object sixx.idref="134" sixx.name="instVarsText" ></sixx.object>
-				<sixx.object sixx.id="239" sixx.name="compositionConnections" sixx.type="Set" >
-				</sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="240" sixx.type="DaskalosClassSymbol" >
-				<sixx.object sixx.id="241" sixx.name="subject" sixx.type="Symbol" >Let</sixx.object>
-				<sixx.object sixx.id="242" sixx.name="position" sixx.type="Rectangle" >
-					<sixx.object sixx.id="243" sixx.name="origin" sixx.type="Point" >50@70</sixx.object>
-					<sixx.object sixx.id="244" sixx.name="corner" sixx.type="Point" >210@310</sixx.object>
-				</sixx.object>
-				<sixx.object sixx.idref="134" sixx.name="methodsText" ></sixx.object>
-				<sixx.object sixx.idref="134" sixx.name="instVarsText" ></sixx.object>
-				<sixx.object sixx.id="245" sixx.name="compositionConnections" sixx.type="Set" >
-					<sixx.object sixx.id="246" sixx.type="DaskalosCompositionConnection" >
-						<sixx.object sixx.idref="240" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="53" sixx.name="methodsText" ></sixx.object>
+				<sixx.object sixx.idref="53" sixx.name="instVarsText" ></sixx.object>
+				<sixx.object sixx.id="232" sixx.name="compositionConnections" sixx.type="Set" >
+					<sixx.object sixx.id="233" sixx.type="DaskalosCompositionConnection" >
+						<sixx.object sixx.idref="227" sixx.name="fromSymbol" ></sixx.object>
+						<sixx.object sixx.id="234" sixx.name="toSymbol" sixx.type="DaskalosClassSymbol" >
+							<sixx.object sixx.id="235" sixx.name="subject" sixx.type="Symbol" >Letiste</sixx.object>
+							<sixx.object sixx.id="236" sixx.name="position" sixx.type="Rectangle" >
+								<sixx.object sixx.id="237" sixx.name="origin" sixx.type="Point" >270@30</sixx.object>
+								<sixx.object sixx.id="238" sixx.name="corner" sixx.type="Point" >440@160</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.idref="53" sixx.name="methodsText" ></sixx.object>
+							<sixx.object sixx.idref="53" sixx.name="instVarsText" ></sixx.object>
+							<sixx.object sixx.id="239" sixx.name="compositionConnections" sixx.type="Set" >
+							</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="240" sixx.name="name" sixx.type="String" >zLetiste</sixx.object>
+						<sixx.object sixx.id="241" sixx.name="cardinality" sixx.type="String" ></sixx.object>
+						<sixx.object sixx.id="242" sixx.name="stereotype" sixx.type="String" ></sixx.object>
+						<sixx.object sixx.idref="53" sixx.name="fromPoint" ></sixx.object>
+						<sixx.object sixx.idref="53" sixx.name="toPoint" ></sixx.object>
+						<sixx.object sixx.id="243" sixx.name="controlPoints" sixx.type="List" >
+							<sixx.object sixx.idref="53" ></sixx.object>
+						</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="244" sixx.type="DaskalosCompositionConnection" >
+						<sixx.object sixx.idref="227" sixx.name="fromSymbol" ></sixx.object>
 						<sixx.object sixx.idref="234" sixx.name="toSymbol" ></sixx.object>
-						<sixx.object sixx.id="247" sixx.name="name" sixx.type="String" >naLetiste</sixx.object>
-						<sixx.object sixx.id="248" sixx.name="cardinality" sixx.type="String" ></sixx.object>
-						<sixx.object sixx.id="249" sixx.name="stereotype" sixx.type="String" ></sixx.object>
-						<sixx.object sixx.idref="134" sixx.name="fromPoint" ></sixx.object>
-						<sixx.object sixx.idref="134" sixx.name="toPoint" ></sixx.object>
-						<sixx.object sixx.id="250" sixx.name="controlPoints" sixx.type="List" >
-							<sixx.object sixx.idref="134" ></sixx.object>
-						</sixx.object>
-					</sixx.object>
-					<sixx.object sixx.id="251" sixx.type="DaskalosCompositionConnection" >
-						<sixx.object sixx.idref="240" sixx.name="fromSymbol" ></sixx.object>
-						<sixx.object sixx.idref="234" sixx.name="toSymbol" ></sixx.object>
-						<sixx.object sixx.id="252" sixx.name="name" sixx.type="String" >zLetiste</sixx.object>
-						<sixx.object sixx.idref="248" sixx.name="cardinality" ></sixx.object>
-						<sixx.object sixx.idref="249" sixx.name="stereotype" ></sixx.object>
-						<sixx.object sixx.idref="134" sixx.name="fromPoint" ></sixx.object>
-						<sixx.object sixx.idref="134" sixx.name="toPoint" ></sixx.object>
-						<sixx.object sixx.id="253" sixx.name="controlPoints" sixx.type="List" >
-							<sixx.object sixx.idref="134" ></sixx.object>
+						<sixx.object sixx.id="245" sixx.name="name" sixx.type="String" >naLetiste</sixx.object>
+						<sixx.object sixx.idref="241" sixx.name="cardinality" ></sixx.object>
+						<sixx.object sixx.idref="242" sixx.name="stereotype" ></sixx.object>
+						<sixx.object sixx.idref="53" sixx.name="fromPoint" ></sixx.object>
+						<sixx.object sixx.idref="53" sixx.name="toPoint" ></sixx.object>
+						<sixx.object sixx.id="246" sixx.name="controlPoints" sixx.type="List" >
+							<sixx.object sixx.idref="53" ></sixx.object>
 						</sixx.object>
 					</sixx.object>
 				</sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="254" sixx.type="DaskalosClassSymbol" >
-				<sixx.object sixx.id="255" sixx.name="subject" sixx.type="Symbol" >Letenka</sixx.object>
-				<sixx.object sixx.id="256" sixx.name="position" sixx.type="Rectangle" >
-					<sixx.object sixx.id="257" sixx.name="origin" sixx.type="Point" >420@240</sixx.object>
-					<sixx.object sixx.id="258" sixx.name="corner" sixx.type="Point" >580@450</sixx.object>
+			<sixx.object sixx.id="247" sixx.type="DaskalosCollectionSymbol" >
+				<sixx.object sixx.idref="158" sixx.name="subject" ></sixx.object>
+				<sixx.object sixx.id="248" sixx.name="position" sixx.type="Rectangle" >
+					<sixx.object sixx.id="249" sixx.name="origin" sixx.type="Point" >290@300</sixx.object>
+					<sixx.object sixx.id="250" sixx.name="corner" sixx.type="Point" >390@383</sixx.object>
 				</sixx.object>
-				<sixx.object sixx.idref="134" sixx.name="methodsText" ></sixx.object>
-				<sixx.object sixx.idref="134" sixx.name="instVarsText" ></sixx.object>
-				<sixx.object sixx.id="259" sixx.name="compositionConnections" sixx.type="Set" >
-					<sixx.object sixx.id="260" sixx.type="DaskalosCompositionConnection" >
-						<sixx.object sixx.idref="254" sixx.name="fromSymbol" ></sixx.object>
-						<sixx.object sixx.idref="240" sixx.name="toSymbol" ></sixx.object>
-						<sixx.object sixx.id="261" sixx.name="name" sixx.type="String" >spoj</sixx.object>
-						<sixx.object sixx.idref="248" sixx.name="cardinality" ></sixx.object>
-						<sixx.object sixx.idref="249" sixx.name="stereotype" ></sixx.object>
-						<sixx.object sixx.idref="134" sixx.name="fromPoint" ></sixx.object>
-						<sixx.object sixx.idref="134" sixx.name="toPoint" ></sixx.object>
-						<sixx.object sixx.id="262" sixx.name="controlPoints" sixx.type="List" >
-							<sixx.object sixx.idref="134" ></sixx.object>
-						</sixx.object>
-					</sixx.object>
-					<sixx.object sixx.id="263" sixx.type="DaskalosCompositionConnection" >
-						<sixx.object sixx.idref="254" sixx.name="fromSymbol" ></sixx.object>
-						<sixx.object sixx.idref="228" sixx.name="toSymbol" ></sixx.object>
-						<sixx.object sixx.id="264" sixx.name="name" sixx.type="String" >rezervovaneMisto</sixx.object>
-						<sixx.object sixx.idref="248" sixx.name="cardinality" ></sixx.object>
-						<sixx.object sixx.idref="249" sixx.name="stereotype" ></sixx.object>
-						<sixx.object sixx.idref="134" sixx.name="fromPoint" ></sixx.object>
-						<sixx.object sixx.idref="134" sixx.name="toPoint" ></sixx.object>
-						<sixx.object sixx.id="265" sixx.name="controlPoints" sixx.type="List" >
-							<sixx.object sixx.idref="134" ></sixx.object>
-						</sixx.object>
-					</sixx.object>
-					<sixx.object sixx.id="266" sixx.type="DaskalosCompositionConnection" >
-						<sixx.object sixx.idref="254" sixx.name="fromSymbol" ></sixx.object>
-						<sixx.object sixx.idref="192" sixx.name="toSymbol" ></sixx.object>
-						<sixx.object sixx.id="267" sixx.name="name" sixx.type="String" >patri</sixx.object>
-						<sixx.object sixx.idref="248" sixx.name="cardinality" ></sixx.object>
-						<sixx.object sixx.idref="249" sixx.name="stereotype" ></sixx.object>
-						<sixx.object sixx.idref="134" sixx.name="fromPoint" ></sixx.object>
-						<sixx.object sixx.idref="134" sixx.name="toPoint" ></sixx.object>
-						<sixx.object sixx.id="268" sixx.name="controlPoints" sixx.type="List" >
-							<sixx.object sixx.idref="134" ></sixx.object>
-						</sixx.object>
-					</sixx.object>
+				<sixx.object sixx.id="251" sixx.name="name" sixx.type="String" >LetisteSet</sixx.object>
+				<sixx.object sixx.id="252" sixx.name="borderPoints" sixx.type="List" >
+					<sixx.object sixx.id="253" sixx.type="Point" >290@316</sixx.object>
+					<sixx.object sixx.id="254" sixx.type="Point" >340@300</sixx.object>
+					<sixx.object sixx.id="255" sixx.type="Point" >390@316</sixx.object>
+					<sixx.object sixx.id="256" sixx.type="Point" >390@367</sixx.object>
+					<sixx.object sixx.id="257" sixx.type="Point" >340@383</sixx.object>
+					<sixx.object sixx.id="258" sixx.type="Point" >290@367</sixx.object>
+					<sixx.object sixx.idref="253" ></sixx.object>
+				</sixx.object>
+				<sixx.object sixx.id="259" sixx.name="innerRectangle" sixx.type="Rectangle" >
+					<sixx.object sixx.id="260" sixx.name="origin" sixx.type="Point" >291@317</sixx.object>
+					<sixx.object sixx.id="261" sixx.name="corner" sixx.type="Point" >389@366</sixx.object>
 				</sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="269" sixx.type="DaskalosCollectionSymbol" >
-				<sixx.object sixx.idref="64" sixx.name="subject" ></sixx.object>
+			<sixx.object sixx.id="262" sixx.type="DaskalosClassSymbol" >
+				<sixx.object sixx.id="263" sixx.name="subject" sixx.type="Symbol" >Sedadlo</sixx.object>
+				<sixx.object sixx.id="264" sixx.name="position" sixx.type="Rectangle" >
+					<sixx.object sixx.id="265" sixx.name="origin" sixx.type="Point" >760@50</sixx.object>
+					<sixx.object sixx.id="266" sixx.name="corner" sixx.type="Point" >910@210</sixx.object>
+				</sixx.object>
+				<sixx.object sixx.idref="53" sixx.name="methodsText" ></sixx.object>
+				<sixx.object sixx.idref="53" sixx.name="instVarsText" ></sixx.object>
+				<sixx.object sixx.id="267" sixx.name="compositionConnections" sixx.type="Set" >
+				</sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="268" sixx.type="DaskalosClassSymbol" >
+				<sixx.object sixx.id="269" sixx.name="subject" sixx.type="Symbol" >Letenka</sixx.object>
 				<sixx.object sixx.id="270" sixx.name="position" sixx.type="Rectangle" >
-					<sixx.object sixx.id="271" sixx.name="origin" sixx.type="Point" >400@520</sixx.object>
-					<sixx.object sixx.id="272" sixx.name="corner" sixx.type="Point" >500@603</sixx.object>
+					<sixx.object sixx.id="271" sixx.name="origin" sixx.type="Point" >470@200</sixx.object>
+					<sixx.object sixx.id="272" sixx.name="corner" sixx.type="Point" >630@410</sixx.object>
 				</sixx.object>
-				<sixx.object sixx.id="273" sixx.name="name" sixx.type="String" >LetenkySet</sixx.object>
-				<sixx.object sixx.id="274" sixx.name="borderPoints" sixx.type="List" >
-					<sixx.object sixx.id="275" sixx.type="Point" >400@536</sixx.object>
-					<sixx.object sixx.id="276" sixx.type="Point" >450@520</sixx.object>
-					<sixx.object sixx.id="277" sixx.type="Point" >500@536</sixx.object>
-					<sixx.object sixx.id="278" sixx.type="Point" >500@587</sixx.object>
-					<sixx.object sixx.id="279" sixx.type="Point" >450@603</sixx.object>
-					<sixx.object sixx.id="280" sixx.type="Point" >400@587</sixx.object>
-					<sixx.object sixx.idref="275" ></sixx.object>
-				</sixx.object>
-				<sixx.object sixx.id="281" sixx.name="innerRectangle" sixx.type="Rectangle" >
-					<sixx.object sixx.id="282" sixx.name="origin" sixx.type="Point" >401@537</sixx.object>
-					<sixx.object sixx.id="283" sixx.name="corner" sixx.type="Point" >499@586</sixx.object>
+				<sixx.object sixx.idref="53" sixx.name="methodsText" ></sixx.object>
+				<sixx.object sixx.idref="53" sixx.name="instVarsText" ></sixx.object>
+				<sixx.object sixx.id="273" sixx.name="compositionConnections" sixx.type="Set" >
+					<sixx.object sixx.id="274" sixx.type="DaskalosCompositionConnection" >
+						<sixx.object sixx.idref="268" sixx.name="fromSymbol" ></sixx.object>
+						<sixx.object sixx.idref="227" sixx.name="toSymbol" ></sixx.object>
+						<sixx.object sixx.id="275" sixx.name="name" sixx.type="String" >spoj</sixx.object>
+						<sixx.object sixx.idref="241" sixx.name="cardinality" ></sixx.object>
+						<sixx.object sixx.idref="242" sixx.name="stereotype" ></sixx.object>
+						<sixx.object sixx.idref="53" sixx.name="fromPoint" ></sixx.object>
+						<sixx.object sixx.idref="53" sixx.name="toPoint" ></sixx.object>
+						<sixx.object sixx.id="276" sixx.name="controlPoints" sixx.type="List" >
+							<sixx.object sixx.idref="53" ></sixx.object>
+						</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="277" sixx.type="DaskalosCompositionConnection" >
+						<sixx.object sixx.idref="268" sixx.name="fromSymbol" ></sixx.object>
+						<sixx.object sixx.id="278" sixx.name="toSymbol" sixx.type="DaskalosClassSymbol" >
+							<sixx.object sixx.id="279" sixx.name="subject" sixx.type="Symbol" >Cestujici</sixx.object>
+							<sixx.object sixx.id="280" sixx.name="position" sixx.type="Rectangle" >
+								<sixx.object sixx.id="281" sixx.name="origin" sixx.type="Point" >750@310</sixx.object>
+								<sixx.object sixx.id="282" sixx.name="corner" sixx.type="Point" >920@530</sixx.object>
+							</sixx.object>
+							<sixx.object sixx.idref="53" sixx.name="methodsText" ></sixx.object>
+							<sixx.object sixx.idref="53" sixx.name="instVarsText" ></sixx.object>
+							<sixx.object sixx.id="283" sixx.name="compositionConnections" sixx.type="Set" >
+							</sixx.object>
+						</sixx.object>
+						<sixx.object sixx.id="284" sixx.name="name" sixx.type="String" >patri</sixx.object>
+						<sixx.object sixx.idref="241" sixx.name="cardinality" ></sixx.object>
+						<sixx.object sixx.idref="242" sixx.name="stereotype" ></sixx.object>
+						<sixx.object sixx.idref="53" sixx.name="fromPoint" ></sixx.object>
+						<sixx.object sixx.idref="53" sixx.name="toPoint" ></sixx.object>
+						<sixx.object sixx.id="285" sixx.name="controlPoints" sixx.type="List" >
+							<sixx.object sixx.idref="53" ></sixx.object>
+						</sixx.object>
+					</sixx.object>
+					<sixx.object sixx.id="286" sixx.type="DaskalosCompositionConnection" >
+						<sixx.object sixx.idref="268" sixx.name="fromSymbol" ></sixx.object>
+						<sixx.object sixx.idref="262" sixx.name="toSymbol" ></sixx.object>
+						<sixx.object sixx.id="287" sixx.name="name" sixx.type="String" >rezervovaneMisto</sixx.object>
+						<sixx.object sixx.idref="241" sixx.name="cardinality" ></sixx.object>
+						<sixx.object sixx.idref="242" sixx.name="stereotype" ></sixx.object>
+						<sixx.object sixx.idref="53" sixx.name="fromPoint" ></sixx.object>
+						<sixx.object sixx.idref="53" sixx.name="toPoint" ></sixx.object>
+						<sixx.object sixx.id="288" sixx.name="controlPoints" sixx.type="List" >
+							<sixx.object sixx.idref="53" ></sixx.object>
+						</sixx.object>
+					</sixx.object>
 				</sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="284" sixx.type="DaskalosCollectionSymbol" >
-				<sixx.object sixx.idref="186" sixx.name="subject" ></sixx.object>
-				<sixx.object sixx.id="285" sixx.name="position" sixx.type="Rectangle" >
-					<sixx.object sixx.id="286" sixx.name="origin" sixx.type="Point" >530@70</sixx.object>
-					<sixx.object sixx.id="287" sixx.name="corner" sixx.type="Point" >630@153</sixx.object>
+			<sixx.object sixx.id="289" sixx.type="DaskalosCollectionSymbol" >
+				<sixx.object sixx.idref="161" sixx.name="subject" ></sixx.object>
+				<sixx.object sixx.id="290" sixx.name="position" sixx.type="Rectangle" >
+					<sixx.object sixx.id="291" sixx.name="origin" sixx.type="Point" >420@300</sixx.object>
+					<sixx.object sixx.id="292" sixx.name="corner" sixx.type="Point" >520@383</sixx.object>
 				</sixx.object>
-				<sixx.object sixx.id="288" sixx.name="name" sixx.type="String" >LetisteSet</sixx.object>
-				<sixx.object sixx.id="289" sixx.name="borderPoints" sixx.type="List" >
-					<sixx.object sixx.id="290" sixx.type="Point" >530@86</sixx.object>
-					<sixx.object sixx.id="291" sixx.type="Point" >580@70</sixx.object>
-					<sixx.object sixx.id="292" sixx.type="Point" >630@86</sixx.object>
-					<sixx.object sixx.id="293" sixx.type="Point" >630@137</sixx.object>
-					<sixx.object sixx.id="294" sixx.type="Point" >580@153</sixx.object>
-					<sixx.object sixx.id="295" sixx.type="Point" >530@137</sixx.object>
-					<sixx.object sixx.idref="290" ></sixx.object>
+				<sixx.object sixx.id="293" sixx.name="name" sixx.type="String" >CestujiciSet</sixx.object>
+				<sixx.object sixx.id="294" sixx.name="borderPoints" sixx.type="List" >
+					<sixx.object sixx.id="295" sixx.type="Point" >420@316</sixx.object>
+					<sixx.object sixx.id="296" sixx.type="Point" >470@300</sixx.object>
+					<sixx.object sixx.id="297" sixx.type="Point" >520@316</sixx.object>
+					<sixx.object sixx.id="298" sixx.type="Point" >520@367</sixx.object>
+					<sixx.object sixx.id="299" sixx.type="Point" >470@383</sixx.object>
+					<sixx.object sixx.id="300" sixx.type="Point" >420@367</sixx.object>
+					<sixx.object sixx.idref="295" ></sixx.object>
 				</sixx.object>
-				<sixx.object sixx.id="296" sixx.name="innerRectangle" sixx.type="Rectangle" >
-					<sixx.object sixx.id="297" sixx.name="origin" sixx.type="Point" >531@87</sixx.object>
-					<sixx.object sixx.id="298" sixx.name="corner" sixx.type="Point" >629@136</sixx.object>
+				<sixx.object sixx.id="301" sixx.name="innerRectangle" sixx.type="Rectangle" >
+					<sixx.object sixx.id="302" sixx.name="origin" sixx.type="Point" >421@317</sixx.object>
+					<sixx.object sixx.id="303" sixx.name="corner" sixx.type="Point" >519@366</sixx.object>
 				</sixx.object>
 			</sixx.object>
+			<sixx.object sixx.idref="234" ></sixx.object>
+			<sixx.object sixx.idref="278" ></sixx.object>
 		</sixx.object>
-		<sixx.object sixx.id="299" sixx.name="diagramConnections" sixx.type="Set" >
-			<sixx.object sixx.id="300" sixx.type="DaskalosCompositionConnection" >
-				<sixx.object sixx.idref="254" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="228" sixx.name="toSymbol" ></sixx.object>
-				<sixx.object sixx.id="301" sixx.name="name" sixx.type="String" >rezervovaneMisto</sixx.object>
-				<sixx.object sixx.idref="248" sixx.name="cardinality" ></sixx.object>
-				<sixx.object sixx.idref="249" sixx.name="stereotype" ></sixx.object>
-				<sixx.object sixx.id="302" sixx.name="fromPoint" sixx.type="Point" >580@(19675/67)</sixx.object>
-				<sixx.object sixx.id="303" sixx.name="toPoint" sixx.type="Point" >760@(11935/67)</sixx.object>
-				<sixx.object sixx.id="304" sixx.name="controlPoints" sixx.type="List" >
-					<sixx.object sixx.id="305" sixx.type="Point" >670@(15805/67)</sixx.object>
+		<sixx.object sixx.id="304" sixx.name="diagramConnections" sixx.type="Set" >
+			<sixx.object sixx.id="305" sixx.type="DaskalosElementConnection" >
+				<sixx.object sixx.idref="278" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="289" sixx.name="toSymbol" ></sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="306" sixx.type="DaskalosCompositionConnection" >
+				<sixx.object sixx.idref="268" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="278" sixx.name="toSymbol" ></sixx.object>
+				<sixx.object sixx.id="307" sixx.name="name" sixx.type="String" >patri</sixx.object>
+				<sixx.object sixx.idref="241" sixx.name="cardinality" ></sixx.object>
+				<sixx.object sixx.idref="242" sixx.name="stereotype" ></sixx.object>
+				<sixx.object sixx.id="308" sixx.name="fromPoint" sixx.type="Point" >630@(19225/57)</sixx.object>
+				<sixx.object sixx.id="309" sixx.name="toPoint" sixx.type="Point" >750@(21985/57)</sixx.object>
+				<sixx.object sixx.id="310" sixx.name="controlPoints" sixx.type="List" >
+					<sixx.object sixx.id="311" sixx.type="Point" >690@(20605/57)</sixx.object>
 				</sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="306" sixx.type="DaskalosElementConnection" >
-				<sixx.object sixx.idref="254" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="269" sixx.name="toSymbol" ></sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="307" sixx.type="DaskalosCompositionConnection" >
-				<sixx.object sixx.idref="240" sixx.name="fromSymbol" ></sixx.object>
+			<sixx.object sixx.id="312" sixx.type="DaskalosCompositionConnection" >
+				<sixx.object sixx.idref="227" sixx.name="fromSymbol" ></sixx.object>
 				<sixx.object sixx.idref="234" sixx.name="toSymbol" ></sixx.object>
-				<sixx.object sixx.id="308" sixx.name="name" sixx.type="String" >naLetiste</sixx.object>
-				<sixx.object sixx.idref="248" sixx.name="cardinality" ></sixx.object>
-				<sixx.object sixx.idref="249" sixx.name="stereotype" ></sixx.object>
-				<sixx.object sixx.id="309" sixx.name="fromPoint" sixx.type="Point" >210@270</sixx.object>
-				<sixx.object sixx.id="310" sixx.name="toPoint" sixx.type="Point" >360@160</sixx.object>
-				<sixx.object sixx.id="311" sixx.name="controlPoints" sixx.type="List" >
-					<sixx.object sixx.id="312" sixx.type="Point" >285@270</sixx.object>
-					<sixx.object sixx.id="313" sixx.type="Point" >360@270</sixx.object>
-					<sixx.object sixx.id="314" sixx.type="Point" >360@215</sixx.object>
+				<sixx.object sixx.id="313" sixx.name="name" sixx.type="String" >naLetiste</sixx.object>
+				<sixx.object sixx.idref="241" sixx.name="cardinality" ></sixx.object>
+				<sixx.object sixx.idref="242" sixx.name="stereotype" ></sixx.object>
+				<sixx.object sixx.id="314" sixx.name="fromPoint" sixx.type="Point" >210@270</sixx.object>
+				<sixx.object sixx.id="315" sixx.name="toPoint" sixx.type="Point" >360@160</sixx.object>
+				<sixx.object sixx.id="316" sixx.name="controlPoints" sixx.type="List" >
+					<sixx.object sixx.id="317" sixx.type="Point" >285@270</sixx.object>
+					<sixx.object sixx.id="318" sixx.type="Point" >360@270</sixx.object>
+					<sixx.object sixx.id="319" sixx.type="Point" >360@215</sixx.object>
 				</sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="315" sixx.type="DaskalosElementConnection" >
-				<sixx.object sixx.idref="240" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="198" sixx.name="toSymbol" ></sixx.object>
+			<sixx.object sixx.id="320" sixx.type="DaskalosElementConnection" >
+				<sixx.object sixx.idref="268" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="212" sixx.name="toSymbol" ></sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="316" sixx.type="DaskalosCompositionConnection" >
-				<sixx.object sixx.idref="254" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="240" sixx.name="toSymbol" ></sixx.object>
-				<sixx.object sixx.id="317" sixx.name="name" sixx.type="String" >spoj</sixx.object>
-				<sixx.object sixx.idref="248" sixx.name="cardinality" ></sixx.object>
-				<sixx.object sixx.idref="249" sixx.name="stereotype" ></sixx.object>
-				<sixx.object sixx.id="318" sixx.name="fromPoint" sixx.type="Point" >420@380</sixx.object>
-				<sixx.object sixx.id="319" sixx.name="toPoint" sixx.type="Point" >(3670/19)@310</sixx.object>
-				<sixx.object sixx.id="320" sixx.name="controlPoints" sixx.type="List" >
-					<sixx.object sixx.id="321" sixx.type="Point" >325@380</sixx.object>
-					<sixx.object sixx.id="322" sixx.type="Point" >230@380</sixx.object>
-					<sixx.object sixx.id="323" sixx.type="Point" >(4020/19)@345</sixx.object>
-				</sixx.object>
+			<sixx.object sixx.id="321" sixx.type="DaskalosElementConnection" >
+				<sixx.object sixx.idref="227" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="197" sixx.name="toSymbol" ></sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="324" sixx.type="DaskalosCompositionConnection" >
-				<sixx.object sixx.idref="240" sixx.name="fromSymbol" ></sixx.object>
+			<sixx.object sixx.id="322" sixx.type="DaskalosCompositionConnection" >
+				<sixx.object sixx.idref="227" sixx.name="fromSymbol" ></sixx.object>
 				<sixx.object sixx.idref="234" sixx.name="toSymbol" ></sixx.object>
-				<sixx.object sixx.id="325" sixx.name="name" sixx.type="String" >zLetiste</sixx.object>
-				<sixx.object sixx.idref="248" sixx.name="cardinality" ></sixx.object>
-				<sixx.object sixx.idref="249" sixx.name="stereotype" ></sixx.object>
-				<sixx.object sixx.id="326" sixx.name="fromPoint" sixx.type="Point" >210@230</sixx.object>
-				<sixx.object sixx.id="327" sixx.name="toPoint" sixx.type="Point" >330@160</sixx.object>
-				<sixx.object sixx.id="328" sixx.name="controlPoints" sixx.type="List" >
-					<sixx.object sixx.id="329" sixx.type="Point" >270@230</sixx.object>
-					<sixx.object sixx.id="330" sixx.type="Point" >330@230</sixx.object>
-					<sixx.object sixx.id="331" sixx.type="Point" >330@195</sixx.object>
+				<sixx.object sixx.id="323" sixx.name="name" sixx.type="String" >zLetiste</sixx.object>
+				<sixx.object sixx.idref="241" sixx.name="cardinality" ></sixx.object>
+				<sixx.object sixx.idref="242" sixx.name="stereotype" ></sixx.object>
+				<sixx.object sixx.id="324" sixx.name="fromPoint" sixx.type="Point" >210@230</sixx.object>
+				<sixx.object sixx.id="325" sixx.name="toPoint" sixx.type="Point" >330@160</sixx.object>
+				<sixx.object sixx.id="326" sixx.name="controlPoints" sixx.type="List" >
+					<sixx.object sixx.id="327" sixx.type="Point" >270@230</sixx.object>
+					<sixx.object sixx.id="328" sixx.type="Point" >330@230</sixx.object>
+					<sixx.object sixx.id="329" sixx.type="Point" >330@195</sixx.object>
 				</sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="332" sixx.type="DaskalosCompositionConnection" >
-				<sixx.object sixx.idref="254" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="192" sixx.name="toSymbol" ></sixx.object>
-				<sixx.object sixx.id="333" sixx.name="name" sixx.type="String" >patri</sixx.object>
-				<sixx.object sixx.idref="248" sixx.name="cardinality" ></sixx.object>
-				<sixx.object sixx.idref="249" sixx.name="stereotype" ></sixx.object>
-				<sixx.object sixx.id="334" sixx.name="fromPoint" sixx.type="Point" >580@(24315/67)</sixx.object>
-				<sixx.object sixx.id="335" sixx.name="toPoint" sixx.type="Point" >750@(26865/67)</sixx.object>
-				<sixx.object sixx.id="336" sixx.name="controlPoints" sixx.type="List" >
-					<sixx.object sixx.id="337" sixx.type="Point" >665@(25590/67)</sixx.object>
+			<sixx.object sixx.id="330" sixx.type="DaskalosCompositionConnection" >
+				<sixx.object sixx.idref="268" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="262" sixx.name="toSymbol" ></sixx.object>
+				<sixx.object sixx.id="331" sixx.name="name" sixx.type="String" >rezervovaneMisto</sixx.object>
+				<sixx.object sixx.idref="241" sixx.name="cardinality" ></sixx.object>
+				<sixx.object sixx.idref="242" sixx.name="stereotype" ></sixx.object>
+				<sixx.object sixx.id="332" sixx.name="fromPoint" sixx.type="Point" >630@(14585/57)</sixx.object>
+				<sixx.object sixx.id="333" sixx.name="toPoint" sixx.type="Point" >760@(3345/19)</sixx.object>
+				<sixx.object sixx.id="334" sixx.name="controlPoints" sixx.type="List" >
+					<sixx.object sixx.id="335" sixx.type="Point" >695@(12310/57)</sixx.object>
 				</sixx.object>
 			</sixx.object>
-			<sixx.object sixx.id="338" sixx.type="DaskalosElementConnection" >
-				<sixx.object sixx.idref="192" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="213" sixx.name="toSymbol" ></sixx.object>
-			</sixx.object>
-			<sixx.object sixx.id="339" sixx.type="DaskalosElementConnection" >
+			<sixx.object sixx.id="336" sixx.type="DaskalosElementConnection" >
 				<sixx.object sixx.idref="234" sixx.name="fromSymbol" ></sixx.object>
-				<sixx.object sixx.idref="284" sixx.name="toSymbol" ></sixx.object>
+				<sixx.object sixx.idref="247" sixx.name="toSymbol" ></sixx.object>
+			</sixx.object>
+			<sixx.object sixx.id="337" sixx.type="DaskalosCompositionConnection" >
+				<sixx.object sixx.idref="268" sixx.name="fromSymbol" ></sixx.object>
+				<sixx.object sixx.idref="227" sixx.name="toSymbol" ></sixx.object>
+				<sixx.object sixx.id="338" sixx.name="name" sixx.type="String" >spoj</sixx.object>
+				<sixx.object sixx.idref="241" sixx.name="cardinality" ></sixx.object>
+				<sixx.object sixx.idref="242" sixx.name="stereotype" ></sixx.object>
+				<sixx.object sixx.id="339" sixx.name="fromPoint" sixx.type="Point" >470@380</sixx.object>
+				<sixx.object sixx.id="340" sixx.name="toPoint" sixx.type="Point" >200@310</sixx.object>
+				<sixx.object sixx.id="341" sixx.name="controlPoints" sixx.type="List" >
+					<sixx.object sixx.id="342" sixx.type="Point" >335@380</sixx.object>
+					<sixx.object sixx.id="343" sixx.type="Point" >200@380</sixx.object>
+					<sixx.object sixx.id="344" sixx.type="Point" >200@345</sixx.object>
+				</sixx.object>
 			</sixx.object>
 		</sixx.object>
 	</sixx.object>

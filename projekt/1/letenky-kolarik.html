@@ -47,7 +47,84 @@ letenky</TITLE>
 <B>author&#40;s&#41;: </B>Jan Kola&#345;&#237;k
 <BR>
 <P>
-
+Projekt vyobrazuje zjednodu&#353;enou objektovou situaci nap&#345;&#237;klad u n&#283;jak&#233; men&#353;&#237; spole&#269;nosti prod&#225;vaj&#237;c&#237; letenky<BR>
+<BR>
+Vzhledem k tomu&#44; jak &#353;iroce by se tato sitace dala zpracovat a kolik v&#283;c&#237; okolo se zaznamen&#225;v&#225;&#44; tak jsem se pokusil o redukci na 5 t&#345;&#237;d s t&#237;m&#44; aby byl zachov&#225;n n&#283;jak&#253; z&#225;kladn&#237; smysl. Nejsem &#382;&#225;dn&#253; expert na t&#233;matiku syst&#233;mu letenek&#44; ale m&#283;l jsem n&#283;jakou p&#345;edstavu&#44; kterou jsem se sna&#382;il v tomto projektu zn&#225;zornit. Omezil jsem se tedy na t&#345;&#237;dy:<BR>
+<BR>
+Popis objekt&#367; a metod &#40;p&#345;&#237;padn&#225; dovysv&#283;tlen&#237; jak jsem co myslel&#41;<BR>
+<BR>
+1&#41; Letenka - tato t&#345;&#237;da je centrem cel&#233;ho projektu<BR>
+	Atributy:<BR>
+		- cislo = reprezentuje jak&#253;si unik&#225;tn&#237; identifik&#225;tor pro letenku&#44; ka&#382;d&#225; letenka by m&#283;la m&#237;t n&#283;jak&#233; unik&#225;tn&#237; id<BR>
+		- cena<BR>
+		- pocetZavazadel = kolik zavazadel &#40;nemysl&#237;m t&#237;m p&#345;&#237;ru&#269;n&#237; zavazadla&#41; m&#225; cestuj&#237;c&#237; zaplaceno<BR>
+		- prednostniNastup = zda letenka oprav&#328;uje cestuj&#237;c&#237;ho k p&#345;ednostn&#237;mu n&#225;stupu&#44; obsahuje bu&#271; ano nebo ne<BR>
+		- patri = odkaz na cestujiciho<BR>
+		- rezervovanemMisto = odkaz na sedadlo<BR>
+		- spoj = odkaz na let<BR>
+	Metody:<BR>
+		- pristupDoSalonku - pokud letenka byla drazsi nez 5000 a sedadlo neni v economy tride&#44; ma cestujici narok na pristup do VIP salonku pred odletem<BR>
+2&#41; Cestuj&#237;c&#237; - tato t&#345;&#237;da reprezentuje &#269;lov&#283;ka&#44; jen&#382; si zaplatil letenku<BR>
+	Atributy:<BR>
+		- jmeno&#44; prijmeni&#44; datumNarozeni&#44; stat<BR>
+		- cisloDokladu = t&#237;mto mysl&#237;m &#269;&#237;slo OP<BR>
+	Metody:<BR>
+		- celkemUtraceno = vypo&#269;&#237;t&#225;v&#225;m celkovou &#269;&#225;stku&#44; kterou cestuj&#237;c&#237; utratil za letenky u t&#233;to spole&#269;nosti - zjist&#237;m&#44; jak&#233; letenky pat&#345;&#237; k jednotliv&#253;m osob&#225;m a potom je se&#269;tu<BR>
+		- pocetLetenek = zjist&#237;m jak&#233; letenky pat&#345;&#237; k jednotliv&#253;m osob&#225;m a potom pomoc&#237; size zjist&#237;m&#44; kolik jich celkem cestuj&#237;c&#237; m&#225;<BR>
+		- vek = vypo&#269;&#237;t&#225;m z m&#237;stn&#237;ho atributu datum Narozen&#237; k dne&#353;n&#237;mu dni<BR>
+<BR>
+3&#41; Sedadlo - t&#345;&#237;du pou&#382;&#237;v&#225;m k p&#345;i&#345;azen&#237; m&#237;sta k letence<BR>
+	Atributy:<BR>
+		- oznaceni = unik&#225;tn&#237; identifik&#225;tor m&#237;sta - celkov&#283; jsem zjednodu&#353;il&#44; proto&#382;e ka&#382;d&#253; model letadla m&#225; jin&#253; po&#269;et a jin&#233; rozlo&#382;en&#237; sedadel - modely letadel apod jsem v projektu ne&#345;e&#353;il<BR>
+		- trida = v jakem &quot;vagonu&quot; se m&#237;sto nach&#225;z&#237; - &#269;ili economy&#44; bussines&#44; first class<BR>
+		- uDveri = 0 nebo 1 podle toho&#44; jestli se nachazi misto u dveri&#44; nektere aerospole&#269;nosti nedovoluj&#237; nezletil&#237;m sed&#283;t u oken<BR>
+4&#41; Let - t&#237;mto mysl&#237;m samotn&#253; let z m&#237;sta x do m&#237;sta y<BR>
+	Atributy:<BR>
+		- cislo = unikatn&#237; identifik&#225;tor letu<BR>
+		- datumOdletu&#44; casOdletu<BR>
+		- datumPriletu&#44; casPriletu = u dokon&#269;en&#253;ch let&#367; se zde zobrazuje re&#225;ln&#253; &#269;as a datum&#44; kdy letadlo p&#345;ist&#225;lo a u napl&#225;novan&#253;ch let&#367; jejich p&#345;edpokl&#225;dan&#253; &#269;as p&#345;&#237;letu<BR>
+		- zpozdeniMinuty = u dokon&#269;en&#253;ch let&#367; v rozmez&#237; od 0 do x&#44; u nedokon&#269;en&#253;ch let&#367; je zde hodnota -1<BR>
+		- zLetiste&#44; naLetiste = odkaz na Letiste<BR>
+	Metody:<BR>
+		- zpozdeniMinuty = jake je zaznamenane zpozeni&#44; u naplanovanych letu je zde hodnota -1<BR>
+		- letDokoncen = jestli je zde nejake zaznamenane zpozdeni &#40;0 a v&#237;ce minut&#41;&#44; je automaticky jasn&#233;&#44; &#382;e let byl ji&#382; dokon&#269;en<BR>
+5&#41; Letiste - jednotliva letiste<BR>
+	Atributy:<BR>
+		- kod = kazde letiste ma trojmistny kod&#44; nap&#345;&#237;klad Leti&#353;t&#283; V&#225;clava Havla v Praze m&#225; k&#243;d PRG<BR>
+		- nazev&#44; mesto<BR>
+	Metody:<BR>
+		- frekvenceLetu = vypocitava kolikrat se letiste objevilo v nejakem z let&#367; a je jedno jestli to bylo leti&#353;t&#283; odkud se odl&#233;talo nebo kam se p&#345;&#237;l&#233;talo<BR>
+<BR>
+Popis doataz&#367;:<BR>
+<BR>
+1&#41; LetySet select: [:m | m zpozdeniMinuty = 0 and: [ m letDokoncen = &#39;ano&#39;]]<BR>
+	- &quot;Lety&#44; ktere byly dokonceny a pristaly s nulovym zpozdenim&quot;<BR>
+	- Slou&#382;&#237; k v&#253;b&#283;ru tzv. neprobl&#233;mov&#253;ch let&#367;&#44; kdy letadlo p&#345;ist&#225;lo s nulov&#253;m zpo&#382;d&#283;n&#237;m<BR>
+<BR>
+2&#41; LetySet select: [:m | m zLetiste kod = &#39;PRG&#39; or: [ m naLetiste kod = &#39;PRG&#39;]]<BR>
+	- &quot;Lety&#44; ktere bud zacinaly nebo koncily na letisti v Praze&quot;<BR>
+	- Slou&#382;&#237; k v&#253;b&#283;ru let&#367;&#44; kter&#233; se t&#253;kaj&#237; ur&#269;&#237;t&#233;ho leti&#353;t&#283;&#44; v tomto p&#345;&#237;pad&#283; Prahy. Vr&#225;t&#237; n&#225;m seznam let&#367;&#44; kter&#233; bu&#271; odl&#233;taly z Prahy nebo p&#345;il&#233;taly v Praze<BR>
+<BR>
+3&#41; LetenkySet select: [:m | m rezervovaneMisto trida = &#39;economy&#39;]<BR>
+	- &quot;Letenky&#44; ktere meli sedadlo nachazejici se v economy tride&quot;<BR>
+	- V&#253;pis v&#353;ech letenek&#44; kter&#233; maj&#237; jsou prov&#225;z&#225;ny se sedadlem&#44; kter&#233; se nach&#225;z&#237; v economy t&#345;&#237;d&#283;<BR>
+<BR>
+4&#41; &#40;LetenkySet select: [:m | m patri jmeno = &#39;Jakub&#39; and: [ m patri prijmeni = &#39;Dvo&#345;&#225;k&#39; ]]&#41; <BR>
+	- &quot;Vsechny letenky u osoby pojmenovane Jakub Dvo&#345;&#225;k&quot;<BR>
+	- Tento dotaz vybere v&#353;echny letenky&#44; kter&#233; maj&#237; odkaz na cestuj&#237;c&#237;ho se jm&#233;nem Jakub Dvo&#345;&#225;k<BR>
+<BR>
+5&#41; CestujiciSet select: [:m | m celkemUtraceno &gt;= 5000 ]<BR>
+	- &quot;Oblibeni zakaznici - cestujici&#44; kteri utratili za letenky vice nez 5000&quot;<BR>
+	- Vybere na&#353;e &quot;nejobl&#237;ben&#283;j&#353;&#237; cestuj&#237;c&#237;&quot;&#44; &#269;ili lidi&#44; kte&#345;&#237; za letenky utratili v&#237;ce ne&#382; n&#283;jakou ur&#269;itou &#269;&#225;stku&#44; v tomto p&#345;&#237;pad&#283; p&#345;es 5000 K&#269;<BR>
+<BR>
+6&#41; &#40;LetySet select: [:m | m datumOdletu &gt; &#39;01-01-2022&#39; asDate and: [ m datumPriletu &lt; &#39;12-31-2022&#39; asDate]]&#41;<BR>
+	- &quot;Lety&#44; ktere probehly v prubehu roku 2022&quot;<BR>
+	- Vyp&#237;&#353;e v&#353;echny Lety&#44; kter&#233; prob&#283;hly od 1. 1. 2022 do 31. 12. 2022&#44; &#269;ili v roce 2022<BR>
+<BR>
+7&#41; &#40;LetySet select: [:m | m letDokoncen = &#39;ne&#39;]&#41; <BR>
+	- &quot;Naplanovane&#44; nedokoncene lety&quot;<BR>
+	- Jednoduch&#253; dotaz na konec :&#41;&#44; vybere v&#353;echny napl&#225;novan&#233; lety<BR>
+	
 </P>
 
 <BR>
@@ -59,11 +136,20 @@ LetySet select: [:m | m zpozdeniMinuty = 0 and: [ m letDokoncen = &#39;ano&#39;]
 &quot;Lety&#44; ktere bud zacinaly nebo koncily na letisti v Praze&quot;
 LetySet select: [:m | m zLetiste kod = &#39;PRG&#39; or: [ m naLetiste kod = &#39;PRG&#39;]]
 
+&quot;Letenky&#44; ktere meli sedadlo nachazejici se v economy tride&quot;
+LetenkySet select: [:m | m rezervovaneMisto trida = &#39;economy&#39;]
+
+&quot;Vsechny letenky u osoby pojmenovane Jakub Dvo&#345;&#225;k&quot;
+&#40;LetenkySet select: [:m | m patri jmeno = &#39;Jakub&#39; and: [ m patri prijmeni = &#39;Dvo&#345;&#225;k&#39; ]]&#41; 
+
 &quot;Oblibeni zakaznici - cestujici&#44; kteri utratili za letenky vice nez 5000&quot;
-CestujiciSet select: [:m | m celkemUtraceno &gt; 5000 ]
+CestujiciSet select: [:m | m celkemUtraceno &gt;= 5000 ]
 
 &quot;Lety&#44; ktere probehly v prubehu roku 2022&quot;
-&#40;LetySet select: [:m | m datumOdletu &gt; &#39;01-01-2022&#39; asDate and: [ m datumPriletu isNil not and: [ m datumPriletu &lt; &#39;12-31-2022&#39; asDate]]]&#41; </PRE>
+&#40;LetySet select: [:m | m datumOdletu &gt; &#39;01-01-2022&#39; asDate and: [ m datumPriletu &lt; &#39;12-31-2022&#39; asDate]]&#41;
+
+&quot;Naplanovane&#44; nedokoncene lety&quot;
+&#40;LetySet select: [:m | m letDokoncen = &#39;ne&#39;]&#41; </PRE>
 <H4>Workspace Objects</H4>
 <UL>
 
@@ -104,7 +190,7 @@ s2 oznaceni: &#39;A12&#39;; trida: &#39;business&#39;; uDveri: 0.
 s3 := Sedadlo new .
 s3 oznaceni: &#39;C01&#39;; trida: &#39;economy&#39;; uDveri: 1. 
 s4 := Sedadlo new .
-s4 oznaceni: &#39;B42&#39;; trida: &#39;economy&#39;; uDveri: 1. 
+s4 oznaceni: &#39;B42&#39;; trida: &#39;firstClass&#39;; uDveri: 1. 
 s5 := Sedadlo new .
 s5 oznaceni: &#39;Z02&#39;; trida: &#39;firstClass&#39;; uDveri: 0. 
 s6 := Sedadlo new .
@@ -147,7 +233,7 @@ let1 cislo: 109507; datumOdletu: &#39;20-JAN-2023&#39; asDate; datumPriletu: &#3
 let1 zLetiste: letiste1 .
 let1 naLetiste: letiste2 .
 let2 := Let new .
-let2 cislo: 564120; datumOdletu: &#39;08-AUG-2023&#39; asDate; casOdletu: 2200 .
+let2 cislo: 564120; datumOdletu: &#39;08-AUG-2023&#39; asDate; datumPriletu: &#39;08-JAN-2023&#39; asDate; casOdletu: 1615; casPriletu: 2000.
 let2 zLetiste: letiste3 .
 let2 naLetiste: letiste5 .
 let3 := Let new .
@@ -167,7 +253,7 @@ let6 cislo: 891003; datumOdletu: &#39;22-NOV-2022&#39; asDate; datumPriletu: &#3
 let6 zLetiste: letiste9 .
 let6 naLetiste: letiste3 .
 let7 := Let new .
-let7 cislo: 779514; datumOdletu: &#39;15-NOV-2023&#39; asDate; casOdletu: 1700 .
+let7 cislo: 779514; datumOdletu: &#39;15-NOV-2023&#39; asDate;  datumPriletu: &#39;16-NOV-2023&#39; asDate; casOdletu: 1700; casPriletu: 1100 .
 let7 zLetiste: letiste7 .
 let7 naLetiste: letiste6 .
 let8 :=  Let new .
@@ -220,7 +306,7 @@ letenka2 rezervovaneMisto: s4 .
 letenka2 patri: c6 .
 letenka3 := Letenka new .
 letenka3 cislo: 10010032; cena: 2200; pocetZavazadel: 0; prednostniNastup: 1 .
-letenka3 spoj: let7 .
+letenka3 spoj: let8 .
 letenka3 rezervovaneMisto: s3 .
 letenka3 patri: c7 .
 letenka4 := Letenka new .
@@ -230,7 +316,7 @@ letenka4 rezervovaneMisto: s6 .
 letenka4 patri: c8 .
 letenka5 := Letenka new .
 letenka5 cislo: 100044874; cena: 5000; pocetZavazadel: 1; prednostniNastup: 1 .
-letenka5 spoj: let8 .
+letenka5 spoj: let7 .
 letenka5 rezervovaneMisto: s5 .
 letenka5 patri: c7 .
 
@@ -617,15 +703,7 @@ cislo:
 </CODE>
 <BR>
 <CODE>
-doplatekExtraZavazadlo
-</CODE>
-<BR>
-<CODE>
 initialize
-</CODE>
-<BR>
-<CODE>
-kompenzaceZpozdeni
 </CODE>
 <BR>
 <CODE>
@@ -650,6 +728,10 @@ prednostniNastup
 <BR>
 <CODE>
 prednostniNastup:
+</CODE>
+<BR>
+<CODE>
+pristupDoSalonku
 </CODE>
 <BR>
 <CODE>
@@ -682,14 +764,6 @@ spoj:
 <UL>
 <LI>
 <B><CODE>
-doplatekExtraZavazadlo
-</CODE></B>
-<PRE>
-	&quot;v pripade&#44; ze cestujici ma vice nez jedno zavazadlo&#44; bude platit poplatek za extra zavazadlo&quot;
-
-	pocetZavazadel &gt; 1 ifTrue: [^&#39;ano&#39;] ifFalse: [^&#39;ne&#39;]</PRE>
-<LI>
-<B><CODE>
 initialize
 </CODE></B>
 <PRE>
@@ -705,13 +779,13 @@ initialize
      prednostniNastup := nil.</PRE>
 <LI>
 <B><CODE>
-kompenzaceZpozdeni
+pristupDoSalonku
 </CODE></B>
 <PRE>
-	&quot;pokud ma let zpozdeni 3 hodiny a vice&#44; ma cestujici narok na kompenzaci&quot;
+	&quot;pokud letenka stala vice nez 3000 a neni v economy tride ma cestujici narok na pristup do VIP salonu pred odletem&quot;
 
-	spoj zpozdeniMinuty isNil not 
-		ifTrue: [spoj zpozdeniMinuty &gt; 179 ifTrue: [^&#39;ano&#39;] ifFalse: [^&#39;ne&#39;]]
+	cena &gt;= 5000 &amp; &#40;rezervovaneMisto trida ~= &#39;economy&#39;&#41; 
+		ifTrue: [^&#39;ano&#39;]
 		ifFalse: [^&#39;ne&#39;]</PRE>
 </UL>
 <TABLE BORDER="0" CELLPADDING="3" CELLSPACING="0" WIDTH=100%>
@@ -801,10 +875,6 @@ datumPriletu:
 </CODE>
 <BR>
 <CODE>
-delkaLetu
-</CODE>
-<BR>
-<CODE>
 initialize
 </CODE>
 <BR>
@@ -850,12 +920,6 @@ zpozdeniMinuty:
 <UL>
 <LI>
 <B><CODE>
-delkaLetu
-</CODE></B>
-<PRE>
-	&quot;comment stating purpose of message&quot;</PRE>
-<LI>
-<B><CODE>
 initialize
 </CODE></B>
 <PRE>
@@ -875,7 +939,15 @@ initialize
 letDokoncen
 </CODE></B>
 <PRE>
-	casPriletu isNil not ifTrue: [^&#39;ano&#39;] ifFalse: [^&#39;ne&#39;]</PRE>
+	zpozdeniMinuty isNil not ifTrue: [^&#39;ano&#39;] ifFalse: [^&#39;ne&#39;]</PRE>
+<LI>
+<B><CODE>
+zpozdeniMinuty
+</CODE></B>
+<PRE>
+	&quot;generated by Daskalos&quot;
+
+	zpozdeniMinuty isNil not ifTrue: [^zpozdeniMinuty] ifFalse: [^&#39;-1&#39;]</PRE>
 </UL>
 <HR>
 <H2>Links</H2>
@@ -891,6 +963,6 @@ Generated by Daskalos - Object Modeling Tutor &#40;C&#41; 2006 V. Merunka
 
 <BR>
 <CODE>
-April 25&#44; 2023
+April 30&#44; 2023
 </CODE>
 </BODY></HTML>
